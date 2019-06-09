@@ -1,0 +1,11 @@
+{% extends 'masterpage.html' %}
+{% block content %}
+<p>
+    <ul>
+      {% for day in days %}
+        <li><h4> Day {{ day }}</h4></li>
+      {% endfor %}
+    </ul>
+    Welcome to My Journal aaa
+</p>
+{% endblock %}
