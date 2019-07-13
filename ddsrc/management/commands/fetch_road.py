@@ -1,6 +1,6 @@
 import json
 import requests
-
+from django.utils import timezone
 from django.core.management.base import BaseCommand, CommandError
 
 from ddsrc.models import Road
@@ -26,6 +26,7 @@ class Command(BaseCommand):
                 if name_chs:
                     road, created = Road.objects.get_or_create(name_chs=name_chs)
                     road.name_en = hb_item['nameEn']
+                    road.lib_uri = hb_item['uri']
                     road.temporal_value = hb_item['temporalValue']
                     road.history_of_name = hb_item['historyOfName']
                     road.name_after = hb_item['nameAfter']
@@ -33,6 +34,7 @@ class Command(BaseCommand):
                     if place_list and len(place_list) > 0:
                         road.place_uri = place_list[0]['placeUri']
                         road.place_name = place_list[0]['placeName']
+                    road.lib_update_time = timezone.now()
                     road.save()
 
             self.stdout.write(self.style.SUCCESS('Successfully import page "%s"' % page_id))
