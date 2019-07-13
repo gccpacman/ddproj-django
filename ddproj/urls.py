@@ -22,6 +22,6 @@ from django.views.generic import TemplateView
 from journal.views import index
 urlpatterns = [
     path('admin/', admin.site.urls),
-    url(r'^api/', include("main.urls")),
+    url(r'^api/', include("ddsrc.urls")),
     url(r'^$', index, name='index'),
 ]
