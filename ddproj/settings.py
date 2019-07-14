@@ -136,4 +136,13 @@ STATICFILES_DIRS = [
     os.path.join(BASE_DIR, "appfront/dist/static"),
 ]
 
-DEFAULT_FILE_STORAGE = 'qiniustorage.backends.QiniuStorage'
+MEDIA_URL = '/media/'
+MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
+
+# QINIU_ACCESS_KEY = '**' # 你的七牛云个人中心里可以找到，下同
+# QINIU_SECRET_KEY = '**' 
+# QINIU_BUCKET_NAME = '**' # 你的存储空间名字
+# QINIU_BUCKET_DOMAIN = '**.bkt.clouddn.com' # 外链默认域名
+# QINIU_SECURE_URL = False # 使用http
+
+# DEFAULT_FILE_STORAGE = 'qiniustorage.backends.QiniuStorage'
