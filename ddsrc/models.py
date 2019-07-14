@@ -23,10 +23,12 @@ class Road(models.Model):
 class Architecture(models.Model):
     _id = models.AutoField(primary_key=True)
     road = models.ForeignKey("Road", on_delete=models.SET_NULL, null=True)
+    road_name_chs = models.CharField(max_length=64, verbose_name="马路简体名", null=True)
+    road_lib_uri = models.URLField(verbose_name="马路URI", null=True)
     name_cht = models.CharField(max_length=64, verbose_name="繁体名", unique=True)
     name_chs = models.CharField(max_length=64, verbose_name="简体名", null=True)
     name_en = models.CharField(max_length=64, verbose_name="英文名", null=True)
-    houseNumber = models.CharField(max_length=16, verbose_name="房间号", null=True)
+    house_number = models.CharField(max_length=16, verbose_name="房间号", null=True)
     address = models.CharField(max_length=256, verbose_name="地址", null=True)
     longitude = models.FloatField(verbose_name="经度", null=True)
     latitude = models.FloatField(verbose_name="纬度", null=True)
