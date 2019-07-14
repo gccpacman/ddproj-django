@@ -7,7 +7,7 @@ class Road(models.Model):
     name_en = models.CharField(max_length=64, verbose_name="英文名", null=True)
     temporal_value = models.CharField(max_length=64, verbose_name="开始/结束时间", null=True)
     name_after = models.CharField(max_length=64, verbose_name="以..命名", null=True)
-    history_of_name =  models.CharField(max_length=64, verbose_name="历史路名", null=True)
+    history_of_name =  models.CharField(max_length=64, verbose_name="历史", null=True)
     history_of_lib_uri = models.URLField(verbose_name="历史关联URI", null=True)
     des = models.TextField(verbose_name="简介(上海图书馆数据)", null=True)
     des2 = models.TextField(verbose_name="简介(手动编辑)", null=True)
@@ -15,9 +15,9 @@ class Road(models.Model):
     place_name = models.CharField(max_length=64, verbose_name="所在区", null=True)
     is_from_lib = models.BooleanField(default=True)
     lib_uri = models.URLField(verbose_name="URI", null=True)
-    lib_update_time= models.DateTimeField(null=True)
-    create_time = models.DateTimeField(auto_now_add=True)
-    update_time = models.DateTimeField(auto_now=True)
+    lib_update_time= models.DateTimeField(null=True, verbose_name="数据获取时间")
+    create_time = models.DateTimeField(auto_now_add=True, verbose_name="更新时间")
+    update_time = models.DateTimeField(auto_now=True, verbose_name="创建时间")
 
 
 class Architecture(models.Model):
@@ -42,8 +42,8 @@ class Architecture(models.Model):
     protect_type = models.CharField(max_length=16, verbose_name="保护类型", null=True)
     is_from_lib = models.BooleanField(default=True)
     lib_uri = models.URLField(verbose_name="URI", null=True)
-    lib_update_time= models.DateTimeField(null=True)
-    create_time = models.DateTimeField(auto_now_add=True)
+    lib_update_time= models.DateTimeField(null=True, verbose_name="数据获取时间")
+    create_time = models.DateTimeField(auto_now_add=True, verbose_name="更新时间")
     update_time = models.DateTimeField(auto_now=True)
 
 
@@ -57,6 +57,6 @@ class ArchitecturePicture(models.Model):
     des2 = models.TextField(verbose_name="简介(手动编辑)", null=True)
     is_from_lib = models.BooleanField(default=True)
     lib_uri = models.URLField(verbose_name="URI", null=True)
-    lib_update_time= models.DateTimeField(null=True)
-    create_time = models.DateTimeField(auto_now_add=True)
-    update_time = models.DateTimeField(auto_now=True)
+    lib_update_time= models.DateTimeField(null=True, verbose_name="数据获取时间")
+    create_time = models.DateTimeField(auto_now_add=True, verbose_name="更新时间")
+    update_time = models.DateTimeField(auto_now=True, verbose_name="创建时间")
