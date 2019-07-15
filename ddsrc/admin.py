@@ -28,5 +28,3 @@ class ArchitectureAdmin(admin.ModelAdmin):
     ]
 
 admin.site.register(Architecture, ArchitectureAdmin)
-
-admin.site.register(ArchitecturePicture)

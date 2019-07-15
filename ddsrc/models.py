@@ -20,8 +20,8 @@ class Road(models.Model):
     is_from_lib = models.BooleanField(default=True)
     lib_uri = models.URLField(verbose_name="URI", null=True)
     lib_update_time= models.DateTimeField(null=True, verbose_name="数据获取时间")
-    create_time = models.DateTimeField(auto_now_add=True, verbose_name="更新时间")
-    update_time = models.DateTimeField(auto_now=True, verbose_name="创建时间")
+    create_time = models.DateTimeField(auto_now_add=True, verbose_name="创建时间")
+    update_time = models.DateTimeField(auto_now=True, verbose_name="更新时间")
 
 
 class Architecture(models.Model):
@@ -35,8 +35,8 @@ class Architecture(models.Model):
     road_lib_uri = models.URLField(verbose_name="马路URI", null=True)
     name_cht = models.CharField(max_length=64, verbose_name="繁体名", unique=True)
     name_chs = models.CharField(max_length=64, verbose_name="简体名", null=True)
-    name_en = models.CharField(max_length=64, verbose_name="英文名", null=True)
-    house_number = models.CharField(max_length=16, verbose_name="房间号", null=True)
+    name_en = models.CharField(max_length=128, verbose_name="英文名", null=True)
+    house_number = models.CharField(max_length=256, verbose_name="房间号", null=True)
     address = models.CharField(max_length=256, verbose_name="地址", null=True)
     longitude = models.FloatField(verbose_name="经度", null=True)
     latitude = models.FloatField(verbose_name="纬度", null=True)
@@ -51,8 +51,8 @@ class Architecture(models.Model):
     is_from_lib = models.BooleanField(default=True)
     lib_uri = models.URLField(verbose_name="URI", null=True)
     lib_update_time= models.DateTimeField(null=True, verbose_name="数据获取时间")
-    create_time = models.DateTimeField(auto_now_add=True, verbose_name="更新时间")
-    update_time = models.DateTimeField(auto_now=True)
+    create_time = models.DateTimeField(auto_now_add=True, verbose_name="创建时间")
+    update_time = models.DateTimeField(auto_now=True, verbose_name="更新时间")
 
 
 class ArchitecturePicture(models.Model):
@@ -70,5 +70,5 @@ class ArchitecturePicture(models.Model):
     is_from_lib = models.BooleanField(default=True)
     lib_uri = models.URLField(verbose_name="URI", null=True)
     lib_update_time= models.DateTimeField(null=True, verbose_name="数据获取时间")
-    create_time = models.DateTimeField(auto_now_add=True, verbose_name="更新时间")
-    update_time = models.DateTimeField(auto_now=True, verbose_name="创建时间")
+    create_time = models.DateTimeField(auto_now_add=True, verbose_name="创建时间")
+    update_time = models.DateTimeField(auto_now=True, verbose_name="更新时间")
