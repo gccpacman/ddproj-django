@@ -2,6 +2,10 @@ from django.db import models
 
 
 class Road(models.Model):
+    class Meta:
+        verbose_name = '马路'
+        verbose_name_plural = '马路'
+
     _id = models.AutoField(primary_key=True)
     name_chs = models.CharField(max_length=64, verbose_name="现路名", unique=True)
     name_en = models.CharField(max_length=64, verbose_name="英文名", null=True)
@@ -21,6 +25,10 @@ class Road(models.Model):
 
 
 class Architecture(models.Model):
+    class Meta:
+        verbose_name = '优秀历史建筑'
+        verbose_name_plural = '优秀历史建筑'
+
     _id = models.AutoField(primary_key=True)
     road = models.ForeignKey("Road", on_delete=models.SET_NULL, null=True)
     road_name_chs = models.CharField(max_length=64, verbose_name="马路简体名", null=True)
@@ -48,6 +56,10 @@ class Architecture(models.Model):
 
 
 class ArchitecturePicture(models.Model):
+    class Meta:
+        verbose_name = '优秀历史建筑图片'
+        verbose_name_plural = '优秀历史建筑图片'
+
     _id = models.AutoField(primary_key=True)
     architecture = models.ForeignKey("Architecture", on_delete=models.CASCADE)
     pic_uri= models.URLField(null=True)

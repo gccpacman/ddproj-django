@@ -25,7 +25,9 @@ SECRET_KEY = 'u73)$u^l*_qx)^^^-_m*kl(s+z$w^8riu7d)8uba%-r@2_ygx='
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = [
+    "datadude.xyz"
+]
 
 
 # Application definition
@@ -48,6 +50,7 @@ MIDDLEWARE = [
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
+    'django.middleware.locale.LocaleMiddleware',
 ]
 
 ROOT_URLCONF = 'ddproj.urls'
@@ -85,8 +88,8 @@ DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.mysql',
         'NAME': 'ddproj',
-        'USER': 'root',
-        'PASSWORD': 'root',
+        'USER': 'ddxyz',
+        'PASSWORD': 'dDxYz1@3#e',
         'HOST': '127.0.0.1',
         'PORT': '3306',
         'OPTIONS': {'charset': 'utf8mb4'},
@@ -139,10 +142,3 @@ STATICFILES_DIRS = [
 MEDIA_URL = '/media/'
 MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
 
-# QINIU_ACCESS_KEY = '**' # 你的七牛云个人中心里可以找到，下同
-# QINIU_SECRET_KEY = '**' 
-# QINIU_BUCKET_NAME = '**' # 你的存储空间名字
-# QINIU_BUCKET_DOMAIN = '**.bkt.clouddn.com' # 外链默认域名
-# QINIU_SECURE_URL = False # 使用http
-
-# DEFAULT_FILE_STORAGE = 'qiniustorage.backends.QiniuStorage'
