@@ -9,6 +9,7 @@ class RoadAdmin(admin.ModelAdmin):
     list_display = ('name_chs', 'lib_uri', 'place_name', 'lib_update_time', 'update_time', 'create_time', )
     list_filter = ('place_name',)
     list_per_page = 20
+    search_fields = ('name_chs', 'name_en')
 
 admin.site.register(Road, RoadAdmin)
 
@@ -26,5 +27,6 @@ class ArchitectureAdmin(admin.ModelAdmin):
     inlines = [
         ArchitecturePictureInline,
     ]
+    search_fields = ('name_chs', 'name_cht', 'name_en')
 
 admin.site.register(Architecture, ArchitectureAdmin)

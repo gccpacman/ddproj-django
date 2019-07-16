@@ -23,6 +23,9 @@ class Road(models.Model):
     create_time = models.DateTimeField(auto_now_add=True, verbose_name="创建时间")
     update_time = models.DateTimeField(auto_now=True, verbose_name="更新时间")
 
+    def __str__(self):
+        return 'Road: ' + self.name_chs
+
 
 class Architecture(models.Model):
     class Meta:
@@ -54,6 +57,8 @@ class Architecture(models.Model):
     create_time = models.DateTimeField(auto_now_add=True, verbose_name="创建时间")
     update_time = models.DateTimeField(auto_now=True, verbose_name="更新时间")
 
+    def __str__(self):
+        return 'Architecture: ' + self.name_chs
 
 class ArchitecturePicture(models.Model):
     class Meta:
