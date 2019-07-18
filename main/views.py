@@ -6,4 +6,4 @@ def index(request):
     content = {
         'days': [1, 2, 3, 4]
     }
-    return render(request, 'days.html', content)
+    return render(request, 'index.html', content)
