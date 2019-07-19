@@ -146,6 +146,7 @@ MEDIA_URL = '/backend/media/'
 # ]
 
 if socket.gethostname() == 'datadudexyz':
+    DEBUG = False
     STATIC_ROOT = '/home/ddxyz/collected_static/'
     MEDIA_ROOT = '/home/ddxyz/media/'
 else:
