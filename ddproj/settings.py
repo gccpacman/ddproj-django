@@ -61,8 +61,8 @@ ROOT_URLCONF = 'ddproj.urls'
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
-        # 'DIRS': [os.path.join(BASE_DIR, "templates"),],
-        'DIRS': ['ddfront/dist'],
+        'DIRS': [os.path.join(BASE_DIR, "templates"),],
+        # 'DIRS': ['ddfront/dist'],
         'APP_DIRS': True,
         'OPTIONS': {
             'context_processors': [
@@ -139,9 +139,9 @@ USE_TZ = True
 STATIC_URL = '/backend/static/'
 MEDIA_URL = '/backend/media/'
 
-STATICFILES_DIRS = [
-    os.path.join(BASE_DIR, "ddfront/dist/static"),
-]
+# STATICFILES_DIRS = [
+#     os.path.join(BASE_DIR, "ddfront/dist/static"),
+# ]
 
 if socket.gethostname() == 'datadudexyz':
     STATIC_ROOT = '/home/ddxyz/collected_static/'
