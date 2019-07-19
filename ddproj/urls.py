@@ -21,8 +21,6 @@ from django.views.generic import TemplateView
 from django.views.static import serve
 from .settings import MEDIA_ROOT
 
-from main.views import index
-
 urlpatterns = [
     path('admin/', admin.site.urls),
     url(r'^api-auth/', include('rest_framework.urls')),
