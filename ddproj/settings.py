@@ -27,6 +27,8 @@ SECRET_KEY = 'u73)$u^l*_qx)^^^-_m*kl(s+z$w^8riu7d)8uba%-r@2_ygx='
 DEBUG = True
 
 ALLOWED_HOSTS = [
+    "api.datadude.xyz",
+    "admin.datadude.xyz",
     "datadude.xyz",
     "127.0.0.1"
 ]
