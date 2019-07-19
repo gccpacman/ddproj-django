@@ -1,7 +1,10 @@
 from django.conf.urls import url, include
-from ddsrc.models import Road
-from rest_framework import routers, serializers, viewsets
+from django.urls import path
+from rest_framework import routers, serializers, generics
 from rest_framework.response import Response
+
+from ddsrc.models import Road
+
 
 class RoadSerializer(serializers.HyperlinkedModelSerializer):
     class Meta:
@@ -10,14 +13,15 @@ class RoadSerializer(serializers.HyperlinkedModelSerializer):
             'name_after', 'history_of_name', 'history_of_lib_uri', 'place_name', 'place_uri', \
              'is_from_lib', 'lib_update_time', 'update_time', 'create_time',]
 
-class RoadViewSet(viewsets.ModelViewSet):
+class RoadListView(generics.ListAPIView):
     queryset = Road.objects.all()
     serializer_class = RoadSerializer
 
-router = routers.DefaultRouter()
-router.register(r'roads', RoadViewSet)
-
+class RoadDetailView(generics.RetrieveAPIView):
+    queryset = Road.objects.all()
+    serializer_class = RoadSerializer
 
 urlpatterns = [
-    url(r'^', include(router.urls)),
+    url(r'^roads/$', RoadListView.as_view()),
+    url(r'^roads/<int:pk>/$', RoadDetailView.as_view()),
 ]

@@ -46,7 +46,7 @@ class Architecture(models.Model):
     place_uri = models.URLField(verbose_name="所在区URI", null=True)
     place_name = models.CharField(max_length=64, verbose_name="所在区", null=True)
     des = models.TextField(verbose_name="简介(上海图书馆数据)", null=True)
-    des2 = models.TextField(verbose_name="简介(手动编辑)", null=True)
+    des2 = models.TextField(verbose_name="简介(手动编辑)", null=True, blank=True)
     first_image_uri = models.URLField(verbose_name="首页照片URI", null=True)
     first_image_path = models.ImageField(upload_to='pic/architecture_first/',null=True)
     batch_no = models.CharField(max_length=16, verbose_name="批次", null=True)
