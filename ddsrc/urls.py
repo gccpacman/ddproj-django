@@ -25,8 +25,7 @@ class RoadDetailsView(generics.RetrieveAPIView):
 
 urlpatterns = [
     url(r'^roads/$', RoadListView.as_view(), name="road_list"),
-    url(r'^roads/(?P<pk>[0-9]+)/$',
-        RoadDetailsView.as_view(), name="road_details"),
+    url(r'^roads/(?P<pk>[0-9]+)/$', RoadDetailsView.as_view(), name="road_details"),
 ]
 
 urlpatterns = format_suffix_patterns(urlpatterns)
