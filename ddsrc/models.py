@@ -62,6 +62,10 @@ class Architecture(models.Model):
     def __str__(self):
         return 'Architecture: ' + self.name_chs
 
+    def road_str(self):
+        if self.road:
+            return str(road)
+
 class ArchitecturePicture(models.Model):
     class Meta:
         verbose_name = '优秀历史建筑图片'
