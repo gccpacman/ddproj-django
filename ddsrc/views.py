@@ -1,7 +1,7 @@
 from django.shortcuts import render
-from rest_framework import routers, serializers, generics
+from rest_framework import routers, serializers, generics, filters
 from rest_framework.response import Response
-
+from django_filters.rest_framework import DjangoFilterBackend
 from ddsrc.models import Road, Architecture
 
 
@@ -24,6 +24,8 @@ class ArchitectureSerializer(serializers.HyperlinkedModelSerializer):
 class RoadListView(generics.ListAPIView):
     queryset = Road.objects.all()
     serializer_class = RoadSerializer
+    filter_backends = [filters.SearchFilter]
+    search_fields = ['name_chs', 'name_en', 'place_name']
 
 class RoadDetailsView(generics.RetrieveAPIView):
     queryset = Road.objects.all()
@@ -32,6 +34,9 @@ class RoadDetailsView(generics.RetrieveAPIView):
 class ArchitectureListView(generics.ListAPIView):
     queryset = Architecture.objects.all()
     serializer_class = ArchitectureSerializer
+    filter_backends = [filters.SearchFilter, DjangoFilterBackend]
+    search_fields = ['name_chs', 'name_cht', 'name_en', 'road_name_chs', 'place_name']
+    filterset_fields = ['road_name_chs', ]
 
 class ArchitectureDetailView(generics.RetrieveAPIView):
     queryset = Architecture.objects.all()
