@@ -5,7 +5,9 @@ from django.contrib import admin
 from .models import Road, Architecture, ArchitecturePicture
 
 class RoadAdmin(admin.ModelAdmin):
-    readonly_fields = ('name_chs', 'name_en', 'des', 'lib_uri', 'temporal_value', 'name_after', 'history_of_name', 'history_of_lib_uri', 'longitude_bmap', 'latitude_bmap', 'place_name', 'place_uri', 'is_from_lib', 'lib_update_time', 'update_time', 'create_time',)
+    readonly_fields = ('name_chs', 'name_en', 'des', 'lib_uri', 'temporal_value', 'name_after', 'history_of_name', 'history_of_lib_uri', \
+        'longitude_bmap', 'latitude_bmap', 'polylines_bmap', 'longitude_gaode', 'latitude_gaode', 'polylines_gaode', \
+        'place_name', 'place_uri', 'is_from_lib', 'lib_update_time', 'update_time', 'create_time',)
     list_display = ('name_chs', 'lib_uri', 'place_name', 'lib_update_time', 'update_time', 'create_time', )
     list_filter = ('place_name',)
     list_per_page = 20

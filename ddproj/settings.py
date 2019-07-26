@@ -161,6 +161,12 @@ MEDIA_URL = '/backend/media/'
 #     os.path.join(BASE_DIR, "ddfront/dist/static"),
 # ]
 
+
+SHANGHAI_LIBRARY_API_KEY = '3f5df65840c93fea3c1026b8a64649dffa3d6328'
+BAIDU_MAP_JSAPI_KEY = 'bRrHftKV7wBPHYFSkp2GRZQCVGbz8nhy'
+GAODE_MAP_WEBAPI_KEY = '82455bd226d65b5c36768ad1cd410fea'
+
+
 if socket.gethostname() == 'datadudexyz':
     DEBUG = False
     STATIC_ROOT = '/home/ddxyz/collected_static/'

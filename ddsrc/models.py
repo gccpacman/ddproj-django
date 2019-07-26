@@ -23,8 +23,12 @@ class Road(models.Model):
     is_from_lib = models.BooleanField(default=True)
     longitude_bmap = models.FloatField(verbose_name="经度(百度地图)", null=True)
     latitude_bmap = models.FloatField(verbose_name="纬度(百度地图)", null=True)
+    polylines_bmap = models.CharField(max_length=1024, verbose_name="坐标点(百度地图)", null=True)
+    longitude_gaode = models.FloatField(verbose_name="经度(高德地图)", null=True)
+    latitude_gaode = models.FloatField(verbose_name="纬度(高德地图)", null=True)
+    polylines_gaode = models.CharField(max_length=1024, verbose_name="坐标点(高德地图)", null=True)
     lib_uri = models.URLField(verbose_name="URI", null=True)
-    lib_update_time= models.DateTimeField(null=True, verbose_name="数据获取时间")
+    lib_update_time = models.DateTimeField(null=True, verbose_name="数据获取时间")
     create_time = models.DateTimeField(auto_now_add=True, verbose_name="创建时间")
     update_time = models.DateTimeField(auto_now=True, verbose_name="更新时间")
 
