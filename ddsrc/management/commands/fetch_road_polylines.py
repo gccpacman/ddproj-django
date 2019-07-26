@@ -26,9 +26,7 @@ class Command(BaseCommand):
         roads_list = json_data['roads']
         if len(roads_list) > 0:
             road_gaode = roads_list[0]
-            road_gaode_center = road_gaode['center']
-            road_gaode_polylines = road_gaode['polylines']
+            road_gaode_polylines = road_gaode
             road = Road.objects.get(name_chs=road_name_chs)
-            road.longitude_gaode, road.latitude_gaode = road_gaode_center.split(',')
-            road.polylines_gaode = str(road_gaode_polylines)[:500]
+            road.polylines_gaode = road_gaode_polylines
             road.save()

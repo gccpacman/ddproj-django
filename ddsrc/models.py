@@ -1,4 +1,5 @@
 from django.db import models
+from django_mysql.models import JSONField
 
 
 class Road(models.Model):
@@ -21,12 +22,8 @@ class Road(models.Model):
     related_place = models.CharField(max_length=128, verbose_name="关联地名", null=True, blank=True)
     related_place_province = models.CharField(max_length=64, verbose_name="关联地省份", null=True, blank=True)
     is_from_lib = models.BooleanField(default=True)
-    longitude_bmap = models.FloatField(verbose_name="经度(百度地图)", null=True)
-    latitude_bmap = models.FloatField(verbose_name="纬度(百度地图)", null=True)
-    polylines_bmap = models.CharField(max_length=1024, verbose_name="坐标点(百度地图)", null=True)
-    longitude_gaode = models.FloatField(verbose_name="经度(高德地图)", null=True)
-    latitude_gaode = models.FloatField(verbose_name="纬度(高德地图)", null=True)
-    polylines_gaode = models.CharField(max_length=1024, verbose_name="坐标点(高德地图)", null=True)
+    polylines_bmap = JSONField(verbose_name="坐标点(百度地图)", null=True)
+    polylines_gaode = JSONField(verbose_name="坐标点(高德地图)", null=True)
     lib_uri = models.URLField(verbose_name="URI", null=True)
     lib_update_time = models.DateTimeField(null=True, verbose_name="数据获取时间")
     create_time = models.DateTimeField(auto_now_add=True, verbose_name="创建时间")
