@@ -6,9 +6,9 @@ from .models import Road, Architecture, ArchitecturePicture
 
 class RoadAdmin(admin.ModelAdmin):
     readonly_fields = ('name_chs', 'name_en', 'des', 'lib_uri', 'temporal_value', 'name_after', 'history_of_name', 'history_of_lib_uri', \
-        'polylines_bmap', 'polylines_gaode', 'place_name', 'place_uri', \
+        'polylines_bmap', 'polylines_gaode', 'center_bmap', 'center_gaode', 'place_name', 'place_uri', \
         'is_from_lib', 'lib_update_time', 'update_time', 'create_time',)
-    list_display = ('name_chs', 'history_of_name', 'place_name', 'lib_update_time', 'update_time', 'create_time', )
+    list_display = ('name_chs', 'history_of_name', 'place_name', 'lib_update_time', 'update_time', 'create_time', '_id' )
     list_filter = ('place_name',)
     list_per_page = 20
     search_fields = ('name_chs', 'name_en')

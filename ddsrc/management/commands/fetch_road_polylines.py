@@ -13,17 +13,14 @@ class Command(BaseCommand):
     help = 'Fetching road polylines from Gaode API'
 
     def handle(self, *args, **options):
-        page_id = 1
-        while(self.fetch_page(page_id)):
-            page_id = page_id + 1
-            time.sleep(3)
+        self.fetch_page()
 
     def gcj02_to_bd09_str(self, point):
         lng, lat = point.split(",")
         lng_bd, lat_bd = gcj02_to_bd09(float(lng), float(lat))
         return {"lng": str(lng_bd), "lat": str(lat_bd)}
 
-    def fetch_page(self, page_id):
+    def fetch_page(self):
         for road in Road.objects.all():
             url = "http://restapi.amap.com/v3/road/roadname"
             querystring = {"city":"上海", "key":GAODE_MAP_WEBAPI_KEY, "keywords":road.name_chs}
