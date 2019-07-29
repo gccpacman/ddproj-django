@@ -5,14 +5,6 @@ from django_filters.rest_framework import DjangoFilterBackend
 from ddsrc.models import Road, Architecture
 
 
-class RoadSerializer(serializers.ModelSerializer):
-    class Meta:
-        model = Road
-        fields = ['_id', 'name_chs', 'name_en', 'des', 'des2', 'lib_uri', 'temporal_value', \
-             'name_after', 'history_of_name', 'history_of_lib_uri', 'place_name', 'place_uri', \
-             'polylines_bmap', 'center_bmap', \
-             'is_from_lib', 'lib_update_time', 'update_time', 'create_time',]
-
 class ArchitectureSerializer(serializers.HyperlinkedModelSerializer):
     class Meta:
         model = Architecture
@@ -20,6 +12,17 @@ class ArchitectureSerializer(serializers.HyperlinkedModelSerializer):
              'address', 'house_number', 'longitude', 'latitude', 'is_from_lib', 'protect_type', \
              'lib_uri', 'place_name', 'place_uri', 'batch_no', 'first_image_uri', 'first_image_path','first_image_lib_uri', \
              'lib_is_red', 'lib_update_time', 'update_time', 'create_time', ]
+
+
+class RoadSerializer(serializers.ModelSerializer):
+    road_architecture = ArchitectureSerializer(many=True)
+
+    class Meta:
+        model = Road
+        fields = ['_id', 'name_chs', 'name_en', 'des', 'des2', 'lib_uri', 'temporal_value', \
+             'name_after', 'history_of_name', 'history_of_lib_uri', 'place_name', 'place_uri', \
+             'road_architecture' ,'polylines_bmap', 'center_bmap', \
+             'is_from_lib', 'lib_update_time', 'update_time', 'create_time',]
 
 
 class RoadListView(generics.ListAPIView):

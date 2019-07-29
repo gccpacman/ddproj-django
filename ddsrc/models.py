@@ -41,7 +41,7 @@ class Architecture(models.Model):
         verbose_name_plural = '建筑'
 
     _id = models.AutoField(primary_key=True)
-    road = models.ForeignKey("Road", on_delete=models.SET_NULL, null=True)
+    road = models.ForeignKey("Road", related_name="road_architecture", on_delete=models.SET_NULL, null=True)
     road_name_chs = models.CharField(max_length=64, verbose_name="马路简体名", null=True)
     road_lib_uri = models.URLField(verbose_name="马路URI", null=True)
     name_chs = models.CharField(max_length=64, verbose_name="简体名", unique=True, null=True)
