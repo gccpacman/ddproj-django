@@ -26,22 +26,6 @@ SECRET_KEY = 'u73)$u^l*_qx)^^^-_m*kl(s+z$w^8riu7d)8uba%-r@2_ygx='
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = [
-    "api.datadude.xyz",
-    "admin.datadude.xyz",
-    "datadude.xyz",
-    "127.0.0.1"
-]
-
-CORS_ORIGIN_WHITELIST = [
-    "http://www.datadude.xyz",
-    "http://datadude.xyz",
-    "https://www.datadude.xyz",
-    "https://datadude.xyz",
-    "http://dev.datadude.xyz",
-    "http://dev.datadude.xyz:8080"
-]
-
 # Application definition
 
 INSTALLED_APPS = [
@@ -170,8 +154,25 @@ GAODE_MAP_WEBAPI_KEY = '82455bd226d65b5c36768ad1cd410fea'
 
 if socket.gethostname() == 'datadudexyz':
     DEBUG = False
+    ALLOWED_HOSTS = [
+        "api.datadude.xyz",
+        "admin.datadude.xyz",
+        "datadude.xyz"
+    ]
+    CORS_ORIGIN_WHITELIST = [
+        "http://www.datadude.xyz",
+        "http://datadude.xyz",
+        "https://www.datadude.xyz",
+        "https://datadude.xyz",
+    ]
     STATIC_ROOT = '/home/ddxyz/collected_static/'
     MEDIA_ROOT = '/home/ddxyz/media/'
 else:
+    ALLOWED_HOSTS = ["*"]
+    CORS_ORIGIN_WHITELIST = [
+        "http://127.0.0.1:8080",
+        "http://localhost:8080",
+        "http://dev.datadude.xyz:8080"
+    ]
     STATIC_ROOT = os.path.join(BASE_DIR, 'collected_static')
     MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
