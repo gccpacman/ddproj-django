@@ -47,9 +47,12 @@ class ArchitectureDetailView(generics.RetrieveAPIView):
     queryset = Architecture.objects.all()
     serializer_class = ArchitectureSerializer
 
-class SearchFilterView(APIView):
+class RoadFilterView(APIView):
     def get(self, request):
-        road_list = [{"name_chs": road.name_chs, "des": road.des2, "type": "马路"} for road in Road.objects.all()]
-        architecture_list = [{"name_chs": architecture.name_chs, "des2": architecture.des2, "type": "建筑"} for architecture in Architecture.objects.all()]
-        name_list = road_list + architecture_list
-        return Response(name_list)
+        road_list = [road.name_chs for road in Road.objects.all()]
+        return Response(road_list)
+
+class ArchitectureFilterView(APIView):
+    def get(self, request):
+        architecture_list = [architecture.name_chs for architecture in Architecture.objects.all()]
+        return Response(architecture_list)
