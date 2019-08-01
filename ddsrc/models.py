@@ -32,7 +32,7 @@ class Road(models.Model):
     update_time = models.DateTimeField(auto_now=True, verbose_name="更新时间")
 
     def __str__(self):
-        return 'Road: ' + self.name_chs
+        return 'Road: %s (%s)' % (self.name_chs, self._id)
 
 
 class Architecture(models.Model):
@@ -70,7 +70,7 @@ class Architecture(models.Model):
     update_time = models.DateTimeField(auto_now=True, verbose_name="更新时间")
 
     def __str__(self):
-        return 'Architecture: ' + self.name_chs
+        return 'Architecture: %s (%s)' % (self.name_chs, self._id)
 
     def road_str(self):
         if self.road:

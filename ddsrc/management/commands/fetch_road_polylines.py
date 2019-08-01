@@ -21,7 +21,7 @@ class Command(BaseCommand):
         return {"lng": str(lng_bd), "lat": str(lat_bd)}
 
     def fetch_page(self):
-        for road in Road.objects.all():
+        for road in Road.objects.filter(_id=768):
             url = "http://restapi.amap.com/v3/road/roadname"
             querystring = {"city":"上海", "key":GAODE_MAP_WEBAPI_KEY, "keywords":road.name_chs}
             response = requests.request('GET', url, params=querystring)
