@@ -56,3 +56,8 @@ class ArchitectureFilterView(APIView):
     def get(self, request):
         architecture_list = [architecture.name_chs for architecture in Architecture.objects.all()]
         return Response(architecture_list)
+
+class RoadPolylinesView(APIView):
+    def get(self, request):
+        road_list = [{'road_name': road.name_chs, 'polylines': road.polylines_bmap} for road in Road.objects.all()]
+        return Response(road_list)
