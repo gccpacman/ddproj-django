@@ -59,5 +59,5 @@ class ArchitectureFilterView(APIView):
 
 class RoadPolylinesView(APIView):
     def get(self, request):
-        road_list = [{'road_name': road.name_chs, 'polylines': road.polylines_bmap} for road in Road.objects.exclude(polylines_bmap={})]
+        road_list = [{'road_name': road.name_chs, 'polylines': road.polylines_bmap} for road in Road.objects.filter(place_name="徐汇区").exclude(polylines_bmap={})]
         return Response(road_list)
