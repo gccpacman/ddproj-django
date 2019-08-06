@@ -140,7 +140,6 @@ USE_TZ = True
 # https://docs.djangoproject.com/en/2.2/howto/static-files/
 
 STATIC_URL = '/backend/static/'
-MEDIA_URL = '/backend/media/'
 
 # STATICFILES_DIRS = [
 #     os.path.join(BASE_DIR, "ddfront/dist/static"),
@@ -167,6 +166,7 @@ if socket.gethostname() == 'datadudexyz':
     ]
     STATIC_ROOT = '/home/ddxyz/collected_static/'
     MEDIA_ROOT = '/home/ddxyz/media/'
+    MEDIA_URL = '/backend/media/'
 else:
     ALLOWED_HOSTS = ["*"]
     CORS_ORIGIN_WHITELIST = [
@@ -176,3 +176,4 @@ else:
     ]
     STATIC_ROOT = os.path.join(BASE_DIR, 'collected_static')
     MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
+    MEDIA_URL = '/media/'

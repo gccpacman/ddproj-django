@@ -30,7 +30,7 @@ class RoadListView(generics.ListAPIView):
     queryset = Road.objects.all()
     serializer_class = RoadSerializer
     filter_backends = [filters.SearchFilter]
-    search_fields = ['name_chs', 'name_en', 'place_name']
+    search_fields = ['name_chs', 'name_en', ]
 
 class RoadDetailsView(generics.RetrieveAPIView):
     queryset = Road.objects.all()
@@ -40,7 +40,7 @@ class ArchitectureListView(generics.ListAPIView):
     queryset = Architecture.objects.all()
     serializer_class = ArchitectureSerializer
     filter_backends = [filters.SearchFilter, DjangoFilterBackend]
-    search_fields = ['name_chs', 'name_cht', 'name_en', 'road_name_chs', 'place_name']
+    search_fields = ['name_chs', 'name_cht', 'name_en', ]
     filterset_fields = ['road_name_chs', ]
 
 class ArchitectureDetailView(generics.RetrieveAPIView):
