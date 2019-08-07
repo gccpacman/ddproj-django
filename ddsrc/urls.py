@@ -10,6 +10,8 @@ from ddsrc.views import (
     RoadFilterView,
     ArchitectureFilterView,
     RoadPolylinesView,
+    RoadRelatedPlacesView,
+    ArchitecturePositionsView
 )
 
 urlpatterns = [
@@ -17,9 +19,11 @@ urlpatterns = [
     url(r'^road/(?P<pk>[0-9]+)/$', RoadDetailsView.as_view(), name="road-detail"),
     url(r'^architectures/$', ArchitectureListView.as_view(), name="architecture-list"),
     url(r'^architecture/(?P<pk>[0-9]+)/$', ArchitectureDetailView.as_view(), name="architecture-detail"),
-    url(r'^keyword/road$', RoadFilterView.as_view(), name="road-keyword"),
-    url(r'^keyword/architecture$', ArchitectureFilterView.as_view(), name="architecture-keyword"),
-    url(r'^roads/polylines/$', RoadPolylinesView.as_view(), name="road-polylines"),
+    url(r'^keyword/road$', RoadFilterView.as_view(), name="keyword-road"),
+    url(r'^keyword/architecture$', ArchitectureFilterView.as_view(), name="keyword-architecture"),
+    url(r'^road/polylines/$', RoadPolylinesView.as_view(), name="road-polylines"),
+    url(r'^road/relatedplaces/$', RoadRelatedPlacesView.as_view(), name="road-relatedplaces"),
+    url(r'^architecture/positions/$', ArchitecturePositionsView.as_view(), name="architecture-positons"),
 ]
 
 urlpatterns = format_suffix_patterns(urlpatterns)

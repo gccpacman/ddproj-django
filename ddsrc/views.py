@@ -57,7 +57,28 @@ class ArchitectureFilterView(APIView):
         architecture_list = [architecture.name_chs for architecture in Architecture.objects.all()]
         return Response(architecture_list)
 
+class ArchitectureFilterView(APIView):
+    def get(self, request):
+        architecture_list = [architecture.name_chs for architecture in Architecture.objects.all()]
+        return Response(architecture_list)
+
+class ArchitecturePositionsView(APIView):
+    def get(self, request):
+        architecture_list = [{"name": arch.name_chs, "id": arch._id, "position": {"lng": arch.longitude, "lat": arch.latitude}} for arch in Architecture.objects.all()]
+        return Response(architecture_list)
+
+class RoadRelatedPlacesView(APIView):
+    def get(self, request):
+        place_name = request.query_params.get('place_name')
+        if place_name:
+            road_query_list = Road.objects.exclude(related_place=None).filter(place_name=place_name)
+        else:
+            road_query_list = Road.objects.exclude(related_place=None).all()
+        road_list = [{'name': road.name_chs, 'id': road._id, 'related_place': road.related_place, 'related_place_province': road.related_place_province } for road in road_query_list]
+        return Response(road_list)
+
 class RoadPolylinesView(APIView):
     def get(self, request):
-        road_list = [{'road_name': road.name_chs, 'polylines': road.polylines_bmap} for road in Road.objects.filter(place_name="徐汇区").exclude(polylines_bmap={})]
+        place_name = request.query_params['place_name']
+        road_list = [{'road_name': road.name_chs, 'polylines': road.polylines_bmap} for road in Road.objects.filter(place_name=place_name).exclude(polylines_bmap={})]
         return Response(road_list)
