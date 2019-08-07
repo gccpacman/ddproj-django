@@ -8,11 +8,11 @@ class Road(models.Model):
         verbose_name_plural = '马路'
 
     _id = models.AutoField(primary_key=True)
-    name_chs = models.CharField(max_length=64, verbose_name="现路名", unique=True)
+    name_chs = models.CharField(max_length=64, verbose_name="中文名", unique=True)
     name_en = models.CharField(max_length=64, verbose_name="英文名", null=True)
     temporal_value = models.CharField(max_length=64, verbose_name="开始/结束时间", null=True)
     name_after = models.CharField(max_length=64, verbose_name="以..命名", null=True)
-    history_of_name =  models.CharField(max_length=64, verbose_name="历史", null=True)
+    history_of_name =  models.CharField(max_length=64, verbose_name="历史关联", null=True)
     history_of_lib_uri = models.URLField(verbose_name="历史关联URI", null=True)
     des = models.TextField(verbose_name="简介(上海图书馆数据)", null=True)
     des2 = models.TextField(verbose_name="简介(手动编辑)", null=True, blank=True)
