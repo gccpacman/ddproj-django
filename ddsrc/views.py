@@ -64,7 +64,12 @@ class ArchitectureFilterView(APIView):
 
 class ArchitecturePositionsView(APIView):
     def get(self, request):
-        architecture_list = [{"name": arch.name_chs, "id": arch._id, "position": {"lng": arch.longitude, "lat": arch.latitude}} for arch in Architecture.objects.all()]
+        place_name = request.query_params.get('place_name')
+        if place_name:
+            arch_query_list = Architecture.objects.filter(place_name=place_name)
+        else:
+            arch_query_list = Architecture.objects.all()
+        architecture_list = [{"name": arch.name_chs, "value": [ arch.longitude,  arch.latitude, '100']} for arch in arch_query_list]
         return Response(architecture_list)
 
 class RoadRelatedPlacesView(APIView):
