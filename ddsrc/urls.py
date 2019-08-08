@@ -11,7 +11,8 @@ from ddsrc.views import (
     ArchitectureFilterView,
     RoadPolylinesView,
     RoadRelatedPlacesView,
-    ArchitecturePositionsView
+    ArchitecturePositionsView,
+    PlaceRelatedProvincesCount
 )
 
 urlpatterns = [
@@ -24,6 +25,7 @@ urlpatterns = [
     url(r'^road/polylines/$', RoadPolylinesView.as_view(), name="road-polylines"),
     url(r'^road/relatedplaces/$', RoadRelatedPlacesView.as_view(), name="road-relatedplaces"),
     url(r'^architecture/positions/$', ArchitecturePositionsView.as_view(), name="architecture-positons"),
+    url(r'^place/relatedprovinces/$', PlaceRelatedProvincesCount.as_view(), name="place-releated-provinces"),
 ]
 
 urlpatterns = format_suffix_patterns(urlpatterns)
