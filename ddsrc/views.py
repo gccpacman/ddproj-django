@@ -90,7 +90,7 @@ class RoadPolylinesView(APIView):
 
 class PlaceRelatedProvincesCount(APIView):
     def get(self, request):
-        place_related_pair_list = [place_related_pair for place_related_pair in Road.objects.exclude(place_name=None).exclude(related_place_province=None).values('place_name', 'related_place_province').annotate(related_place_province_count=Count('related_place_province')).order_by('related_place_province_count')]
+        place_related_pair_list = [place_related_pair for place_related_pair in Road.objects.exclude(place_name=None).exclude(place_name="null").exclude(related_place_province=None).values('place_name', 'related_place_province').annotate(related_place_province_count=Count('related_place_province')).order_by('related_place_province_count')]
         links = []
         for place_related_pair in place_related_pair_list:
             links.append({
