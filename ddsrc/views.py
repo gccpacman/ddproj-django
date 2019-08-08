@@ -69,7 +69,7 @@ class ArchitecturePositionsView(APIView):
             arch_query_list = Architecture.objects.filter(place_name=place_name)
         else:
             arch_query_list = Architecture.objects.all()
-        architecture_list = [{"name": arch.name_chs, "value": [ arch.longitude,  arch.latitude, '100']} for arch in arch_query_list]
+        architecture_list = [{"name": arch.name_chs, "place_name": arch.place_name, "value": [ arch.longitude,  arch.latitude, '100']} for arch in arch_query_list]
         return Response(architecture_list)
 
 class RoadRelatedPlacesView(APIView):
