@@ -163,6 +163,8 @@ if socket.gethostname() == 'datadudexyz':
         "http://datadude.xyz",
         "https://www.datadude.xyz",
         "https://datadude.xyz",
+        "http://dev.datadude.xyz:8080",
+        "http://test.datadude.xyz"
     ]
     STATIC_ROOT = '/home/ddxyz/collected_static/'
     MEDIA_ROOT = '/home/ddxyz/media/'
