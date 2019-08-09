@@ -156,7 +156,8 @@ if socket.gethostname() == 'datadudexyz':
     ALLOWED_HOSTS = [
         "api.datadude.xyz",
         "admin.datadude.xyz",
-        "datadude.xyz"
+        "datadude.xyz",
+        "127.0.0.1"
     ]
     CORS_ORIGIN_WHITELIST = [
         "http://www.datadude.xyz",
