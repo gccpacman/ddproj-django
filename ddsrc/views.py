@@ -22,7 +22,7 @@ class RoadSerializer(serializers.ModelSerializer):
         model = Road
         fields = ['_id', 'name_chs', 'name_en', 'des', 'des2', 'lib_uri', 'temporal_value', \
              'name_after', 'history_of_name', 'history_of_lib_uri', 'place_name', 'place_uri', \
-             'road_architecture' ,'polylines_bmap', 'center_bmap', \
+             'road_architecture' ,'polylines_bmap', 'center_bmap', 'place_name2', \
              'is_from_lib', 'lib_update_time', 'update_time', 'create_time',]
 
 
