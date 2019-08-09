@@ -11,8 +11,7 @@ class ArchitectureSerializer(serializers.HyperlinkedModelSerializer):
         model = Architecture
         fields = ['_id', 'name_chs', 'name_cht', 'name_en', 'des', 'des2', 'road', 'road_name_chs', 'road_lib_uri', \
              'address', 'house_number', 'longitude', 'latitude', 'is_from_lib', 'protect_type', \
-             'lib_uri', 'place_name', 'place_uri', 'batch_no', 'first_image_uri', 'first_image_path','first_image_lib_uri', \
-             'lib_is_red', 'lib_update_time', 'update_time', 'create_time', ]
+             'lib_uri', 'place_name', 'place_uri', 'batch_no', 'first_image_uri', 'first_image_path','first_image_lib_uri', ]
 
 
 class RoadSerializer(serializers.ModelSerializer):
@@ -21,16 +20,15 @@ class RoadSerializer(serializers.ModelSerializer):
     class Meta:
         model = Road
         fields = ['_id', 'name_chs', 'name_en', 'des', 'des2', 'lib_uri', 'temporal_value', \
-             'name_after', 'history_of_name', 'history_of_lib_uri', 'place_name', 'place_uri', \
-             'road_architecture' ,'polylines_bmap', 'center_bmap', 'place_name2', \
-             'is_from_lib', 'lib_update_time', 'update_time', 'create_time',]
+             'name_after', 'history_of_name', 'history_of_lib_uri', 'place_name', \
+             'road_architecture' ,'polylines_bmap', 'center_bmap', 'place_name2', ]
 
 
 class RoadListView(generics.ListAPIView):
     queryset = Road.objects.all()
     serializer_class = RoadSerializer
     filter_backends = [filters.SearchFilter]
-    search_fields = ['name_chs', 'name_en', ]
+    search_fields = ['name_chs', ]
 
 class RoadDetailsView(generics.RetrieveAPIView):
     queryset = Road.objects.all()
@@ -40,7 +38,7 @@ class ArchitectureListView(generics.ListAPIView):
     queryset = Architecture.objects.all()
     serializer_class = ArchitectureSerializer
     filter_backends = [filters.SearchFilter, DjangoFilterBackend]
-    search_fields = ['name_chs', 'name_cht', 'name_en', ]
+    search_fields = ['name_chs', 'road_name_chs' ]
     filterset_fields = ['road_name_chs', ]
 
 class ArchitectureDetailView(generics.RetrieveAPIView):

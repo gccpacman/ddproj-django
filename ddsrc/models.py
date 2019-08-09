@@ -8,7 +8,7 @@ class Road(models.Model):
         verbose_name_plural = '马路'
 
     _id = models.AutoField(primary_key=True)
-    name_chs = models.CharField(max_length=64, verbose_name="中文名", unique=True)
+    name_chs = models.CharField(max_length=64, verbose_name="中文名", unique=True, db_index=True)
     name_en = models.CharField(max_length=64, verbose_name="英文名", null=True)
     temporal_value = models.CharField(max_length=64, verbose_name="开始/结束时间", null=True)
     name_after = models.CharField(max_length=64, verbose_name="以..命名", null=True)
@@ -42,9 +42,9 @@ class Architecture(models.Model):
 
     _id = models.AutoField(primary_key=True)
     road = models.ForeignKey("Road", related_name="road_architecture", on_delete=models.SET_NULL, null=True)
-    road_name_chs = models.CharField(max_length=64, verbose_name="马路简体名", null=True)
+    road_name_chs = models.CharField(max_length=64, verbose_name="马路简体名", null=True, db_index=True)
     road_lib_uri = models.URLField(verbose_name="马路URI", null=True)
-    name_chs = models.CharField(max_length=64, verbose_name="简体名", unique=True, null=True)
+    name_chs = models.CharField(max_length=64, verbose_name="简体名", unique=True, null=True, db_index=True)
     name_cht = models.CharField(max_length=64, verbose_name="繁体名", null=True)
     name_en = models.CharField(max_length=128, verbose_name="英文名", null=True)
     house_number = models.CharField(max_length=256, verbose_name="房间号", null=True)
