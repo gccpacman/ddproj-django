@@ -25,7 +25,7 @@ class RoadSerializer(serializers.ModelSerializer):
 
 
 class RoadListView(generics.ListAPIView):
-    queryset = Road.objects.all()
+    queryset = Road.objects.all().order_by('name_chs')
     serializer_class = RoadSerializer
     filter_backends = [filters.SearchFilter]
     search_fields = ['name_chs', ]
@@ -35,7 +35,7 @@ class RoadDetailsView(generics.RetrieveAPIView):
     serializer_class = RoadSerializer
 
 class ArchitectureListView(generics.ListAPIView):
-    queryset = Architecture.objects.all()
+    queryset = Architecture.objects.all().order_by('name_chs')
     serializer_class = ArchitectureSerializer
     filter_backends = [filters.SearchFilter, DjangoFilterBackend]
     search_fields = ['name_chs', 'road_name_chs' ]
