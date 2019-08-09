@@ -152,7 +152,7 @@ GAODE_MAP_WEBAPI_KEY = '82455bd226d65b5c36768ad1cd410fea'
 
 
 if socket.gethostname() == 'datadudexyz':
-    DEBUG = False
+    DEBUG = True
     ALLOWED_HOSTS = [
         "api.datadude.xyz",
         "admin.datadude.xyz",
