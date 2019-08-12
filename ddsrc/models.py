@@ -40,12 +40,7 @@ class Road(models.Model):
         if not result:
             result = self.des
         return linebreaksbr(result)
-    
-    def des_simple(self):
-        result = self.des2
-        if not result:
-            result = self.des
-        return result[:20]
+
 
 class Architecture(models.Model):
     class Meta:
@@ -93,12 +88,6 @@ class Architecture(models.Model):
         if not result:
             result = self.des
         return linebreaksbr(result)
-    
-    def des_simple(self):
-        result = self.des2
-        if not result:
-            result = self.des
-        return result[:40]
 
     def place_name_str(self):
         if self.place_name == '浦东':
