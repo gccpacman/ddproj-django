@@ -1,5 +1,6 @@
 from django.db import models
 from django_mysql.models import JSONField
+from django.template.defaultfilters import linebreaks
 
 
 class Road(models.Model):
@@ -34,6 +35,17 @@ class Road(models.Model):
     def __str__(self):
         return 'Road: %s (%s)' % (self.name_chs, self._id)
 
+    def des_html(self):
+        result = self.des2
+        if not result:
+            result = self.des
+        return linebreaks(result)
+    
+    def des_simple(self):
+        result = self.des2
+        if not result:
+            result = self.des
+        return result[:20]
 
 class Architecture(models.Model):
     class Meta:
@@ -75,6 +87,23 @@ class Architecture(models.Model):
     def road_str(self):
         if self.road:
             return str(road)
+    
+    def des_html(self):
+        result = self.des2
+        if not result:
+            result = self.des
+        return linebreaks(result)
+    
+    def des_simple(self):
+        result = self.des2
+        if not result:
+            result = self.des
+        return result[:40]
+
+    def place_name_str(self):
+        if self.place_name == '浦东':
+            return '浦东新区'
+        return '%s区' % self.place_name
 
 class ArchitecturePicture(models.Model):
     class Meta:

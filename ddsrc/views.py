@@ -9,9 +9,9 @@ from ddsrc.models import Road, Architecture
 class ArchitectureSerializer(serializers.HyperlinkedModelSerializer):
     class Meta:
         model = Architecture
-        fields = ['_id', 'name_chs', 'name_cht', 'name_en', 'des', 'des2', 'road', 'road_name_chs', 'road_lib_uri', \
+        fields = ['_id', 'name_chs', 'name_cht', 'name_en', 'des', 'des2', 'des_html', 'des_simple', 'road', 'road_name_chs', 'road_lib_uri', \
              'address', 'house_number', 'longitude', 'latitude', 'is_from_lib', 'protect_type', \
-             'lib_uri', 'place_name', 'place_uri', 'batch_no', 'first_image_uri', 'first_image_path','first_image_lib_uri', ]
+             'lib_uri', 'place_name',  'place_name_str', 'place_uri', 'batch_no', 'first_image_uri', 'first_image_path','first_image_lib_uri', ]
 
 
 class RoadSerializer(serializers.ModelSerializer):
@@ -19,7 +19,7 @@ class RoadSerializer(serializers.ModelSerializer):
 
     class Meta:
         model = Road
-        fields = ['_id', 'name_chs', 'name_en', 'des', 'des2', 'lib_uri', 'temporal_value', \
+        fields = ['_id', 'name_chs', 'name_en', 'des', 'des2', 'des_html', 'des_simple', 'lib_uri', 'temporal_value', \
              'name_after', 'history_of_name', 'history_of_lib_uri', 'place_name', \
              'road_architecture' ,'polylines_bmap', 'center_bmap', 'place_name2', ]
 
