@@ -1,6 +1,6 @@
 from django.db import models
 from django_mysql.models import JSONField
-from django.template.defaultfilters import linebreaks
+from django.template.defaultfilters import linebreaksbr
 
 
 class Road(models.Model):
@@ -39,7 +39,7 @@ class Road(models.Model):
         result = self.des2
         if not result:
             result = self.des
-        return linebreaks(result)
+        return linebreaksbr(result)
     
     def des_simple(self):
         result = self.des2
@@ -92,7 +92,7 @@ class Architecture(models.Model):
         result = self.des2
         if not result:
             result = self.des
-        return linebreaks(result)
+        return linebreaksbr(result)
     
     def des_simple(self):
         result = self.des2
