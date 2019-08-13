@@ -6,36 +6,39 @@ from rest_framework.views import APIView
 from django_filters.rest_framework import DjangoFilterBackend
 from ddsrc.models import Road, Architecture
 
+
 class ArchitectureSerializer(serializers.HyperlinkedModelSerializer):
     class Meta:
         model = Architecture
-        fields = ['_id', 'name_chs', 'name_cht', 'name_en', 'des', 'des2', 'des_html', 'road', 'road_name_chs', 'road_lib_uri', \
-             'address', 'house_number', 'longitude', 'latitude', 'is_from_lib', 'protect_type', \
-             'lib_uri', 'place_name',  'place_name_str', 'place_uri', 'batch_no', 'first_image_uri', 'first_image_path','first_image_lib_uri', ]
+        fields = ['_id', 'name_chs', 'name_cht', 'name_en', 'des2', 'des_html', 'road', 'road_name_chs', 'road_lib_uri', \
+             'address', 'house_number', 'longitude', 'latitude', \
+            'place_name_str', 'place_uri', 'batch_no', 'first_image_path', ]
 
 
 class RoadSerializer(serializers.ModelSerializer):
     road_architecture = ArchitectureSerializer(many=True)
+    road_architecture_count = serializers.IntegerField(read_only=True)
 
     class Meta:
         model = Road
         fields = ['_id', 'name_chs', 'name_en', 'des', 'des2', 'des_html', 'lib_uri', 'temporal_value', \
-             'name_after', 'history_of_name', 'history_of_lib_uri', 'place_name', \
-             'road_architecture' ,'polylines_bmap', 'center_bmap', 'place_name2', ]
+             'name_after', 'history_of_name', 'history_of_lib_uri', \
+             'road_architecture', 'road_architecture_count', 'polylines_bmap', 'center_bmap', 'place_name2', ]
 
 
 class RoadListView(generics.ListAPIView):
-    queryset = Road.objects.all().order_by('name_chs')
+    queryset = Road.objects.annotate(road_architecture_count=Count('road_architecture'))
     serializer_class = RoadSerializer
-    filter_backends = [filters.SearchFilter]
+    filter_backends = [filters.SearchFilter, filters.OrderingFilter,]
     search_fields = ['name_chs', ]
+    ordering_fields = ('road_architecture_count',)
 
 class RoadDetailsView(generics.RetrieveAPIView):
     queryset = Road.objects.all()
     serializer_class = RoadSerializer
 
 class ArchitectureListView(generics.ListAPIView):
-    queryset = Architecture.objects.all().order_by('name_chs')
+    queryset = Architecture.objects.all()
     serializer_class = ArchitectureSerializer
     filter_backends = [filters.SearchFilter, DjangoFilterBackend]
     search_fields = ['name_chs', 'road_name_chs' ]
