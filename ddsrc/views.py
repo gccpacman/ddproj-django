@@ -23,7 +23,7 @@ class RoadSerializer(serializers.ModelSerializer):
         model = Road
         fields = ['_id', 'name_chs', 'name_en', 'des', 'des2', 'des_html', 'lib_uri', 'temporal_value', \
              'name_after', 'history_of_name', 'history_of_lib_uri', \
-             'road_architecture', 'road_architecture_count', 'polylines_bmap', 'center_bmap', 'place_name2', ]
+             'road_architecture', 'road_architecture_count', 'polylines_bmap', 'center_bmap',  'place_name', 'place_name2', ]
 
 
 class RoadListView(generics.ListAPIView):
