@@ -1,4 +1,10 @@
 {
     "files.exclude": {
-    }
+    },
+    "python.formatting.provider": "yapf",
+    "python.formatting.yapfArgs": [
+        "--style",
+        "{based_on_style: chromium, indent_width: 4}"
+    ],
+    "python.pythonPath": "C:\\Users\\r341h\\AppData\\Local\\Programs\\Python\\Python37\\python.exe",
 }
