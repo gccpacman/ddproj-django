@@ -97,8 +97,8 @@ DATABASES = {
         'NAME': 'ddproj',
         'USER': 'ddxyz',
         'PASSWORD': 'dDxYz1@3#e',
-        'HOST': '127.0.0.1',
-        'PORT': '3306',
+        'HOST': 'fr.datadude.xyz',
+        'PORT': '5306',
         'OPTIONS': {'charset': 'utf8mb4', 'connect_timeout': 5},
     }
 }
