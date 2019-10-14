@@ -94,12 +94,16 @@ WSGI_APPLICATION = 'ddproj.wsgi.application'
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.mysql',
-        'NAME': 'ddproj',
+        'NAME': 'ddproj-dev',
         'USER': 'ddxyz',
         'PASSWORD': 'dDxYz1@3#e',
-        'HOST': 'fr.datadude.xyz',
-        'PORT': '5306',
-        'OPTIONS': {'charset': 'utf8mb4', 'connect_timeout': 5},
+        'HOST': 'kr1.cakrcyzdnyyv.ap-northeast-2.rds.amazonaws.com',
+        'PORT': '3306',
+        'OPTIONS': {
+            'init_command': "SET sql_mode='STRICT_TRANS_TABLES'",
+            'charset': 'utf8mb4',
+            'connect_timeout': 5
+        },
     }
 }
 
