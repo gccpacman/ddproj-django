@@ -28,11 +28,11 @@ RUN sed -i 's/deb.debian.org/mirrors.tuna.tsinghua.edu.cn/g' /etc/apt/sources.li
     && apt-get -y install --no-install-recommends apt-utils dialog 2>&1 \
     #
     # Verify git, process tools, lsb-release (common in install instructions for CLIs) installed
-    && apt-get -y install git iproute2 procps lsb-release \
+    && apt-get -y install git iproute2 procps lsb-release telnet curl wget \
     #
     # Install pylint
     && mkdir /root/.pip/ && echo "[global]\nindex-url = http://pypi.douban.com/simple\ntrusted-host = pypi.douban.com" > /root/.pip/pip.conf \
-    && pip --disable-pip-version-check --no-cache-dir install pylint flask \
+    && pip --disable-pip-version-check --no-cache-dir install flake8 pylint ipython ipdb yapf \
     #
     # Update Python environment based on requirements.txt
     # && pip --disable-pip-version-check --no-cache-dir install -r /tmp/pip-tmp/requirements.txt \
@@ -53,5 +53,3 @@ RUN sed -i 's/deb.debian.org/mirrors.tuna.tsinghua.edu.cn/g' /etc/apt/sources.li
 
 # Switch back to dialog for any ad-hoc use of apt-get
 ENV DEBIAN_FRONTEND=
-
-
