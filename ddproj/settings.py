@@ -155,26 +155,35 @@ BAIDU_MAP_JSAPI_KEY = 'bRrHftKV7wBPHYFSkp2GRZQCVGbz8nhy'
 GAODE_MAP_WEBAPI_KEY = '82455bd226d65b5c36768ad1cd410fea'
 
 
-if socket.gethostname() == 'datadudexyz':
+if socket.gethostname() == 'ip-172-31-44-132':
     DEBUG = False
     ALLOWED_HOSTS = [
         "api.datadude.xyz",
-        "admin.datadude.xyz",
-        "datadude.xyz",
-        "127.0.0.1"
+        "api2.datadude.xyz"
     ]
     CORS_ORIGIN_WHITELIST = [
         "http://www.datadude.xyz",
-        "http://datadude.xyz",
         "https://www.datadude.xyz",
-        "https://datadude.xyz",
-        "http://dev.datadude.xyz:8080",
-        "http://127.0.0.1:8080",
-        "http://dev.datadude.xyz",
-        "http://test.datadude.xyz"
+        "http://shlib.datadude.xyz",
+        "https://shlib.datadude.xyz"
     ]
-    STATIC_ROOT = '/home/ddxyz/collected_static/'
-    MEDIA_ROOT = '/home/ddxyz/media/'
+    DATABASES = {
+        'default': {
+            'ENGINE': 'django.db.backends.mysql',
+            'NAME': 'ddproj',
+            'USER': 'ddxyz',
+            'PASSWORD': 'dDxYz1@3#e',
+            'HOST': 'kr1.cakrcyzdnyyv.ap-northeast-2.rds.amazonaws.com',
+            'PORT': '3306',
+            'OPTIONS': {
+                'init_command': "SET sql_mode='STRICT_TRANS_TABLES'",
+                'charset': 'utf8mb4',
+                'connect_timeout': 5
+            },
+        }
+    }
+    STATIC_ROOT = '/home/ubuntu/collected_static/'
+    MEDIA_ROOT = '/home/ubuntu/media/'
     MEDIA_URL = '/backend/media/'
 else:
     ALLOWED_HOSTS = ["*"]
