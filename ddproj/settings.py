@@ -162,6 +162,8 @@ if socket.gethostname() == 'ip-172-31-44-132':
         "api2.datadude.xyz"
     ]
     CORS_ORIGIN_WHITELIST = [
+        "http://datadude.xyz",
+        "https://datadude.xyz",
         "http://www.datadude.xyz",
         "https://www.datadude.xyz",
         "http://shlib.datadude.xyz",
