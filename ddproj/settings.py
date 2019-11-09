@@ -161,20 +161,38 @@ MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
 MEDIA_URL = '/media/'
 # STATIC_URL = '/static/'
 
-DEFAULT_FILE_STORAGE = 'storages.backends.s3boto3.S3Boto3Storage'
-STATICFILES_STORAGE = 'storages.backends.s3boto3.S3Boto3Storage'
+# AWS S3 
 
-AWS_ACCESS_KEY_ID='AKIA564S4C36TY524PYP'
-AWS_SECRET_ACCESS_KEY='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'
-AWS_STORAGE_BUCKET_NAME='staticfiles.datadude.xyz'
-AWS_LOCATION='shlibdev/'
-AWS_S3_CUSTOM_DOMAIN = 'staticfiles.datadude.xyz'
-AWS_DEFAULT_ACL = None
-AWS_HEADERS = {
-    'Access-Control-Allow-Origin': '*'
-}
+# DEFAULT_FILE_STORAGE = 'storages.backends.s3boto3.S3Boto3Storage'
+# STATICFILES_STORAGE = 'storages.backends.s3boto3.S3Boto3Storage'
 
-STATIC_URL='/shlibdev/'
+# AWS_ACCESS_KEY_ID='AKIA564S4C36TY524PYP'
+# AWS_SECRET_ACCESS_KEY='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'
+# AWS_STORAGE_BUCKET_NAME='staticfiles.datadude.xyz'
+# AWS_LOCATION='shlibdev/'
+# AWS_S3_CUSTOM_DOMAIN = 'staticfiles.datadude.xyz'
+# AWS_DEFAULT_ACL = None
+# AWS_HEADERS = {
+#     'Access-Control-Allow-Origin': '*'
+# }
+
+# storage media file
+DEFAULT_FILE_STORAGE = 'django_aliyun_oss2.backends.AliyunMediaStorage'
+# storage static file
+STATICFILES_STORAGE = 'django_aliyun_oss2.backends.AliyunStaticStorage'
+
+ACCESS_KEY_ID = 'LTAI4FcrzSUYsarmykHNxpQg'
+ACCESS_KEY_SECRET = 'acUMMQKEbI7tVw6Ho8BYINimibPC6j'
+BUCKET_NAME = 'datadudexyz'
+BUCKET_ACL_TYPE = 'public-read'
+ALIYUN_OSS_CNAME='datadudexyz.oss-cn-shanghai.aliyuncs.com'
+END_POINT = 'oss-cn-shanghai.aliyuncs.com'
+ALIYUN_OSS_HTTPS = False
+
+# The default location for your files
+MEDIA_URL = 'apistatic/media/'
+
+STATIC_URL='apistatic/static/'
 
 
 # if socket.gethostname() == 'ip-172-31-44-132':
