@@ -160,16 +160,7 @@ CORS_ORIGIN_WHITELIST = [
 STATIC_ROOT = os.path.join(BASE_DIR, 'collected_static')
 MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
 MEDIA_URL = '/media/'
-
-DEFAULT_FILE_STORAGE = 'storages.backends.s3boto3.S3Boto3Storage'
-STATICFILES_STORAGE = 'storages.backends.s3boto3.S3Boto3Storage'
-AWS_ACCESS_KEY_ID='AKIA564S4C36TY524PYP'
-AWS_SECRET_ACCESS_KEY='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'
-AWS_STORAGE_BUCKET_NAME='staticfiles.datadude.xyz'
-AWS_LOCATION='shlibdev/'
-AWS_S3_CUSTOM_DOMAIN = 'staticfiles.datadude.xyz'
-STATIC_URL='/shlibdev/'
-
+STATIC_URL = '/static/'
 
 # if socket.gethostname() == 'ip-172-31-44-132':
 #     DEBUG = False
@@ -200,9 +191,14 @@ STATIC_URL='/shlibdev/'
 #             },
 #         }
 #     }
+#     DEFAULT_FILE_STORAGE = 'storages.backends.s3boto3.S3Boto3Storage'
+#     STATICFILES_STORAGE = 'storages.backends.s3boto3.S3Boto3Storage'
+#     AWS_ACCESS_KEY_ID='AKIA564S4C36TY524PYP'
+#     AWS_SECRET_ACCESS_KEY='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'
+#     AWS_STORAGE_BUCKET_NAME='staticfiles.datadude.xyz'
+#     AWS_LOCATION='shlib/'
+#     AWS_S3_CUSTOM_DOMAIN = 'staticfiles.datadude.xyz'
+#     STATIC_URL='/shlib/'
 #     STATIC_ROOT = '/home/ubuntu/collected_static/'
 #     MEDIA_ROOT = '/home/ubuntu/media/'
 #     MEDIA_URL = '/backend/media/'
-# else:
-
- 

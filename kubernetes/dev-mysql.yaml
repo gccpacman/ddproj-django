@@ -9,8 +9,7 @@ timezone: 'Asia/Shanghai'
 args:
   - --character-set-server=utf8mb4
   - --collation-server=utf8mb4_general_ci
-initContainer:
-  resources:
-    requests:
-      memory: 300Mi
-      cpu: 100m
+resources:
+  requests:
+    memory: 750Mi
+    cpu: 300m
