@@ -65,7 +65,9 @@ REST_FRAMEWORK = {
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
-        'DIRS': [],
+        'DIRS': [
+            os.path.join(BASE_DIR, "../ddfront/dist"),
+        ],
         'APP_DIRS': True,
         'OPTIONS': {
             'context_processors': [
@@ -118,9 +120,9 @@ USE_TZ = True
 
 # STATIC_URL = '/backend/static/'
 
-# STATICFILES_DIRS = [
-#     os.path.join(BASE_DIR, "ddfront/dist/static"),
-# ]
+STATICFILES_DIRS = [
+    os.path.join(BASE_DIR, "../ddfront/dist/static"),
+]
        
 # Database
 # https://docs.djangoproject.com/en/2.2/ref/settings/#databases
@@ -156,12 +158,15 @@ CORS_ORIGIN_WHITELIST = [
     "http://localhost:8080",
     "http://dev.datadude.xyz:8080"
 ]
-STATIC_ROOT = os.path.join(BASE_DIR, 'collected_static')
+
+# Local Storage
+
+# STATIC_ROOT = os.path.join(BASE_DIR, 'collected_static')
 MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
-MEDIA_URL = '/media/'
+# MEDIA_URL = '/media/'
 # STATIC_URL = '/static/'
 
-# AWS S3 
+# AWS S3 Storage
 
 # DEFAULT_FILE_STORAGE = 'storages.backends.s3boto3.S3Boto3Storage'
 # STATICFILES_STORAGE = 'storages.backends.s3boto3.S3Boto3Storage'
@@ -190,9 +195,9 @@ END_POINT = 'oss-cn-shanghai.aliyuncs.com'
 ALIYUN_OSS_HTTPS = False
 
 # The default location for your files
-MEDIA_URL = 'apistatic/media/'
+MEDIA_URL = '.dev/media/'
 
-STATIC_URL='apistatic/static/'
+STATIC_URL='.dev/static/'
 
 
 # if socket.gethostname() == 'ip-172-31-44-132':
