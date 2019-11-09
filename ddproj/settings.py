@@ -141,8 +141,7 @@ DATABASES = {
         'HOST': '192.168.99.102',
         'PORT': '32000',
         'OPTIONS': {
-            'charset': 'utf8mb4',
-            'connect_timeout': 5
+            'charset': 'utf8mb4'
         },
     }
 }
