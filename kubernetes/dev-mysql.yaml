@@ -1,0 +1,11 @@
+mysqlRootPassword: drpassword
+mysqlUser: ddxyz
+mysqlPassword: ddpassword
+mysqlDatabase: ddproj
+service:
+  type: NodePort
+  nodePort: 32000
+timezone: 'Asia/Shanghai'
+args:
+  - --character-set-server=utf8mb4
+  - --collation-server=utf8mb4_general_ci
