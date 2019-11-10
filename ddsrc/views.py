@@ -66,7 +66,7 @@ class RoadListView(generics.ListAPIView):
     search_fields = [
         'name_chs',
     ]
-    ordering_fields = ('road_architecture_count',)
+    # ordering_fields = ('road_architecture_count',)   # too slow, disable
 
 
 class RoadDetailsView(generics.RetrieveAPIView):
