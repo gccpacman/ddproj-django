@@ -1,4 +1,5 @@
 from django.db import models
+from django_mysql.models import JSONField
 from django.template.defaultfilters import linebreaksbr
 
 
@@ -30,10 +31,10 @@ class Road(models.Model):
     related_place_province = models.CharField(
         max_length=64, verbose_name="关联地省份", null=True, blank=True)
     is_from_lib = models.BooleanField(default=True)
-    center_bmap = models.TextField(verbose_name="中心坐标点(百度地图)", null=True)
-    center_gaode = models.TextField(verbose_name="中心坐标点(高德地图)", null=True)
-    polylines_bmap = models.TextField(verbose_name="折线坐标集(百度地图)", null=True)
-    polylines_gaode = models.TextField(verbose_name="折线坐标集(高德地图)", null=True)
+    center_bmap = JSONField(verbose_name="中心坐标点(百度地图)", null=True)
+    center_gaode = JSONField(verbose_name="中心坐标点(高德地图)", null=True)
+    polylines_bmap = JSONField(verbose_name="折线坐标集(百度地图)", null=True)
+    polylines_gaode = JSONField(verbose_name="折线坐标集(高德地图)", null=True)
     lib_uri = models.URLField(verbose_name="URI", null=True)
     lib_update_time = models.DateTimeField(null=True, verbose_name="数据获取时间")
     create_time = models.DateTimeField(auto_now_add=True, verbose_name="创建时间")
