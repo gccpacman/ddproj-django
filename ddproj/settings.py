@@ -66,7 +66,7 @@ TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
         'DIRS': [
-            os.path.join(BASE_DIR, "../ddfront/dist"),
+            os.path.join(BASE_DIR, "templates"),
         ],
         'APP_DIRS': True,
         'OPTIONS': {
@@ -120,9 +120,9 @@ USE_TZ = True
 
 # STATIC_URL = '/backend/static/'
 
-STATICFILES_DIRS = [
-    os.path.join(BASE_DIR, "../ddfront/dist/static"),
-]
+# STATICFILES_DIRS = [
+#     os.path.join(BASE_DIR, "../ddfront/dist/static"),
+# ]
        
 # Database
 # https://docs.djangoproject.com/en/2.2/ref/settings/#databases
@@ -152,11 +152,13 @@ SHANGHAI_LIBRARY_API_KEY = '3f5df65840c93fea3c1026b8a64649dffa3d6328'
 BAIDU_MAP_JSAPI_KEY = 'bRrHftKV7wBPHYFSkp2GRZQCVGbz8nhy'
 GAODE_MAP_WEBAPI_KEY = '82455bd226d65b5c36768ad1cd410fea'
 
+# Hosts and domains control
+
 ALLOWED_HOSTS = ["*"]
 CORS_ORIGIN_WHITELIST = [
     "http://127.0.0.1:8080",
     "http://localhost:8080",
-    "http://dev.datadude.xyz:8080"
+    "*://shlib.dev.datadude.xyz"
 ]
 
 # Local Storage
@@ -192,51 +194,42 @@ BUCKET_NAME = 'datadudexyz'
 BUCKET_ACL_TYPE = 'public-read'
 ALIYUN_OSS_CNAME='datadudexyz.oss-cn-shanghai.aliyuncs.com'
 END_POINT = 'oss-cn-shanghai.aliyuncs.com'
-ALIYUN_OSS_HTTPS = False
+ALIYUN_OSS_HTTPS = True
 
 # The default location for your files
-MEDIA_URL = '.dev/media/'
+MEDIA_URL = '_dev/media/'
 
-STATIC_URL='.dev/static/'
+STATIC_URL='_apistatic/static/'
 
 
-# if socket.gethostname() == 'ip-172-31-44-132':
-#     DEBUG = False
-#     ALLOWED_HOSTS = [
-#         "api.datadude.xyz",
-#         "api2.datadude.xyz"
-#     ]
-#     CORS_ORIGIN_WHITELIST = [
-#         "http://datadude.xyz",
-#         "https://datadude.xyz",
-#         "http://www.datadude.xyz",
-#         "https://www.datadude.xyz",
-#         "http://shlib.datadude.xyz",
-#         "https://shlib.datadude.xyz"
-#     ]
-#     DATABASES = {
-#         'default': {
-#             'ENGINE': 'django.db.backends.mysql',
-#             'NAME': 'ddproj',
-#             'USER': 'ddxyz',
-#             'PASSWORD': 'dDxYz1@3#e',
-#             'HOST': 'kr1.cakrcyzdnyyv.ap-northeast-2.rds.amazonaws.com',
-#             'PORT': '3306',
-#             'OPTIONS': {
-#                 'init_command': "SET sql_mode='STRICT_TRANS_TABLES'",
-#                 'charset': 'utf8mb4',
-#                 'connect_timeout': 5
-#             },
-#         }
-#     }
-#     DEFAULT_FILE_STORAGE = 'storages.backends.s3boto3.S3Boto3Storage'
-#     STATICFILES_STORAGE = 'storages.backends.s3boto3.S3Boto3Storage'
-#     AWS_ACCESS_KEY_ID='AKIA564S4C36TY524PYP'
-#     AWS_SECRET_ACCESS_KEY='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'
-#     AWS_STORAGE_BUCKET_NAME='staticfiles.datadude.xyz'
-#     AWS_LOCATION='shlib/'
-#     AWS_S3_CUSTOM_DOMAIN = 'staticfiles.datadude.xyz'
-#     STATIC_URL='/shlib/'
-#     STATIC_ROOT = '/home/ubuntu/collected_static/'
-#     MEDIA_ROOT = '/home/ubuntu/media/'
-#     MEDIA_URL = '/backend/media/'
+if socket.gethostname() == 'ip-172-31-44-132':
+    DEBUG = False
+    ALLOWED_HOSTS = [
+        "api.datadude.xyz",
+        "api2.datadude.xyz"
+    ]
+    CORS_ORIGIN_WHITELIST = [
+        "http://datadude.xyz",
+        "https://datadude.xyz",
+        "http://www.datadude.xyz",
+        "https://www.datadude.xyz",
+        "http://shlib.datadude.xyz",
+        "https://shlib.datadude.xyz"
+    ]
+    DATABASES = {
+        'default': {
+            'ENGINE': 'django.db.backends.mysql',
+            'NAME': 'ddproj',
+            'USER': 'ddxyz',
+            'PASSWORD': 'dDxYz1@3#e',
+            'HOST': 'kr1.cakrcyzdnyyv.ap-northeast-2.rds.amazonaws.com',
+            'PORT': '3306',
+            'OPTIONS': {
+                'init_command': "SET sql_mode='STRICT_TRANS_TABLES'",
+                'charset': 'utf8mb4',
+                'connect_timeout': 5
+            },
+        }
+    }
+    MEDIA_ROOT = '/home/ubuntu/media/'
+    MEDIA_URL = '_prod/media/'
