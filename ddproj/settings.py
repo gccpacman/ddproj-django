@@ -156,9 +156,9 @@ GAODE_MAP_WEBAPI_KEY = '82455bd226d65b5c36768ad1cd410fea'
 
 ALLOWED_HOSTS = ["*"]
 CORS_ORIGIN_WHITELIST = [
-    "http://127.0.0.1:8080",
-    "http://localhost:8080",
-    "*://shlib.dev.datadude.xyz"
+    "127.0.0.1:8080",
+    "localhost:8080",
+    "shlib.dev.datadude.xyz"
 ]
 
 # Local Storage
