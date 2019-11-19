@@ -1,1 +1,8 @@
 ddfront/
+.devcontainer/
+.vscode/
+.idea/
+media/
+kubernetes/
+
+db.sqlite3
