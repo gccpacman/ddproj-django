@@ -155,7 +155,7 @@ BAIDU_MAP_JSAPI_KEY = 'bRrHftKV7wBPHYFSkp2GRZQCVGbz8nhy'
 GAODE_MAP_WEBAPI_KEY = '82455bd226d65b5c36768ad1cd410fea'
 
 
-if socket.gethostname() == 'ip-172-31-44-132':
+if os.environ.get('DD_BACKEND_ENV') == 'PROD':
     DEBUG = False
     ALLOWED_HOSTS = [
         "api.datadude.xyz",
