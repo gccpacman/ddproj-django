@@ -157,10 +157,12 @@ GAODE_MAP_WEBAPI_KEY = '82455bd226d65b5c36768ad1cd410fea'
 
 if os.environ.get('DD_BACKEND_ENV') == 'PROD':
     DEBUG = False
-    ALLOWED_HOSTS = [
-        "api.datadude.xyz",
-        "api2.datadude.xyz"
-    ]
+    ALLOWED_HOSTS = ["*"]
+    # ALLOWED_HOSTS = [
+    #     "127.0.0.1:8080",
+    #     "api.datadude.xyz",
+    #     "api2.datadude.xyz"
+    # ]
     CORS_ORIGIN_WHITELIST = [
         "http://datadude.xyz",
         "https://datadude.xyz",
