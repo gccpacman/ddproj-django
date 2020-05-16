@@ -80,6 +80,11 @@ TEMPLATES = [
 
 WSGI_APPLICATION = 'ddproj.wsgi.application'
 
+ALLOWED_HOSTS = ["*"]
+CORS_ORIGIN_WHITELIST = ["*"]
+STATIC_ROOT = os.path.join(BASE_DIR, 'collected_static')
+MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
+MEDIA_URL = '/media/'
 
 # Database
 # https://docs.djangoproject.com/en/2.2/ref/settings/#databases
@@ -94,7 +99,7 @@ WSGI_APPLICATION = 'ddproj.wsgi.application'
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.mysql',
-        'NAME': 'ddproj-dev',
+        'NAME': 'ddproj',
         'USER': 'ddxyz',
         'PASSWORD': 'dDxYz1@3#e',
         'HOST': 'kr1.cakrcyzdnyyv.ap-northeast-2.rds.amazonaws.com',
@@ -155,21 +160,19 @@ BAIDU_MAP_JSAPI_KEY = 'bRrHftKV7wBPHYFSkp2GRZQCVGbz8nhy'
 GAODE_MAP_WEBAPI_KEY = '82455bd226d65b5c36768ad1cd410fea'
 
 
+# local memory cache
+CACHES = {
+    'default': {
+        'BACKEND': 'django.core.cache.backends.locmem.LocMemCache',
+        'LOCATION': 'unique-snowflake',
+    }
+}
+
 if os.environ.get('DD_BACKEND_ENV') == 'PROD':
     DEBUG = False
     ALLOWED_HOSTS = ["*"]
-    # ALLOWED_HOSTS = [
-    #     "127.0.0.1:8080",
-    #     "api.datadude.xyz",
-    #     "api2.datadude.xyz"
-    # ]
-    CORS_ORIGIN_WHITELIST = [
-        "http://datadude.xyz",
-        "https://datadude.xyz",
-        "http://www.datadude.xyz",
-        "https://www.datadude.xyz",
-        "http://shlib.datadude.xyz",
-        "https://shlib.datadude.xyz"
+    CORS_ORIGIN_REGEX_WHITELIST = [
+        r"^\w+://\w+\.datadude\.xyz$",
     ]
     DATABASES = {
         'default': {
@@ -177,7 +180,7 @@ if os.environ.get('DD_BACKEND_ENV') == 'PROD':
             'NAME': 'ddproj',
             'USER': 'ddxyz',
             'PASSWORD': 'dDxYz1@3#e',
-            'HOST': 'kr1.cakrcyzdnyyv.ap-northeast-2.rds.amazonaws.com',
+            'HOST': 'db',
             'PORT': '3306',
             'OPTIONS': {
                 'init_command': "SET sql_mode='STRICT_TRANS_TABLES'",
@@ -186,16 +189,6 @@ if os.environ.get('DD_BACKEND_ENV') == 'PROD':
             },
         }
     }
-    STATIC_ROOT = '/home/ubuntu/collected_static/'
-    MEDIA_ROOT = '/home/ubuntu/media/'
+    STATIC_ROOT = '/collected_static/'
+    MEDIA_ROOT = '/backend_media/'
     MEDIA_URL = '/backend/media/'
-else:
-    ALLOWED_HOSTS = ["*"]
-    CORS_ORIGIN_WHITELIST = [
-        "http://127.0.0.1:8080",
-        "http://localhost:8080",
-        "http://dev.datadude.xyz:8080"
-    ]
-    STATIC_ROOT = os.path.join(BASE_DIR, 'collected_static')
-    MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
-    MEDIA_URL = '/media/'
