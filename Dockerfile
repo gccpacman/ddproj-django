@@ -12,5 +12,5 @@ COPY . /app
 
 EXPOSE 8080
 
-CMD ["gunicorn", "--bind", "0.0.0.0:8080", "--workers", "2", "ddproj.wsgi"]
+CMD ["gunicorn", "--access-logfile", "/app/logs/access.log", "--bind", "0.0.0.0:8080", "--workers", "2", "ddproj.wsgi"]
 
