@@ -7,9 +7,9 @@ services:
       - "3306"
     environment:
       MYSQL_DATABASE: 'ddproj'
-      MYSQL_USER: 'ddxyz-dev'
+      MYSQL_USER: 'ddxyz'
       MYSQL_PASSWORD: 'dDxYz1@3#e'
-      MYSQL_ROOT_PASSWORD: 'xyz@DD2'
+      MYSQL_ROOT_PASSWORD: 'dDxYz1@3#e'
     volumes:
       - ./database:/var/lib/mysql/:rw
   app:
