@@ -6,3 +6,4 @@ media/
 .env/
 .vscode/
 .DS_Store
+collected_static/

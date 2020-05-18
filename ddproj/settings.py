@@ -77,7 +77,7 @@ WSGI_APPLICATION = 'ddproj.wsgi.application'
 
 ALLOWED_HOSTS = ["*"]
 STATIC_ROOT = os.path.join(BASE_DIR, 'collected_static')
-MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
+MEDIA_ROOT = os.path.join(BASE_DIR, 'backend_media')
 MEDIA_URL = '/media/'
 
 # Database
@@ -96,7 +96,7 @@ DATABASES = {
         'NAME': 'ddproj',
         'USER': 'ddxyz',
         'PASSWORD': 'dDxYz1@3#e',
-        'HOST': 'kr1.cakrcyzdnyyv.ap-northeast-2.rds.amazonaws.com',
+        'HOST': '127.0.0.1',
         'PORT': '3306',
         'OPTIONS': {
             'init_command': "SET sql_mode='STRICT_TRANS_TABLES'",
@@ -145,6 +145,8 @@ USE_TZ = True
 # https://docs.djangoproject.com/en/2.2/howto/static-files/
 
 STATIC_URL = '/backend/static/'
+MEDIA_URL = '/backend/media/'
+
 
 # STATICFILES_DIRS = [
 #     os.path.join(BASE_DIR, "ddfront/dist/static"),
@@ -172,9 +174,9 @@ if os.environ.get('DD_BACKEND_ENV') == 'PROD':
         'default': {
             'ENGINE': 'django.db.backends.mysql',
             'NAME': 'ddproj',
-            'USER': 'ddxyz',
-            'PASSWORD': 'dDxYz1@3#e',
-            'HOST': 'db',
+            'USER': 'root',
+            'PASSWORD': 'tcs@SIN2',
+            'HOST': '127.0.0.1',
             'PORT': '3306',
             'OPTIONS': {
                 'init_command': "SET sql_mode='STRICT_TRANS_TABLES'",
@@ -183,6 +185,3 @@ if os.environ.get('DD_BACKEND_ENV') == 'PROD':
             },
         }
     }
-    STATIC_ROOT = '/collected_static/'
-    MEDIA_ROOT = '/backend_media/'
-    MEDIA_URL = '/backend/media/'
