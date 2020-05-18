@@ -1,9 +1,11 @@
 db.sqlite3
 .idea/
 __pycache__
-media/
 *.sql
 .env/
 .vscode/
 .DS_Store
 collected_static/
+backend_media/
+logs/
+database/

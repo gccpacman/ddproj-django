@@ -1,0 +1,7 @@
+collected_static/
+backend_media/
+logs/
+nginx_conf/
+.vscode/
+.devcontainer/
+database/
