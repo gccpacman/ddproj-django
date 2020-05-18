@@ -7,7 +7,7 @@ WORKDIR /app
 COPY Pipfile Pipfile.lock ./
 
 RUN pip install pipenv --no-cache-dir && \
-    pipenv install --system --deploy --ignore-pipfile \
+    pipenv install --system --deploy --ignore-pipfile && \
     pip uninstall -y pipenv virtualenv-clone virtualenv
 
 EXPOSE 8080
