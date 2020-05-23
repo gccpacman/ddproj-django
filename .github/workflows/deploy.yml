@@ -1,4 +1,4 @@
-name: Docker Image CI
+name: Deploy to dev
 
 on:
   push:
@@ -25,3 +25,11 @@ jobs:
         dockerfile: Dockerfile
         username: ${{ secrets.ALIYUNCS_USERNAME }}
         password: ${{ secrets.ALIYUNCS_PASSWORD }}
+
+    - name: Deploy to Server
+      uses: garygrossgarten/github-action-ssh@release
+      with:
+        command: pwd
+        host: ${{ secrets.HOST }}
+        username: ${{ secrets.USERNAME }}
+        privateKey: ${{ secrets.PRIVATE_KEY}}
