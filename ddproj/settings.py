@@ -83,10 +83,25 @@ MEDIA_URL = '/media/'
 # Database
 # https://docs.djangoproject.com/en/2.2/ref/settings/#databases
 
+# DATABASES = {
+#     'default': {
+#         'ENGINE': 'django.db.backends.sqlite3',
+#         'NAME': os.path.join(BASE_DIR, 'db.sqlite3'),
+#     }
+# }
 DATABASES = {
     'default': {
-        'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': os.path.join(BASE_DIR, 'db.sqlite3'),
+        'ENGINE': 'django.db.backends.mysql',
+        'NAME': 'ddproj',
+        'USER': 'root',
+        'PASSWORD': 'mysql',
+        'HOST': '127.0.0.1',
+        'PORT': '3306',
+        'OPTIONS': {
+            'init_command': "SET sql_mode='STRICT_TRANS_TABLES'",
+            'charset': 'utf8mb4',
+            'connect_timeout': 5
+        },
     }
 }
 
@@ -170,18 +185,4 @@ if os.environ.get('DD_BACKEND_ENV') == 'PROD':
     }
 elif os.environ.get('DD_BACKEND_ENV') == 'DEV':
     DEBUG = False
-    # DATABASES = {
-    #     'default': {
-    #         'ENGINE': 'django.db.backends.mysql',
-    #         'NAME': 'ddproj',
-    #         'USER': 'root',
-    #         'PASSWORD': 'tcs@SIN2',
-    #         'HOST': '127.0.0.1',
-    #         'PORT': '3306',
-    #         'OPTIONS': {
-    #             'init_command': "SET sql_mode='STRICT_TRANS_TABLES'",
-    #             'charset': 'utf8mb4',
-    #             'connect_timeout': 5
-    #         },
-    #     }
-    # }
+
