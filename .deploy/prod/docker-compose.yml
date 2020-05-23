@@ -1,0 +1,14 @@
+version: "3"
+services:
+  app:
+    network_mode: host
+    image: registry.cn-shanghai.aliyuncs.com/r341h/ddxyz
+    restart: always
+    environment:
+      - DD_BACKEND_ENV=PROD
+    volumes:
+      - /webapps/ddxyz/collected_static:/app/collected_static
+      - /webapps/ddxyz/media:/app/backend_media/
+      - /var/log/ddxyz:/app/logs
+    ports:
+      - "8080:8080"
