@@ -51,8 +51,6 @@ class RoadSerializer(serializers.ModelSerializer):
             'history_of_lib_uri',
             'road_architecture',
             'road_architecture_count',
-            'polylines_bmap',
-            'center_bmap',
             'place_name',
             'place_name2',
         ]
