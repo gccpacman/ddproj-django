@@ -13,6 +13,8 @@ django-cors-headers = "==3.0.2"
 djangorestframework = "==3.10.1"
 django-filter = "==2.2.0"
 mysqlclient = "==1.4.6"
+pymongo = "===3.9.0"
+simplejson = "*"
 
 [requires]
 python_version = "3.7"
