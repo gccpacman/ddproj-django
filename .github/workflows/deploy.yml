@@ -29,7 +29,7 @@ jobs:
     - name: Deploy to Server
       uses: garygrossgarten/github-action-ssh@release
       with:
-        command: pwd; ls -la
+        command: cd ddxyz; docker-compose pull; docker-compose up -d
         host: ${{ secrets.DEV_HOST }}
         username: ${{ secrets.DEV_HOST_USERNAME }}
         privateKey: ${{ secrets.DEV_PRIVATE_KEY}}
