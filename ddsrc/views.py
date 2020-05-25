@@ -32,8 +32,6 @@ class ArchitectureSerializer(serializers.HyperlinkedModelSerializer):
 
 
 class RoadSerializer(serializers.ModelSerializer):
-    road_architecture = ArchitectureSerializer(many=True)
-    road_architecture_count = serializers.IntegerField(read_only=True)
 
     class Meta:
         model = Road
@@ -49,22 +47,22 @@ class RoadSerializer(serializers.ModelSerializer):
             'name_after',
             'history_of_name',
             'history_of_lib_uri',
-            'road_architecture',
-            'road_architecture_count',
             'place_name',
             'place_name2',
+            'architectures_list',
+            'architectures_count',
+            'polylines',
         ]
 
 
 class RoadListView(generics.ListAPIView):
-    queryset = Road.objects.annotate(
-        road_architecture_count=Count('road_architecture'))
+    queryset = Road.objects.all()
     serializer_class = RoadSerializer
     filter_backends = [filters.SearchFilter, filters.OrderingFilter]
     search_fields = [
         'name_chs',
     ]
-    ordering_fields = ('road_architecture_count',)
+    ordering_fields = ('architectures_count',)
 
 
 class RoadDetailsView(generics.RetrieveAPIView):

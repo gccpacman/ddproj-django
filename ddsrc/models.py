@@ -1,6 +1,8 @@
 from django.db import models
 from django.template.defaultfilters import linebreaksbr
 
+from ddproj.mongo import DDMongoClient
+
 
 class Road(models.Model):
 
@@ -42,12 +44,26 @@ class Road(models.Model):
     def __str__(self):
         return 'Road: %s (%s)' % (self.name_chs, self._id)
 
+    @property
     def des_html(self):
         result = self.des2
         if not result:
             result = self.des
         return linebreaksbr(result)
 
+    @property
+    def architectures_count(self):
+        return Architecture.objects.filter(road=self).count()
+
+    @property
+    def architectures_list(self):
+        archs = Architecture.objects.filter(road=self)
+        return archs.values('_id', 'name_chs')
+
+    @property
+    def polylines(self):
+        client = DDMongoClient().getMongoClient()
+        return client.ddmongo.roads.find_one({"_id": self._id})
 
 class Architecture(models.Model):
 
@@ -104,6 +120,7 @@ class Architecture(models.Model):
         if self.road:
             return str(self.road)
 
+    @property
     def des_html(self):
         result = self.des2
         if not result:
