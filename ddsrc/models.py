@@ -58,7 +58,7 @@ class Road(models.Model):
     @property
     def architectures_list(self):
         archs = Architecture.objects.filter(road=self)
-        return archs.values('_id', 'name_chs')
+        return archs.values('_id', 'name_chs', 'longitude', 'latitude')
 
     @property
     def polylines(self):

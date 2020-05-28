@@ -28,10 +28,16 @@ DEBUG = True
 # Application definition
 
 INSTALLED_APPS = [
-    'django.contrib.admin', 'django.contrib.auth',
-    'django.contrib.contenttypes', 'django.contrib.sessions',
-    'django.contrib.messages', 'django.contrib.staticfiles', 'corsheaders',
-    'rest_framework', 'django_filters', 'ddsrc'
+    'django.contrib.admin', 
+    'django.contrib.auth',
+    'django.contrib.contenttypes', 
+    'django.contrib.sessions',
+    'django.contrib.messages', 
+    'django.contrib.staticfiles', 
+    'corsheaders',
+    'rest_framework', 
+    'django_filters', 
+    'ddsrc'
 ]
 
 MIDDLEWARE = [
@@ -162,6 +168,10 @@ CACHES = {
         'LOCATION': 'unique-snowflake',
     }
 }
+
+CORS_ORIGIN_WHITELIST = [
+    'http://127.0.0.1:8080',
+]
 
 if os.environ.get('DD_BACKEND_ENV') == 'PROD':
     DEBUG = False
