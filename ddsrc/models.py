@@ -1,8 +1,6 @@
 from django.db import models
 from django.template.defaultfilters import linebreaksbr
 
-from ddproj.mongo import DDMongoClient
-
 
 class Road(models.Model):
 
@@ -60,10 +58,6 @@ class Road(models.Model):
         archs = Architecture.objects.filter(road=self)
         return archs.values('_id', 'name_chs', 'longitude', 'latitude')
 
-    @property
-    def polylines(self):
-        client = DDMongoClient().getMongoClient()
-        return client.ddmongo.roads.find_one({"_id": self._id})
 
 class Architecture(models.Model):
 

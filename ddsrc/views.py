@@ -2,7 +2,6 @@ from django.db.models import Count
 from rest_framework import serializers, generics, filters
 from rest_framework.response import Response
 from rest_framework.views import APIView
-from django_filters.rest_framework import DjangoFilterBackend
 from ddsrc.models import Road, Architecture
 
 
@@ -51,7 +50,7 @@ class RoadSerializer(serializers.ModelSerializer):
             'place_name2',
             'architectures_list',
             'architectures_count',
-            'polylines',
+            # 'polylines_bmap',
         ]
 
 
@@ -73,7 +72,7 @@ class RoadDetailsView(generics.RetrieveAPIView):
 class ArchitectureListView(generics.ListAPIView):
     queryset = Architecture.objects.all()
     serializer_class = ArchitectureSerializer
-    filter_backends = [filters.SearchFilter, DjangoFilterBackend]
+    filter_backends = [filters.SearchFilter]
     search_fields = ['name_chs', 'road_name_chs']
     filterset_fields = [
         'road_name_chs',

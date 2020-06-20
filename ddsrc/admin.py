@@ -55,8 +55,6 @@ class ArchitectureAdmin(admin.ModelAdmin):
         'house_number',
         'longitude',
         'latitude',
-        'longitude_bmap',
-        'latitude_bmap',
         'is_from_lib',
         'protect_type',
         'lib_uri',

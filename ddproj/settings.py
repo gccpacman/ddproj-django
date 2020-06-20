@@ -36,7 +36,7 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles', 
     'corsheaders',
     'rest_framework', 
-    'django_filters', 
+    # 'django_filters', 
     'ddsrc'
 ]
 
@@ -54,14 +54,14 @@ MIDDLEWARE = [
 
 ROOT_URLCONF = 'ddproj.urls'
 
-REST_FRAMEWORK = {
-    'DEFAULT_PAGINATION_CLASS':
-    'rest_framework.pagination.PageNumberPagination',
-    'DEFAULT_FILTER_BACKENDS':
-    ['django_filters.rest_framework.DjangoFilterBackend'],
-    'PAGE_SIZE':
-    10
-}
+# REST_FRAMEWORK = {
+#     'DEFAULT_PAGINATION_CLASS':
+#     'rest_framework.pagination.PageNumberPagination',
+#     'DEFAULT_FILTER_BACKENDS':
+#     ['django_filters.rest_framework.DjangoFilterBackend'],
+#     'PAGE_SIZE':
+#     10
+# }
 
 TEMPLATES = [
     {
@@ -82,9 +82,7 @@ TEMPLATES = [
 WSGI_APPLICATION = 'ddproj.wsgi.application'
 
 ALLOWED_HOSTS = ["*"]
-STATIC_ROOT = os.path.join(BASE_DIR, 'collected_static')
-MEDIA_ROOT = os.path.join(BASE_DIR, 'backend_media')
-MEDIA_URL = '/media/'
+
 
 # Database
 # https://docs.djangoproject.com/en/2.2/ref/settings/#databases
@@ -149,8 +147,24 @@ USE_TZ = True
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/2.2/howto/static-files/
 
-STATIC_URL = '/backend/static/'
-MEDIA_URL = '/backend/media/'
+ACCESS_KEY_ID = "LTAI4FwMLrrkSEskd3D5kZdx"
+ACCESS_KEY_SECRET = "XAts7YVvvTNsyqMYa0gE6YLDH4q13B"
+
+# The URL of AliCloud OSS endpoint
+# Refer https://www.alibabacloud.com/help/zh/doc-detail/31837.htm for OSS Region & Endpoint
+END_POINT = "oss-cn-shanghai.aliyuncs.com"
+BUCKET_NAME = "datadudexyz"  # if not exist in aliyun oss platform, it will created automatically
+ALIYUN_OSS_CNAME = ""  # custom domain. optional
+BUCKET_ACL_TYPE = "private"  # bucket access type. available value: private, public-read, public-read-write
+ALIYUN_OSS_HTTPS = True  # optional config. determine use https or not. if not declare, this value will be False by default.
+
+# storage media file
+DEFAULT_FILE_STORAGE = 'django_aliyun_oss2.backends.AliyunMediaStorage'
+MEDIA_URL = '/_dev/media/'
+
+# storage static file
+STATICFILES_STORAGE = 'django_aliyun_oss2.backends.AliyunStaticStorage'
+STATIC_URL = '/_dev/static/'
 
 
 # STATICFILES_DIRS = [
