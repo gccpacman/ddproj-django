@@ -14,9 +14,11 @@ djangorestframework = "==3.10.1"
 django-filter = "==2.2.0"
 mysqlclient = "==1.4.6"
 simplejson = "==3.17.0"
-djongo = "*"
 pymongo = "==3.7.2"
 django-aliyun-oss2 = "*"
+cos-python-sdk-v5 = "*"
+psycopg2 = "*"
+flask-qiniustorage = "*"
 
 [requires]
 python_version = "3.7"

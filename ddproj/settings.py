@@ -153,10 +153,10 @@ ACCESS_KEY_SECRET = "XAts7YVvvTNsyqMYa0gE6YLDH4q13B"
 # The URL of AliCloud OSS endpoint
 # Refer https://www.alibabacloud.com/help/zh/doc-detail/31837.htm for OSS Region & Endpoint
 END_POINT = "oss-cn-shanghai.aliyuncs.com"
-BUCKET_NAME = "datadudexyz"  # if not exist in aliyun oss platform, it will created automatically
+BUCKET_NAME = "ddxyzstatic"  # if not exist in aliyun oss platform, it will created automatically
 ALIYUN_OSS_CNAME = ""  # custom domain. optional
 BUCKET_ACL_TYPE = "private"  # bucket access type. available value: private, public-read, public-read-write
-ALIYUN_OSS_HTTPS = True  # optional config. determine use https or not. if not declare, this value will be False by default.
+ALIYUN_OSS_HTTPS = False  # optional config. determine use https or not. if not declare, this value will be False by default.
 
 # storage media file
 DEFAULT_FILE_STORAGE = 'django_aliyun_oss2.backends.AliyunMediaStorage'

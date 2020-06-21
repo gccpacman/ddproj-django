@@ -12,7 +12,6 @@
             "args": [
                 "runserver",
                 "--noreload"
-                "0.0.0.0:32002"
             ],
             "django": true
         }
