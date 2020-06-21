@@ -1,7 +1,7 @@
 {
     "_meta": {
         "hash": {
-            "sha256": "fc37ecf695ea8f82781ad48747640323ae2416b58ef2cf4afcaab5c85f95430e"
+            "sha256": "c4f339cecaecd9b7c22fc3df1e9b352d4effd91af1b2b3232783de2795379d6c"
         },
         "pipfile-spec": 6,
         "requires": {
@@ -18,9 +18,9 @@
     "default": {
         "aliyun-python-sdk-core": {
             "hashes": [
-                "sha256:1818d6918546ec71f3a5463f1c9c6f33227bccc5acbe175ee0ac4991e1757fe6"
+                "sha256:bd5c47bffc325dea20fb58c7f2cb1247a1776610519210833de95b722a0bb900"
             ],
-            "version": "==2.13.18"
+            "version": "==2.13.19"
         },
         "aliyun-python-sdk-core-v3": {
             "hashes": [
@@ -42,10 +42,10 @@
         },
         "certifi": {
             "hashes": [
-                "sha256:5ad7e9a056d25ffa5082862e36f119f7f7cec6457fa07ee2f8c339814b80c9b1",
-                "sha256:9cd41137dc19af6a5e03b630eefe7d1f458d964d406342dd3edf625839b944cc"
+                "sha256:5930595817496dd21bb8dc35dad090f1c2cd0adfaf21204bf6732ca5d8ee34d3",
+                "sha256:8fc0819f1f30ba15bdb34cceffb9ef04d99f420f68eb75d901e9560b8749fc41"
             ],
-            "version": "==2020.4.5.2"
+            "version": "==2020.6.20"
         },
         "chardet": {
             "hashes": [
@@ -97,6 +97,14 @@
             ],
             "index": "pypi",
             "version": "==2.2.0"
+        },
+        "django-qiniu-storage": {
+            "hashes": [
+                "sha256:26512584058636f24c69599da9770a4c52a508e8e5eb1de275287af4030926fe",
+                "sha256:30ea73f260dd7597dd57651b0cb541fec7d69afc7e52da1cb67cac424c4f8ef7"
+            ],
+            "index": "pypi",
+            "version": "==2.3.1"
         },
         "djangorestframework": {
             "hashes": [
@@ -263,6 +271,13 @@
                 "sha256:c35965d010ce31b23eeb663ed3cc8c906275d6be1a34393a1d73a41febf4a048"
             ],
             "version": "==2020.1"
+        },
+        "qiniu": {
+            "hashes": [
+                "sha256:b8cbdaac1d708219e98449812ae3fcc0a248f3137c2262205c0377b5710a20cd",
+                "sha256:c45f60d4a7a64a55e7168b16db8c4c8f85bf3b451236f642a045e5e4541b478d"
+            ],
+            "version": "==7.2.8"
         },
         "requests": {
             "hashes": [

@@ -152,20 +152,27 @@ ACCESS_KEY_SECRET = "XAts7YVvvTNsyqMYa0gE6YLDH4q13B"
 
 # The URL of AliCloud OSS endpoint
 # Refer https://www.alibabacloud.com/help/zh/doc-detail/31837.htm for OSS Region & Endpoint
-END_POINT = "oss-cn-shanghai.aliyuncs.com"
-BUCKET_NAME = "datadudexyz"  # if not exist in aliyun oss platform, it will created automatically
-ALIYUN_OSS_CNAME = ""  # custom domain. optional
-BUCKET_ACL_TYPE = "private"  # bucket access type. available value: private, public-read, public-read-write
-ALIYUN_OSS_HTTPS = True  # optional config. determine use https or not. if not declare, this value will be False by default.
+# END_POINT = "oss-cn-shanghai.aliyuncs.com"
+# BUCKET_NAME = "datadudexyz"  # if not exist in aliyun oss platform, it will created automatically
+# ALIYUN_OSS_CNAME = ""  # custom domain. optional
+# BUCKET_ACL_TYPE = "private"  # bucket access type. available value: private, public-read, public-read-write
+# ALIYUN_OSS_HTTPS = True  # optional config. determine use https or not. if not declare, this value will be False by default.
+
+# Qiniu
+QINIU_ACCESS_KEY = "YQxexGbLS7jFWHcWG-11rtNlap7b3tkBjrzY2YyU"
+QINIU_SECRET_KEY = "N2oppcLV1lOXnZNhJ2FXAzFcO3mzTA3UcOw1Qvi8"
+QINIU_BUCKET_NAME = "ddxyzstatic"
+QINIU_BUCKET_DOMAIN = "static.datadude.xyz"
+QINIU_SECURE_URL = False
 
 # storage media file
-DEFAULT_FILE_STORAGE = 'django_aliyun_oss2.backends.AliyunMediaStorage'
-MEDIA_URL = '/_dev/media/'
+DEFAULT_FILE_STORAGE = 'qiniustorage.backends.QiniuMediaStorage'
+MEDIA_ROOT = '/_dev/media/'
 
 # storage static file
-STATICFILES_STORAGE = 'django_aliyun_oss2.backends.AliyunStaticStorage'
-STATIC_URL = '/_dev/static/'
-
+STATICFILES_STORAGE = 'qiniustorage.backends.QiniuStaticStorage'
+STATIC_ROOT = '/_dev/static/'
+STATIC_URL = 'http://static.datadude.xyz/'
 
 # STATICFILES_DIRS = [
 #     os.path.join(BASE_DIR, "ddfront/dist/static"),

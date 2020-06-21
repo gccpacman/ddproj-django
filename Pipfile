@@ -17,6 +17,7 @@ simplejson = "==3.17.0"
 djongo = "*"
 pymongo = "==3.7.2"
 django-aliyun-oss2 = "*"
+django-qiniu-storage = "*"
 
 [requires]
 python_version = "3.7"
