@@ -1,5 +1,5 @@
 import requests
-from django.core.management.base import BaseCommand, CommandError
+from django.core.management.base import BaseCommand
 
 from ddproj.settings import SHANGHAI_LIBRARY_API_KEY as token
 from ddmovie.models import Movie
@@ -29,7 +29,7 @@ def insert_data(rData):
 
 
 class Command(BaseCommand):
-    help = 'Fetching road data from Library'
+    help = 'Fetching movie data from Library'
 
     def handle(self, *args, **options):
         response = requests.get(
