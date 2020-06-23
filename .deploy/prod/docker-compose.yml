@@ -1,14 +1,40 @@
 version: "3"
 services:
+  mysql:
+    image: mysql:5.7
+    restart: always
+    expose:
+      - "3306"
+    environment:
+      MYSQL_DATABASE: 'ddproj'
+      MYSQL_USER: 'ddxyz'
+      MYSQL_PASSWORD: 'dDxYz1@3#e'
+      MYSQL_ROOT_PASSWORD: 'dDxYz1@3#e'
+    volumes:
+      - ./database:/var/lib/mysql/:rw
+    command: ['mysqld', '--character-set-server=utf8mb4', '--collation-server=utf8mb4_unicode_ci']
   app:
-    network_mode: host
-    image: registry.cn-shanghai.aliyuncs.com/r341h/ddxyz
+    build: ../..
     restart: always
     environment:
       - DD_BACKEND_ENV=PROD
+    depends_on:
+      - mysql
     volumes:
-      - /webapps/ddxyz/collected_static:/app/collected_static
-      - /webapps/ddxyz/media:/app/backend_media/
-      - /var/log/ddxyz:/app/logs
+      - ./logs/app:/app/logs/
     ports:
-      - "8080:8080"
+      - "32003:8080"
+    links:
+      - "mysql"
+  nginx:
+    image: nginx:alpine
+    restart: always
+    ports:
+      - "32002:80"
+    volumes:
+      - ./nginx_conf:/etc/nginx/conf.d
+      - ./logs/nginx:/var/log/nginx/
+    depends_on:
+       - app
+    links:
+      - "app"
