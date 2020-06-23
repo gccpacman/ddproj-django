@@ -40,14 +40,14 @@ class Command(BaseCommand):
         response = requests.get(
             "http://data1.library.sh.cn/shnh/dydata/webapi/photo/getPhotoList?type=剧照&key={}".format(token))
         rJson = response.json()
-        # pageCount = rJson['pager']['pageCount']
+        pageCount = rJson['pager']['pageCount']
         insert_data(rJson['data'])
-        #
-        # for pageth in range(2, pageCount + 1):
-        #     response = requests.get(
-        #         'http://data1.library.sh.cn/shnh/dydata/webapi/photo/getPhotoList?type=剧照&pageth={}&key={}'.format(
-        #             pageth, token))
-        #     rJson = response.json()
-        #     insert_data(rJson['data'])
+
+        for pageth in range(2, pageCount + 1):
+            response = requests.get(
+                'http://data1.library.sh.cn/shnh/dydata/webapi/photo/getPhotoList?type=剧照&pageth={}&key={}'.format(
+                    pageth, token))
+            rJson = response.json()
+            insert_data(rJson['data'])
 
 
