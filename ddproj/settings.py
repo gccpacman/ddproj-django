@@ -33,11 +33,13 @@ INSTALLED_APPS = [
     'django.contrib.contenttypes', 
     'django.contrib.sessions',
     'django.contrib.messages', 
-    'django.contrib.staticfiles', 
+    'django.contrib.staticfiles',
     'corsheaders',
-    'rest_framework', 
-    # 'django_filters', 
-    'ddsrc'
+    # 'django_filters',
+    'rest_framework',
+    'django_mysql',
+    'ddsrc',
+    'ddmovie',
 ]
 
 MIDDLEWARE = [
@@ -54,14 +56,12 @@ MIDDLEWARE = [
 
 ROOT_URLCONF = 'ddproj.urls'
 
-# REST_FRAMEWORK = {
-#     'DEFAULT_PAGINATION_CLASS':
-#     'rest_framework.pagination.PageNumberPagination',
-#     'DEFAULT_FILTER_BACKENDS':
-#     ['django_filters.rest_framework.DjangoFilterBackend'],
-#     'PAGE_SIZE':
-#     10
-# }
+REST_FRAMEWORK = {
+    'DEFAULT_PAGINATION_CLASS': 'rest_framework.pagination.PageNumberPagination',
+    # 'DEFAULT_FILTER_BACKENDS':
+    # ['django_filters.rest_framework.DjangoFilterBackend'],
+    'PAGE_SIZE': 20
+}
 
 TEMPLATES = [
     {
