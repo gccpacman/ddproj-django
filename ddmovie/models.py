@@ -13,8 +13,6 @@ class Movie(models.Model):
     name = models.CharField(max_length=64, verbose_name="中文名", unique=False, db_index=True)
     pub_date = models.CharField(max_length=32, verbose_name="发布时间", default="")
     movie_type = models.CharField(max_length=32, verbose_name="类型", default="")
-    source = models.CharField(max_length=64, verbose_name="来源", default="")
-    distributor = models.CharField(max_length=64, verbose_name="发行商", default="")
     raw = JSONField(verbose_name="元数据", null=True)
     detail_raw = JSONField(verbose_name="详细信息元数据", null=True)
     create_time = models.DateTimeField(auto_now_add=True, verbose_name="创建时间")
