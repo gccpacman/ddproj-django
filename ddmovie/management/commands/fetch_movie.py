@@ -38,7 +38,7 @@ class Command(BaseCommand):
         pageCount = rJson['pager']['pageCount']
         insert_data(rJson['data'])
 
-        for pageth in range(2, pageCount):
+        for pageth in range(2, pageCount + 1):
             response = requests.get(
                 "http://data1.library.sh.cn/shnh/dydata/webapi/movie/getMovie?pageth={}&key={}".format(pageth, token))
             rJson = response.json()

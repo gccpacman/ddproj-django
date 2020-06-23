@@ -29,7 +29,7 @@ def insert_people(peopleList):
                 mPeople.speciality = personDetail.get('speciality', "")
                 mPeople.nationality = personDetail.get('nationality', "")
                 mPeople.save()
-
+                print('{} {}'.format(mPeople.name, mPeople.uri))
         except JSONDecodeError as e:
             print(pUri, response.raw)
             break
