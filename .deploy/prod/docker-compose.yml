@@ -23,14 +23,14 @@ services:
     volumes:
       - ./logs/app:/app/logs/
     ports:
-      - "32003:8080"
+      - "8080:8080"
     links:
       - "mysql"
   nginx:
     image: nginx:alpine
     restart: always
     ports:
-      - "32002:80"
+      - "80:80"
     volumes:
       - ./nginx_conf:/etc/nginx/conf.d
       - ./logs/nginx:/var/log/nginx/
