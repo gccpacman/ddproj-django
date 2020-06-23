@@ -1,7 +1,9 @@
 collected_static/
 backend_media/
-logs/
-nginx_conf/
 .vscode/
+.deploy/
+.github/
 .devcontainer/
 database/
+**/nginx_conf/
+**/logs/

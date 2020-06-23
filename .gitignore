@@ -7,6 +7,6 @@ __pycache__
 .DS_Store
 collected_static/
 backend_media/
-logs/
-database/
+**/logs/
+**/database/
 db.sqlite3
