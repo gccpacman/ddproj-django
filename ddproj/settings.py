@@ -195,6 +195,8 @@ CORS_ORIGIN_WHITELIST = [
 ]
 
 if os.environ.get('DD_BACKEND_ENV') == 'PROD':
+    MEDIA_ROOT = '/media/'
+    STATIC_ROOT = '/static/'
     DEBUG = False
     CORS_ORIGIN_REGEX_WHITELIST = [
         r"^\w+://\w+\.datadude\.xyz$",
@@ -203,9 +205,9 @@ if os.environ.get('DD_BACKEND_ENV') == 'PROD':
         'default': {
             'ENGINE': 'django.db.backends.mysql',
             'NAME': 'ddproj',
-            'USER': 'root',
-            'PASSWORD': 'tcs@SIN2',
-            'HOST': '127.0.0.1',
+            'USER': 'ddxyz',
+            'PASSWORD': 'dDxYz1@3#e',
+            'HOST': 'mysql',
             'PORT': '3306',
             'OPTIONS': {
                 'init_command': "SET sql_mode='STRICT_TRANS_TABLES'",
@@ -214,6 +216,22 @@ if os.environ.get('DD_BACKEND_ENV') == 'PROD':
             },
         }
     }
-elif os.environ.get('DD_BACKEND_ENV') == 'DEV':
-    DEBUG = False
-
+elif os.environ.get('DD_BACKEND_ENV') == 'UAT':
+    DEBUG = True
+    MEDIA_ROOT = '_uat/media/'
+    STATIC_ROOT = '_uat/static/'
+    DATABASES = {
+        'default': {
+            'ENGINE': 'django.db.backends.mysql',
+            'NAME': 'ddproj',
+            'USER': 'ddxyz',
+            'PASSWORD': 'dDxYz1@3#e',
+            'HOST': 'mysql',
+            'PORT': '3306',
+            'OPTIONS': {
+                'init_command': "SET sql_mode='STRICT_TRANS_TABLES'",
+                'charset': 'utf8mb4',
+                'connect_timeout': 5
+            },
+        }
+    }
