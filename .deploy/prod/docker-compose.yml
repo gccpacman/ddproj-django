@@ -33,6 +33,7 @@ services:
       - "80:80"
     volumes:
       - ./nginx_conf:/etc/nginx/conf.d
+      - ./nginx_ssl:/etc/nginx/ssl
       - ./logs/nginx:/var/log/nginx/
     depends_on:
        - app
