@@ -9,4 +9,5 @@ collected_static/
 backend_media/
 **/logs/
 **/database/
+**/nginx_ssl/
 db.sqlite3
