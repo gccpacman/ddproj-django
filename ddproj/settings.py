@@ -162,8 +162,8 @@ ACCESS_KEY_SECRET = "XAts7YVvvTNsyqMYa0gE6YLDH4q13B"
 QINIU_ACCESS_KEY = "YQxexGbLS7jFWHcWG-11rtNlap7b3tkBjrzY2YyU"
 QINIU_SECRET_KEY = "N2oppcLV1lOXnZNhJ2FXAzFcO3mzTA3UcOw1Qvi8"
 QINIU_BUCKET_NAME = "ddxyzstatic"
-QINIU_BUCKET_DOMAIN = "static.datadude.xyz"
-QINIU_SECURE_URL = False
+QINIU_BUCKET_DOMAIN = "ing.datadude.xyz"
+QINIU_SECURE_URL = True
 
 # storage media file
 DEFAULT_FILE_STORAGE = 'qiniustorage.backends.QiniuMediaStorage'
