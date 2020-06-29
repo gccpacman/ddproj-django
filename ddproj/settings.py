@@ -172,7 +172,7 @@ MEDIA_ROOT = '/_dev/media/'
 # storage static file
 STATICFILES_STORAGE = 'qiniustorage.backends.QiniuStaticStorage'
 STATIC_ROOT = '/_dev/static/'
-STATIC_URL = 'http://static.datadude.xyz/'
+STATIC_URL = 'https://ing.datadude.xyz/'
 
 # STATICFILES_DIRS = [
 #     os.path.join(BASE_DIR, "ddfront/dist/static"),
