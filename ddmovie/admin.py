@@ -46,7 +46,6 @@ admin.site.register(MoviePeople, MoviePeopleAdmin)
 
 class MoviePhotoAdmin(admin.ModelAdmin):
     readonly_fields = (
-        'name',
         'raw',
         'image',
         'photoType',
@@ -54,7 +53,7 @@ class MoviePhotoAdmin(admin.ModelAdmin):
         'update_time',
         'create_time',
     )
-    list_display = ('name', 'uri', 'movieUri', 'image', 'photoType')
+    list_display = ('uri', 'movieUri', 'image', 'photoType')
     list_per_page = 30
     list_filter = ('photoType',)
     search_fields = ('name', 'uri', 'movieUri')
