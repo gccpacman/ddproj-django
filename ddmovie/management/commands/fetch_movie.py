@@ -3,7 +3,7 @@ from django.core.management.base import BaseCommand
 
 from ddproj.settings import SHANGHAI_LIBRARY_API_KEY as token
 from ddmovie.models import Movie
-
+from time import sleep
 
 def insert_data(rData):
     if rData and len(rData) > 0:
@@ -32,14 +32,15 @@ class Command(BaseCommand):
     help = 'Fetching movie data from Library'
 
     def handle(self, *args, **options):
+        page_th = 1
         response = requests.get(
-            "http://data1.library.sh.cn/shnh/dydata/webapi/movie/getMovie?pageth=1&key={}".format(token))
-        rJson = response.json()
-        pageCount = rJson['pager']['pageCount']
-        insert_data(rJson['data'])
-
-        for pageth in range(2, pageCount + 1):
+            "http://data1.library.sh.cn/shnh/dydata/webapi/movie/getMovie?pageth={}&key={}".format(page_th, token))
+        r_json = response.json()
+        insert_data(r_json['data'])
+        while r_json['result'] == "0":
             response = requests.get(
-                "http://data1.library.sh.cn/shnh/dydata/webapi/movie/getMovie?pageth={}&key={}".format(pageth, token))
-            rJson = response.json()
-            insert_data(rJson['data'])
+            "http://data1.library.sh.cn/shnh/dydata/webapi/movie/getMovie?pageth={}&key={}".format(page_th, token))
+            r_json = response.json()
+            insert_data(r_json['data'])
+            page_th += 1
+            sleep(0.5)

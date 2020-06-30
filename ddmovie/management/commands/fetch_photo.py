@@ -17,6 +17,7 @@ def insert_data(rData):
             moviePhoto.raw = rItem
             moviePhoto.uri = rItem['uri']
             moviePhoto.photoType = rItem['type']
+            moviePhoto.movieUri = rItem['movie']
             if rItem.get('imgPath'):
                 imgPath = rItem['imgPath']
                 pResponse = requests.get(rItem['imgPath'], stream=True, verify=False)
@@ -37,17 +38,18 @@ class Command(BaseCommand):
     help = 'Fetching photo data from Library'
 
     def handle(self, *args, **options):
+        path_th = 1
         response = requests.get(
-            "http://data1.library.sh.cn/shnh/dydata/webapi/photo/getPhotoList?type=剧照&key={}".format(token))
-        rJson = response.json()
-        pageCount = rJson['pager']['pageCount']
-        insert_data(rJson['data'])
-
-        for pageth in range(2, pageCount + 1):
+            "http://data1.library.sh.cn/shnh/dydata/webapi/photo/getPhotoList?pageth={}&key={}".format(path_th, token))
+        r_json = response.json()
+        insert_data(r_json['data'])
+        while r_json['result'] == "0":
             response = requests.get(
-                'http://data1.library.sh.cn/shnh/dydata/webapi/photo/getPhotoList?type=剧照&pageth={}&key={}'.format(
-                    pageth, token))
-            rJson = response.json()
-            insert_data(rJson['data'])
+                'http://data1.library.sh.cn/shnh/dydata/webapi/photo/getPhotoList?pageth={}&key={}'.format(
+                    path_th, token))
+            r_json = response.json()
+            insert_data(r_json['data'])
+            path_th += 1
+
 
 
