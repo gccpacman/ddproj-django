@@ -5,7 +5,7 @@ import requests
 
 from ddproj.settings import SHANGHAI_LIBRARY_API_KEY as token
 from ddmovie.models import MoviePhoto
-
+from time import sleep
 
 def insert_data(rData):
     if rData and len(rData) > 0:
@@ -50,6 +50,5 @@ class Command(BaseCommand):
             r_json = response.json()
             insert_data(r_json['data'])
             path_th += 1
-
-
+            sleep(0.5)
 
