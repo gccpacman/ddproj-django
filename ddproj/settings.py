@@ -40,6 +40,7 @@ INSTALLED_APPS = [
     'django_mysql',
     'ddsrc',
     'ddmovie',
+    'libcache',
 ]
 
 MIDDLEWARE = [
