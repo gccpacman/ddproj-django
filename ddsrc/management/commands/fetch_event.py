@@ -44,9 +44,9 @@ class Command(BaseCommand):
         r_json = response.json()
         insert_data(r_json['data'])
         page_th += 1
-        # while r_json['result'] == "0":
-        #     response = requests.get(
-        #         "http://data1.library.sh.cn/webapi/hsly/route/getEventList?pageth={}&key={}".format(page_th, SHANGHAI_LIBRARY_API_KEY))
-        #     r_json = response.json()
-        #     insert_data(r_json['data'])
-        #     page_th += 1
+        while r_json['result'] == "0":
+            response = requests.get(
+                "http://data1.library.sh.cn/webapi/hsly/route/getEventList?pageth={}&key={}".format(page_th, SHANGHAI_LIBRARY_API_KEY))
+            r_json = response.json()
+            insert_data(r_json['data'])
+            page_th += 1
