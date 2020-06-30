@@ -38,14 +38,31 @@ class MoviePeople(models.Model):
 class MoviePhoto(models.Model):
 
     class Meta:
-        verbose_name = '剧照'
-        verbose_name_plural = '剧照'
+        verbose_name = '电影照片'
+        verbose_name_plural = '电影照片'
 
     _id = models.AutoField(primary_key=True)
     uri = models.CharField(max_length=128, verbose_name="URI", unique=True)
     raw = JSONField(verbose_name="元数据", null=True)
     photoType = models.CharField(max_length=64, null=True, default=None)
+    movieName = models.CharField(max_length=128, verbose_name="电影名称",null=True)
     movieUri = models.CharField(max_length=128, verbose_name="电影URI",null=True)
+    photo_date = models.DateField(verbose_name="日期", null=True)
     image = models.ImageField(verbose_name="图片", upload_to='movie/photos/', null=True)
+    create_time = models.DateTimeField(auto_now_add=True, verbose_name="创建时间")
+    update_time = models.DateTimeField(auto_now=True, verbose_name="更新时间")
+
+
+class MoviePhotoRelation(models.Model):
+
+    class Meta:
+        verbose_name = '照片关系'
+        verbose_name_plural = '照片关系'
+
+    _id = models.AutoField(primary_key=True)
+    photoUri = models.CharField(max_length=128, verbose_name="剧照URI", null=False)
+    relationUri = models.CharField(max_length=128, verbose_name="关系URI", null=False)
+    relationName = models.CharField(max_length=128, verbose_name="关系名称", null=True)
+    relationType = models.CharField(max_length=32, verbose_name="关系类型", null=False)
     create_time = models.DateTimeField(auto_now_add=True, verbose_name="创建时间")
     update_time = models.DateTimeField(auto_now=True, verbose_name="更新时间")
