@@ -1,8 +1,6 @@
 from django.contrib import admin
 
-# Register your models here.
-
-from .models import Road, Architecture, ArchitecturePicture
+from ddsrc.models import Road, Architecture, ArchitecturePicture, Event
 
 
 class RoadAdmin(admin.ModelAdmin):
@@ -88,3 +86,22 @@ class ArchitectureAdmin(admin.ModelAdmin):
 
 
 admin.site.register(Architecture, ArchitectureAdmin)
+
+
+class EventAdmin(admin.ModelAdmin):
+    readonly_fields = (
+        'event_title',
+        'event_image',
+        'event_begin',
+        'event_end',
+        'uri',
+        'raw',
+        'update_time',
+        'create_time',
+    )
+    list_display = ('event_title', 'event_image', 'event_begin', 'event_end', 'uri', '_id')
+    list_filter = ('event_begin', 'event_end')
+    list_per_page = 30
+    search_fields = ('event_title', 'uri')
+
+admin.site.register(Event, EventAdmin)
