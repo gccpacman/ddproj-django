@@ -17,6 +17,7 @@ simplejson = "==3.17.0"
 pymongo = "==3.7.2"
 django-qiniu-storage = "*"
 django-mysql = "*"
+django-grappelli = "*"
 
 [requires]
 python_version = "3.7"

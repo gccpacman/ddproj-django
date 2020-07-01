@@ -6,6 +6,7 @@ from django.urls import path
 from libcache.views import profile
 
 urlpatterns = [
+    path('grappelli/', include('grappelli.urls')), 
     path('ddad/', admin.site.urls),
     url(r'^api-auth/', include('rest_framework.urls')),
     url(r'^api/', include("ddsrc.urls")),
