@@ -26,8 +26,16 @@ def insert_data(rData):
                     fp = BytesIO()
                     fp.write(p_response.content)
                     event.event_image.save(file_name, File(fp))
-            event.event_begin = datetime.strptime(rItem['begin'], '%Y-%m-%d')
-            event.event_begin = datetime.strptime(rItem['end'], '%Y-%m-%d')
+            if rItem.get('begin'):
+                try:
+                    event.event_begin = datetime.strptime(rItem['begin'], '%Y-%m-%d')
+                except ValueError as e:
+                    print(rItem['begin'])
+            if rItem.get('end'):
+                try:
+                    event.event_begin = datetime.strptime(rItem['end'], '%Y-%m-%d')
+                except ValueError as e:
+                    print(rItem['end'])
             event.save()
             print('{} {}'.format(event.event_title, event.uri))
     else:
