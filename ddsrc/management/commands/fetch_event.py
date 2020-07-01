@@ -18,14 +18,6 @@ def insert_data(rData):
                 continue
             event.raw = rItem
             event.event_title = rItem['title']
-            if rItem.get('imageList') and len(rItem['imageList']) > 0 and rItem['imageList'][0].get('eventImagePath'):
-                img_path = rItem['imageList'][0]['eventImagePath']
-                p_response = requests.get(img_path, stream=True, verify=False)
-                if p_response.status_code == requests.codes.ok:
-                    file_name = img_path.split('/')[-1]
-                    fp = BytesIO()
-                    fp.write(p_response.content)
-                    event.event_image.save(file_name, File(fp))
             if rItem.get('begin'):
                 try:
                     event.event_begin = datetime.strptime(rItem['begin'], '%Y-%m-%d')
@@ -33,7 +25,7 @@ def insert_data(rData):
                     print(rItem['begin'])
             if rItem.get('end'):
                 try:
-                    event.event_begin = datetime.strptime(rItem['end'], '%Y-%m-%d')
+                    event.event_end = datetime.strptime(rItem['end'], '%Y-%m-%d')
                 except ValueError as e:
                     print(rItem['end'])
             event.save()
