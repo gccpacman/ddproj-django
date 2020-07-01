@@ -157,7 +157,7 @@ class Event(models.Model):
     uri = models.URLField(null=True, unique=True)
     event_title = models.CharField(verbose_name="事件名称", max_length=128, null=True)
     event_image = models.ImageField(
-        upload_to='pic/architecture_first/', verbose_name="事件图片", null=True)
+        upload_to='pic/event/', verbose_name="事件图片", null=True)
     event_begin = models.DateField(verbose_name="事件开始事件", null=True)
     event_end = models.DateField(verbose_name="事件结束事件", null=True)
     raw = JSONField(verbose_name="元数据", null=True)
