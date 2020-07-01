@@ -21,9 +21,9 @@ def insert_people(peopleList):
         try:
             rJson = response.json()
             mPeople, created = MoviePeople.objects.get_or_create(uri=pUri)
-            if created:
+            if created and rJson.get('personDetail') and len(rJson.get('personDetail')) > 0:
                 personDetail = rJson['personDetail'][0]
-                mPeople.name = personDetail['chs_name']
+                mPeople.name = personDetail.get('chs_name', "")
                 mPeople.uri = pUri
                 mPeople.raw = rJson
                 mPeople.speciality = personDetail.get('speciality', "")
