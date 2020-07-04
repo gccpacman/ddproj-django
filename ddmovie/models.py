@@ -78,7 +78,7 @@ class MovieCinema(models.Model):
     nameEn = models.CharField(max_length=64, verbose_name="英文名")
     uri = models.CharField(max_length=128, verbose_name="URI", unique=True)
     architectureUri = models.CharField(max_length=128, verbose_name="建筑URI", unique=False)
-    des = models.CharField(max_length=256, verbose_name="描述")
+    des = models.CharField(max_length=1024, verbose_name="描述")
     raw = JSONField(verbose_name="元数据", null=True)
     create_time = models.DateTimeField(auto_now_add=True, verbose_name="创建时间")
     update_time = models.DateTimeField(auto_now=True, verbose_name="更新时间")
