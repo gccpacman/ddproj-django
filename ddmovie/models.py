@@ -46,23 +46,39 @@ class MoviePhoto(models.Model):
     raw = JSONField(verbose_name="元数据", null=True)
     photoType = models.CharField(max_length=64, null=True, default=None)
     movieName = models.CharField(max_length=128, verbose_name="电影名称",null=True)
-    movieUri = models.CharField(max_length=128, verbose_name="电影URI",null=True)
+    movieUri = models.CharField(max_length=128, verbose_name="电影URI",null=True, default=None)
     photo_date = models.DateField(verbose_name="日期", null=True)
     image = models.ImageField(verbose_name="图片", upload_to='movie/photos/', null=True)
     create_time = models.DateTimeField(auto_now_add=True, verbose_name="创建时间")
     update_time = models.DateTimeField(auto_now=True, verbose_name="更新时间")
 
 
-class MoviePhotoRelation(models.Model):
+class MoviePhotoPeople(models.Model):
 
     class Meta:
-        verbose_name = '照片关系'
-        verbose_name_plural = '照片关系'
+        verbose_name = '照片人物关系'
+        verbose_name_plural = '照片人物关系'
+        unique_together = (("photoUri", "peopleUri"),)
 
     _id = models.AutoField(primary_key=True)
     photoUri = models.CharField(max_length=128, verbose_name="剧照URI", null=False)
-    relationUri = models.CharField(max_length=128, verbose_name="关系URI", null=False)
-    relationName = models.CharField(max_length=128, verbose_name="关系名称", null=True)
-    relationType = models.CharField(max_length=32, verbose_name="关系类型", null=False)
+    peopleUri = models.CharField(max_length=128, verbose_name="关系URI", null=False)
+    create_time = models.DateTimeField(auto_now_add=True, verbose_name="创建时间")
+    update_time = models.DateTimeField(auto_now=True, verbose_name="更新时间")
+
+
+class MovieCinema(models.Model):
+
+    class Meta:
+        verbose_name = '影院'
+        verbose_name_plural = '电影院'
+
+    _id = models.AutoField(primary_key=True)
+    name = models.CharField(max_length=64, verbose_name="影院名称", unique=True, db_index=True)
+    nameEn = models.CharField(max_length=64, verbose_name="英文名")
+    uri = models.CharField(max_length=128, verbose_name="URI", unique=True)
+    architectureUri = models.CharField(max_length=128, verbose_name="建筑URI", unique=False)
+    des = models.CharField(max_length=256, verbose_name="描述")
+    raw = JSONField(verbose_name="元数据", null=True)
     create_time = models.DateTimeField(auto_now_add=True, verbose_name="创建时间")
     update_time = models.DateTimeField(auto_now=True, verbose_name="更新时间")
