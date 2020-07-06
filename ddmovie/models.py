@@ -82,3 +82,4 @@ class MovieCinema(models.Model):
     raw = JSONField(verbose_name="元数据", null=True)
     create_time = models.DateTimeField(auto_now_add=True, verbose_name="创建时间")
     update_time = models.DateTimeField(auto_now=True, verbose_name="更新时间")
+
