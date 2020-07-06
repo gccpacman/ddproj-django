@@ -2,7 +2,7 @@ from django.contrib import admin
 
 # Register your models here.
 
-from ddmovie.models import Movie, MoviePeople, MoviePhoto
+from ddmovie.models import Movie, MoviePeople, MoviePhoto, MovieCinema
 
 
 class MovieAdmin(admin.ModelAdmin):
@@ -16,7 +16,7 @@ class MovieAdmin(admin.ModelAdmin):
         'update_time',
         'create_time',
     )
-    list_display = ('name', 'uri', 'pub_date')
+    list_display = ('name', 'uri', 'pub_date', 'image')
     list_per_page = 30
     list_filter = ('pub_date',)
     search_fields = ('name', 'uri')
@@ -35,13 +35,29 @@ class MoviePeopleAdmin(admin.ModelAdmin):
         'update_time',
         'create_time',
     )
-    list_display = ('name', 'uri', 'speciality', 'nationality')
+    list_display = ('name', 'uri', 'speciality', 'nationality', 'image')
     list_per_page = 30
     list_filter = ('speciality',)
     search_fields = ('name', 'uri')
 
 
 admin.site.register(MoviePeople, MoviePeopleAdmin)
+
+
+class MovieCinemaAdmin(admin.ModelAdmin):
+    readonly_fields = (
+        'name',
+        'raw',
+        'uri',
+        'update_time',
+        'create_time',
+    )
+    list_display = ('name', 'uri',)
+    list_per_page = 30
+    search_fields = ('name', 'uri')
+
+
+admin.site.register(MovieCinema, MovieCinemaAdmin)
 
 
 class MoviePhotoAdmin(admin.ModelAdmin):

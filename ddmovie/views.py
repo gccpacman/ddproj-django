@@ -44,12 +44,13 @@ class MoviePeopleSerializer(serializers.HyperlinkedModelSerializer):
         ]
 
 class MovieCinemaListView(generics.ListAPIView):
-    queryset = MovieCinema.objects.all()
+    queryset = MovieCinema.objects.all().order_by("_id")
     serializer_class = MovieCinemaSerializer
     filter_backends = [filters.SearchFilter, filters.OrderingFilter]
     search_fields = [
         'name',
     ]
+    ordering_fields = ('_id',)
 
 
 class MovieCinemaDetailsView(generics.RetrieveAPIView):
@@ -57,25 +58,26 @@ class MovieCinemaDetailsView(generics.RetrieveAPIView):
     serializer_class = MovieCinemaSerializer
 
 class MovieListView(generics.ListAPIView):
-    queryset = Movie.objects.all()
+    queryset = Movie.objects.all().order_by("_id")
     serializer_class = MovieSerializer
     filter_backends = [filters.SearchFilter, filters.OrderingFilter]
     search_fields = [
         'name',
     ]
-
+    ordering_fields = ('_id',)
 
 class MovieDetailsView(generics.RetrieveAPIView):
     queryset = Movie.objects.all()
     serializer_class = MovieSerializer
 
 class MoviePeopleListView(generics.ListAPIView):
-    queryset = MoviePeople.objects.all()
+    queryset = MoviePeople.objects.all().order_by("_id")
     serializer_class = MoviePeopleSerializer
     filter_backends = [filters.SearchFilter, filters.OrderingFilter]
     search_fields = [
         'name',
     ]
+    ordering_fields = ('_id',)
 
 
 class MoviePeopleDetailsView(generics.RetrieveAPIView):
