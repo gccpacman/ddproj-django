@@ -1,6 +1,7 @@
 from rest_framework import serializers, generics, filters
 from rest_framework.response import Response
 from rest_framework.views import APIView
+from django_filters.rest_framework import DjangoFilterBackend
 
 from ddsrc.models import Event
 
@@ -21,9 +22,13 @@ class EventSerializer(serializers.ModelSerializer):
 class EventListView(generics.ListAPIView):
     queryset = Event.objects.all().order_by("_id")
     serializer_class = EventSerializer
-    filter_backends = [filters.SearchFilter, filters.OrderingFilter]
+    filter_backends = [filters.SearchFilter, DjangoFilterBackend, filters.OrderingFilter]
     search_fields = [
         'event_title',
+    ]
+    filterset_fields = [
+        'event_begin',
+        'event_end',
     ]
 
 
