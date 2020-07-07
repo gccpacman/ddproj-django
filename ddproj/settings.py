@@ -218,6 +218,21 @@ if os.environ.get('DD_BACKEND_ENV') == 'PROD':
             },
         }
     }
+    LOGGING = {
+        'version': 1,
+        'disable_existing_loggers': False,
+        'handlers': {
+            'console': {
+                'class': 'logging.StreamHandler'
+            },
+        },
+        'loggers': {
+            '': {  # 'catch all' loggers by referencing it with the empty string
+                'handlers': ['console'],
+                'level': 'DEBUG',
+            },
+        },
+    }
 elif os.environ.get('DD_BACKEND_ENV') == 'UAT':
     DEBUG = True
     MEDIA_ROOT = '_uat/media/'
@@ -238,17 +253,17 @@ elif os.environ.get('DD_BACKEND_ENV') == 'UAT':
         }
     }
     LOGGING = {
-    'version': 1,
-    'disable_existing_loggers': False,
-    'handlers': {
-        'console': {
-            'class': 'logging.StreamHandler'
+        'version': 1,
+        'disable_existing_loggers': False,
+        'handlers': {
+            'console': {
+                'class': 'logging.StreamHandler'
+            },
         },
-    },
-    'loggers': {
-        '': {  # 'catch all' loggers by referencing it with the empty string
-            'handlers': ['console'],
-            'level': 'DEBUG',
+        'loggers': {
+            '': {  # 'catch all' loggers by referencing it with the empty string
+                'handlers': ['console'],
+                'level': 'DEBUG',
+            },
         },
-    },
-}
+    }
