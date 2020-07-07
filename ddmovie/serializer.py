@@ -13,6 +13,10 @@ class MovieCinemaSerializer(serializers.HyperlinkedModelSerializer):
             'uri',
             'architectureUri',
             'raw',
+            'longitude',
+            'latitude',
+            'longitude_bmap',
+            'latitude_bmap'
         ]
 
 

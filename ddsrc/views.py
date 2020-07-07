@@ -70,7 +70,7 @@ class RoadDetailsView(generics.RetrieveAPIView):
 
 
 class ArchitectureListView(generics.ListAPIView):
-    queryset = Architecture.objects.all()
+    queryset = Architecture.objects.filter(hidden=False)
     serializer_class = ArchitectureSerializer
     filter_backends = [filters.SearchFilter]
     search_fields = ['name_chs', 'road_name_chs']
@@ -80,7 +80,7 @@ class ArchitectureListView(generics.ListAPIView):
 
 
 class ArchitectureDetailView(generics.RetrieveAPIView):
-    queryset = Architecture.objects.all()
+    queryset = Architecture.objects.filter(hidden=False)
     serializer_class = ArchitectureSerializer
 
 
@@ -96,7 +96,7 @@ class ArchitectureFilterView(APIView):
     def get(self, request):
         architecture_list = [
             architecture.name_chs
-            for architecture in Architecture.objects.all()
+            for architecture in Architecture.objects.filter(hidden=False)
         ]
         return Response(architecture_list)
 

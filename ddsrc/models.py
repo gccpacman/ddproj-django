@@ -67,7 +67,7 @@ class Architecture(models.Model):
         verbose_name_plural = '建筑'
 
     _id = models.AutoField(primary_key=True)
-    hidden = models.BooleanField(default=False)
+    hidden = models.BooleanField(default=False, verbose_name="是否隐藏", )
     road = models.ForeignKey(
         "Road",
         related_name="road_architecture",
