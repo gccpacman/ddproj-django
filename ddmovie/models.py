@@ -27,10 +27,6 @@ class MoviePeople(models.Model):
             photoOfPerson = self.raw['photoOfPerson']
             if photoOfPerson and len(photoOfPerson) > 0:
                 return photoOfPerson[0].get('imagePath')
-        else:
-            moviePhotos = MoviePhoto.objects.get(movieUri=self.uri)
-            if moviePhotos:
-                return moviePhotos.image.url
         return
 
 
@@ -70,7 +66,7 @@ class Movie(models.Model):
             return self.image.url
         else:
             moviePhotos = MoviePhoto.objects.get(movieUri=self.uri)
-            if moviePhotos:
+            if moviePhotos and moviePhotos.image:
                 return moviePhotos.image.url
             return
 
