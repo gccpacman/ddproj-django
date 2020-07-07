@@ -22,11 +22,15 @@ class MoviePeople(models.Model):
     @property
     def first_image_path(self):
         if self.image:
-            return self.image.path
+            return self.image.url
         elif self.raw and self.raw.get('photoOfPerson'):
             photoOfPerson = self.raw['photoOfPerson']
             if photoOfPerson and len(photoOfPerson) > 0:
                 return photoOfPerson[0].get('imagePath')
+        else:
+            moviePhotos = MoviePhoto.objects.get(movieUri=self.uri)
+            if moviePhotos:
+                return moviePhotos.image.url
         return
 
 
@@ -63,11 +67,11 @@ class Movie(models.Model):
     @property
     def first_image_path(self):
         if self.image:
-            return self.image.path
+            return self.image.url
         else:
             moviePhotos = MoviePhoto.objects.get(movieUri=self.uri)
-            if len(moviePhotos) > 0:
-                return moviePhotos[0].image.path
+            if moviePhotos:
+                return moviePhotos.image.url
             return
 
 
