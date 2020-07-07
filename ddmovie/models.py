@@ -1,23 +1,6 @@
 from django.db import models
 from django_mysql.models import JSONField
-
-
-class Movie(models.Model):
-
-    class Meta:
-        verbose_name = '电影'
-        verbose_name_plural = '电影'
-
-    _id = models.AutoField(primary_key=True)
-    uri = models.CharField(max_length=128, verbose_name="URI", unique=True)
-    name = models.CharField(max_length=64, verbose_name="电影名", unique=False, db_index=True)
-    image = models.ImageField(verbose_name="图片", upload_to='movie/movies/', null=True)
-    pub_date = models.CharField(max_length=32, verbose_name="发布时间", default="")
-    movie_type = models.CharField(max_length=128, verbose_name="类型", default="")
-    raw = JSONField(verbose_name="元数据", null=True)
-    detail_raw = JSONField(verbose_name="详细信息元数据", null=True)
-    create_time = models.DateTimeField(auto_now_add=True, verbose_name="创建时间")
-    update_time = models.DateTimeField(auto_now=True, verbose_name="更新时间")
+from rest_framework import serializers
 
 
 class MoviePeople(models.Model):
@@ -35,6 +18,84 @@ class MoviePeople(models.Model):
     raw = JSONField(verbose_name="元数据", null=True)
     create_time = models.DateTimeField(auto_now_add=True, verbose_name="创建时间")
     update_time = models.DateTimeField(auto_now=True, verbose_name="更新时间")
+
+    @property
+    def first_image_path(self):
+        if self.image:
+            return self.image.path
+        elif self.raw:
+            photoOfPerson = self.raw['photoOfPerson']
+            if photoOfPerson and len(photoOfPerson) > 0:
+                return photoOfPerson[0]['imagePath']
+        return
+
+
+class Movie(models.Model):
+
+    class Meta:
+        verbose_name = '电影'
+        verbose_name_plural = '电影'
+
+    class PeopleSerializer(serializers.HyperlinkedModelSerializer):
+        class Meta:
+            model = MoviePeople
+            fields = [
+                '_id',
+                'name',
+                'speciality',
+                'nationality',
+                'uri',
+                # 'raw',
+                'first_image_path',
+            ]
+
+    _id = models.AutoField(primary_key=True)
+    uri = models.CharField(max_length=128, verbose_name="URI", unique=True)
+    name = models.CharField(max_length=64, verbose_name="电影名", unique=False, db_index=True)
+    image = models.ImageField(verbose_name="图片", upload_to='movie/movies/', null=True)
+    pub_date = models.CharField(max_length=32, verbose_name="发布时间", default="")
+    movie_type = models.CharField(max_length=128, verbose_name="类型", default="")
+    raw = JSONField(verbose_name="元数据", null=True)
+    detail_raw = JSONField(verbose_name="详细信息元数据", null=True)
+    create_time = models.DateTimeField(auto_now_add=True, verbose_name="创建时间")
+    update_time = models.DateTimeField(auto_now=True, verbose_name="更新时间")
+
+    @property
+    def first_image_path(self):
+        if self.image:
+            return self.image.path
+        else:
+            moviePhotos = MoviePhoto.objects.get(movieUri=self.uri)
+            if len(moviePhotos) > 0:
+                return moviePhotos[0].image.path
+            return
+
+
+    @property
+    def directors(self):
+        if not self.raw:
+            return []
+        directors_raw = self.raw.get('directorList')
+        director_list = []
+        if directors_raw and len(directors_raw) > 0:
+            for director_raw in directors_raw:
+                director = MoviePeople.objects.get(uri=director_raw.get('puri'))
+                if director:
+                    director_list.append(Movie.PeopleSerializer(director).data)
+        return director_list
+
+    @property
+    def actors(self):
+        if not self.raw:
+            return []
+        actors_raw = self.raw.get('actorList')
+        actor_list = []
+        if actors_raw and len(actors_raw) > 0:
+            for actor_raw in actors_raw:
+                actor = MoviePeople.objects.get(uri=actor_raw.get('puri'))
+                if actor:
+                    actor_list.append(Movie.PeopleSerializer(actor).data)
+        return actor_list
 
 
 class MoviePhoto(models.Model):
