@@ -77,6 +77,7 @@ class ArchitectureAdmin(admin.ModelAdmin):
     list_filter = (
         'place_name',
         'lib_is_red',
+        'hidden',
     )
     list_per_page = 20
     inlines = [

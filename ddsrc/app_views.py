@@ -19,6 +19,7 @@ class EventSerializer(serializers.ModelSerializer):
             'raw',
         ]
 
+
 class EventListView(generics.ListAPIView):
     queryset = Event.objects.all().order_by("_id")
     serializer_class = EventSerializer
