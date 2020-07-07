@@ -2,7 +2,7 @@ from django.contrib import admin
 
 # Register your models here.
 
-from ddmovie.models import Movie, MoviePeople, MoviePhoto, MovieCinema
+from ddmovie.models import Movie, MoviePeople, MoviePhoto, MovieCinema, MoviePhotoPeople
 
 
 class MovieAdmin(admin.ModelAdmin):
@@ -75,3 +75,19 @@ class MoviePhotoAdmin(admin.ModelAdmin):
     search_fields = ('name', 'uri', 'movieUri')
 
 admin.site.register(MoviePhoto, MoviePhotoAdmin)
+
+
+class MoviePhotoPeopleAdmin(admin.ModelAdmin):
+    readonly_fields = (
+        '_id',
+        'photoUri',
+        'peopleUri',
+        'peopleName',
+        'update_time',
+        'create_time',
+    )
+    list_display = ('photoUri', 'peopleName', 'peopleUri')
+    list_per_page = 30
+    search_fields = ('peopleName',)
+
+admin.site.register(MoviePhotoPeople, MoviePhotoPeopleAdmin)
