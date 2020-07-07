@@ -35,7 +35,7 @@ class MoviePeopleAdmin(admin.ModelAdmin):
         'update_time',
         'create_time',
     )
-    list_display = ('name', 'uri', 'speciality', 'nationality', 'image')
+    list_display = ('_id', 'name', 'uri', 'speciality', 'nationality', 'image')
     list_per_page = 30
     list_filter = ('speciality',)
     search_fields = ('name', 'uri')
@@ -52,7 +52,7 @@ class MovieCinemaAdmin(admin.ModelAdmin):
         'update_time',
         'create_time',
     )
-    list_display = ('name', 'uri',)
+    list_display = ('_id', 'name', 'uri',)
     list_per_page = 30
     search_fields = ('name', 'uri')
 
@@ -66,10 +66,12 @@ class MoviePhotoAdmin(admin.ModelAdmin):
         'image',
         'photoType',
         'uri',
+        'movieName',
+        'movieUri',
         'update_time',
         'create_time',
     )
-    list_display = ('uri', 'movieUri', 'image', 'photoType')
+    list_display = ('_id', 'uri', 'movieUri', 'movieName', 'image', 'photoType')
     list_per_page = 30
     list_filter = ('photoType',)
     search_fields = ('name', 'uri', 'movieUri')
@@ -79,14 +81,13 @@ admin.site.register(MoviePhoto, MoviePhotoAdmin)
 
 class MoviePhotoPeopleAdmin(admin.ModelAdmin):
     readonly_fields = (
-        '_id',
         'photoUri',
         'peopleUri',
         'peopleName',
         'update_time',
         'create_time',
     )
-    list_display = ('photoUri', 'peopleName', 'peopleUri')
+    list_display = ('_id', 'photoUri', 'peopleName', 'peopleUri')
     list_per_page = 30
     search_fields = ('peopleName',)
 
