@@ -26,10 +26,10 @@ class EventListView(generics.ListAPIView):
     search_fields = [
         'event_title',
     ]
-    filterset_fields = [
-        'event_begin',
-        'event_end',
-    ]
+    filterset_fields = {
+        'event_begin':['gte', 'lte', 'exact', 'gt', 'lt', 'contains'],
+        'event_end':['gte', 'lte', 'exact', 'gt', 'lt', 'contains'],
+    }
 
 
 class EventDetailsView(generics.RetrieveAPIView):
