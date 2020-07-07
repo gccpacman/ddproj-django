@@ -23,10 +23,10 @@ class MoviePeople(models.Model):
     def first_image_path(self):
         if self.image:
             return self.image.path
-        elif self.raw:
+        elif self.raw and self.raw.get('photoOfPerson'):
             photoOfPerson = self.raw['photoOfPerson']
             if photoOfPerson and len(photoOfPerson) > 0:
-                return photoOfPerson[0]['imagePath']
+                return photoOfPerson[0].get('imagePath')
         return
 
 
