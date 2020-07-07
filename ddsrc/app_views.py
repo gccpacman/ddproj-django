@@ -26,12 +26,31 @@ class EventListView(generics.ListAPIView):
     search_fields = [
         'event_title',
     ]
-    filterset_fields = {
-        'event_begin':['gte', 'lte', 'exact', 'gt', 'lt', 'contains'],
-        'event_end':['gte', 'lte', 'exact', 'gt', 'lt', 'contains'],
-    }
+    filterset_fields = [
+        'event_begin',
+        'event_end',
+    ]
 
 
 class EventDetailsView(generics.RetrieveAPIView):
     queryset = Event.objects.all()
     serializer_class = EventSerializer
+
+
+class ThatYearView(APIView):
+
+    def get(self, request):
+        event_begin_month = request.query_params.get('month')
+        event_begin_day = request.query_params.get('day')
+        if not event_begin_month or not event_begin_day:
+            return Response([])
+        events =  Event.objects.filter(event_begin__month=event_begin_month, event_begin__day=event_begin_day).order_by("event_begin")
+        event_list = []
+        for event in events:
+            event_list.append({
+                "event_title": event.event_title,
+                "event_image_path": event.event_image.url if event.event_image else '',
+                "event_begin": event.event_begin,
+                "event_end": event.event_end
+            })
+        return Response(event_list)
