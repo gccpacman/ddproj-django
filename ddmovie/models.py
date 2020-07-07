@@ -65,9 +65,9 @@ class Movie(models.Model):
         if self.image:
             return self.image.url
         else:
-            moviePhotos = MoviePhoto.objects.get(movieUri=self.uri)
-            if moviePhotos and moviePhotos.image:
-                return moviePhotos.image.url
+            moviePhotos = MoviePhoto.objects.filter(movieUri=self.uri)
+            if moviePhotos.quantity > 0 and moviePhotos[0].image:
+                return moviePhotos[0].image.url
             return
 
 
