@@ -141,9 +141,9 @@ class MovieCinema(models.Model):
 
     _id = models.AutoField(primary_key=True)
     name = models.CharField(max_length=64, verbose_name="影院名称", unique=True, db_index=True)
-    nameEn = models.CharField(max_length=64, verbose_name="英文名")
+    nameEn = models.CharField(max_length=64, verbose_name="英文名", blank=True)
     image = models.ImageField(verbose_name="图片", upload_to='movie/cinemas/', null=True, blank=True)
-    uri = models.CharField(max_length=128, verbose_name="URI", unique=True, blank=True)
+    uri = models.CharField(max_length=128, verbose_name="URI", unique=True)
     architectureUri = models.CharField(max_length=128, verbose_name="建筑URI", unique=False)
     longitude = models.FloatField(verbose_name="经度", null=True)
     latitude = models.FloatField(verbose_name="纬度", null=True)
