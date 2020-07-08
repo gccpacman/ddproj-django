@@ -1,6 +1,6 @@
 from django.contrib import admin
 
-from ddsrc.models import Road, Architecture, ArchitecturePicture, Event
+from ddsrc.models import Road, Architecture, ArchitecturePicture, Event, EventRelation
 
 
 class RoadAdmin(admin.ModelAdmin):
@@ -109,3 +109,18 @@ class EventAdmin(admin.ModelAdmin):
     search_fields = ('event_title', 'uri')
 
 admin.site.register(Event, EventAdmin)
+
+
+class EventRelationAdmin(admin.ModelAdmin):
+    readonly_fields = (
+        'event_uri',
+        'relation_uri',
+        'relation_label',
+        'relation_type',
+    )
+    list_display = ( '_id', 'event_uri', 'relation_uri', 'relation_label', 'relation_type',)
+    list_filter = ('relation_type', )
+    list_per_page = 30
+    search_fields = ('event_uri', 'relation_uri', 'relation_label', )
+
+admin.site.register(EventRelation, EventRelationAdmin)

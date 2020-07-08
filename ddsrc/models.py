@@ -172,10 +172,11 @@ class EventRelation(models.Model):
     class Meta:
         verbose_name = '事件关系'
         verbose_name_plural = '事件关系'
+        unique_together = (("event_uri", "relation_uri", "relation_type", "relation_label"),)
 
     _id = models.AutoField(primary_key=True)
-    event_uri = models.URLField(verbose_name="事件URI", null=True, unique=True)
-    relation_uri = models.URLField(verbose_name="关系URI",null=True, unique=True)
+    event_uri = models.URLField(verbose_name="事件URI", null=True,)
+    relation_uri = models.URLField(verbose_name="关系URI", null=True)
     relation_label = models.CharField(verbose_name="关系类型", max_length=128, null=True)
     relation_type = models.CharField(verbose_name="关系类型", max_length=32, null=True)
     create_time = models.DateTimeField(auto_now_add=True, verbose_name="创建时间")
