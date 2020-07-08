@@ -8,6 +8,7 @@ from ddmovie.views import (
     MoviePeopleDetailsView,
     MovieListView,
     MovieDetailsView,
+    MovieTimelineView,
 )
 
 urlpatterns = [
@@ -17,6 +18,7 @@ urlpatterns = [
     url(r'^people/(?P<pk>[0-9]+)/$', MoviePeopleDetailsView.as_view(), name="people"),
     url(r'^movies/$', MovieListView.as_view(), name="movies"),
     url(r'^movie/(?P<pk>[0-9]+)/$', MovieDetailsView.as_view(), name="movie"),
+    url(r'^timeline/$', MovieTimelineView.as_view(), name="timeline"),
 ]
 
 urlpatterns = format_suffix_patterns(urlpatterns)

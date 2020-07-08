@@ -12,6 +12,7 @@ class MovieAdmin(admin.ModelAdmin):
         'detail_raw',
         'movie_type',
         'pub_date',
+        'formated_pub_date',
         'uri',
         'update_time',
         'create_time',
@@ -20,7 +21,6 @@ class MovieAdmin(admin.ModelAdmin):
     list_per_page = 30
     list_filter = ('pub_date',)
     search_fields = ('name', 'uri')
-
 
 admin.site.register(Movie, MovieAdmin)
 

@@ -49,3 +49,20 @@ class MoviePeopleListView(generics.ListAPIView):
 class MoviePeopleDetailsView(generics.RetrieveAPIView):
     queryset = MoviePeople.objects.all()
     serializer_class = MoviePeopleSerializer
+
+
+class MovieTimelineView(APIView):
+    def get(self, request):
+        movies_queryset = Movie.objects.order_by("formated_pub_date")
+        movie_by_year = {}
+        for movie in movies_queryset:
+            formated_pub_date = movie.formated_pub_date
+            movie_by_year[formated_pub_date].append({
+                "_id": movie._id,
+                "name": movie.name,
+                "uri": movie.uri,
+                "pub_date": movie.pub_date,
+                "movie_type": movie.movie_type,
+                "first_image_path": movie.first_image_path,
+            })
+        return Response(movie_by_year)
