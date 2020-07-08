@@ -79,3 +79,15 @@ class MovieTimelineView(APIView):
                     "content": value,
                 })
         return Response(movie_by_year_list)
+
+class MovieCinemaPositionsView(APIView):
+
+    def get(self, request):
+        cinema_queryset = MovieCinema.objects.all()
+        architecture_list = [{
+            "id": cinema._id,
+            "title": cinema.name,
+            "latitude": cinema.latitude,
+            "longitude": cinema.longitude,
+        } for cinema in cinema_queryset]
+        return Response(architecture_list)

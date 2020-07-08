@@ -9,6 +9,7 @@ from ddmovie.views import (
     MovieListView,
     MovieDetailsView,
     MovieTimelineView,
+    MovieCinemaPositionsView,
 )
 
 urlpatterns = [
@@ -19,6 +20,7 @@ urlpatterns = [
     url(r'^movies/$', MovieListView.as_view(), name="movies"),
     url(r'^movie/(?P<pk>[0-9]+)/$', MovieDetailsView.as_view(), name="movie"),
     url(r'^timeline/$', MovieTimelineView.as_view(), name="timeline"),
+    url(r'^position/cinema/$', MovieCinemaPositionsView.as_view(), name="cinema_position"),
 ]
 
 urlpatterns = format_suffix_patterns(urlpatterns)
