@@ -71,4 +71,10 @@ class MovieTimelineView(APIView):
                     "movie_type": movie.movie_type,
                     "first_image_path": movie.first_image_path,
                 })
-        return Response(movie_by_year)
+        movie_by_year_list = []
+        for (key, value) in movie_by_year.items():
+            movie_by_year_list.append({
+                "title": key,
+                "content": value,
+            })
+        return Response(movie_by_year_list)
