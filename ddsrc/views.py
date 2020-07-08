@@ -113,8 +113,11 @@ class ArchitecturePositionsView(APIView):
         architecture_list = [{
             "id": arch._id,
             "name": arch.name_chs,
+            "title": arch.name_chs,
             "place_name": arch.place_name,
-            "value": [arch.longitude, arch.latitude, '100']
+            "value": [arch.longitude, arch.latitude, '100'],
+            "latitude": arch.latitude,
+            "longitude": arch.longitude,
         } for arch in arch_query_list]
         return Response(architecture_list)
 
