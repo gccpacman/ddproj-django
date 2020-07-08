@@ -53,6 +53,8 @@ class ArchitectureAdmin(admin.ModelAdmin):
         'house_number',
         'longitude',
         'latitude',
+        'longitude_bmap',
+        'latitude_bmap',
         'is_from_lib',
         'protect_type',
         'lib_uri',
@@ -71,6 +73,7 @@ class ArchitectureAdmin(admin.ModelAdmin):
         'road_name_chs',
         'place_name',
         'lib_update_time',
+	'hidden',
         'update_time',
         'create_time',
     )
