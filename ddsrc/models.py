@@ -155,12 +155,28 @@ class Event(models.Model):
         verbose_name_plural = '事件'
 
     _id = models.AutoField(primary_key=True)
-    uri = models.URLField(null=True, unique=True)
+    uri = models.URLField(verbose_name="事件URI", null=True, unique=True)
     event_title = models.CharField(verbose_name="事件名称", max_length=128, null=True)
+    description = models.TextField(verbose_name="事件描述", null=True)
     event_image = models.ImageField(
         upload_to='pic/event/', verbose_name="事件图片", null=True)
     event_begin = models.DateField(verbose_name="事件开始事件", null=True)
     event_end = models.DateField(verbose_name="事件结束事件", null=True)
     raw = JSONField(verbose_name="元数据", null=True)
+    detail_raw = JSONField(verbose_name="元数据", null=True)
+    create_time = models.DateTimeField(auto_now_add=True, verbose_name="创建时间")
+    update_time = models.DateTimeField(auto_now=True, verbose_name="更新时间")
+
+
+class EventRelation(models.Model):
+    class Meta:
+        verbose_name = '事件关系'
+        verbose_name_plural = '事件关系'
+
+    _id = models.AutoField(primary_key=True)
+    event_uri = models.URLField(verbose_name="事件URI", null=True, unique=True)
+    relation_uri = models.URLField(verbose_name="关系URI",null=True, unique=True)
+    relation_label = models.CharField(verbose_name="关系类型", max_length=128, null=True)
+    relation_type = models.CharField(verbose_name="关系类型", max_length=32, null=True)
     create_time = models.DateTimeField(auto_now_add=True, verbose_name="创建时间")
     update_time = models.DateTimeField(auto_now=True, verbose_name="更新时间")
