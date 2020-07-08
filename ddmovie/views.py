@@ -73,8 +73,9 @@ class MovieTimelineView(APIView):
                 })
         movie_by_year_list = []
         for (key, value) in movie_by_year.items():
-            movie_by_year_list.append({
-                "title": key,
-                "content": value,
-            })
+            if len(value) > 0:
+                movie_by_year_list.append({
+                    "title": key,
+                    "content": value,
+                })
         return Response(movie_by_year_list)
