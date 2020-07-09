@@ -6,8 +6,8 @@ from rest_framework import serializers
 class MoviePeople(models.Model):
 
     class Meta:
-        verbose_name = '艺人'
-        verbose_name_plural = '艺人'
+        verbose_name = '影人'
+        verbose_name_plural = '影人'
 
     _id = models.AutoField(primary_key=True)
     uri = models.CharField(max_length=128, verbose_name="URI", unique=True)
@@ -15,6 +15,8 @@ class MoviePeople(models.Model):
     image = models.ImageField(verbose_name="图片", upload_to='movie/peoples/', null=True, blank=True)
     speciality = models.CharField(max_length=128, verbose_name="职业", default="")
     nationality = models.CharField(max_length=128, verbose_name="国籍", default="")
+    is_director = models.BooleanField(verbose_name="是否导演", default=False)
+    is_actor = models.BooleanField(verbose_name="是否演员", default=False)
     raw = JSONField(verbose_name="元数据", null=True)
     create_time = models.DateTimeField(auto_now_add=True, verbose_name="创建时间")
     update_time = models.DateTimeField(auto_now=True, verbose_name="更新时间")
@@ -28,6 +30,20 @@ class MoviePeople(models.Model):
             if photoOfPerson and len(photoOfPerson) > 0:
                 return photoOfPerson[0].get('imagePath')
         return
+
+
+class MoviePeopleRelation(models.Model):
+    class Meta:
+        verbose_name = '影人电影关系'
+        verbose_name_plural = '影人电影关系'
+        unique_together = (("movie_uri", "people_uri"),)
+
+    _id = models.AutoField(primary_key=True)
+    movie_uri = models.CharField(max_length=128, verbose_name="URI", unique=True)
+    people_uri = models.CharField(max_length=128, verbose_name="URI", unique=True)
+    is_director = models.BooleanField(verbose_name="是否导演", default=False)
+    create_time = models.DateTimeField(auto_now_add=True, verbose_name="创建时间")
+    update_time = models.DateTimeField(auto_now=True, verbose_name="更新时间")
 
 
 class Movie(models.Model):
@@ -52,6 +68,7 @@ class Movie(models.Model):
     _id = models.AutoField(primary_key=True)
     uri = models.CharField(max_length=128, verbose_name="URI", unique=True)
     name = models.CharField(max_length=64, verbose_name="电影名", unique=False, db_index=True)
+    des = models.TextField(verbose_name="简介", null=True, blank=True)
     image = models.ImageField(verbose_name="图片", upload_to='movie/movies/', null=True, blank=True)
     pub_date = models.CharField(max_length=32, verbose_name="发布时间", default="")
     formated_pub_date = models.CharField(max_length=8, verbose_name="格式化的发布时间", default="")
@@ -142,6 +159,7 @@ class MovieCinema(models.Model):
     _id = models.AutoField(primary_key=True)
     name = models.CharField(max_length=64, verbose_name="影院名称", unique=True, db_index=True)
     nameEn = models.CharField(max_length=64, verbose_name="英文名", blank=True)
+    build_date = models.CharField(max_length=64, verbose_name="建造时间", blank=True)
     image = models.ImageField(verbose_name="图片", upload_to='movie/cinemas/', null=True, blank=True)
     uri = models.CharField(max_length=128, verbose_name="URI", unique=True)
     architectureUri = models.CharField(max_length=128, verbose_name="建筑URI", unique=False)

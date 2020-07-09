@@ -102,6 +102,7 @@ class Architecture(models.Model):
     batch_no = models.CharField(max_length=16, verbose_name="批次", null=True)
     protect_type = models.CharField(
         max_length=128, verbose_name="保护类型", null=True)
+    people_list = models.CharField(max_length=256, verbose_name="相关人物", blank=True, default="")
     is_from_lib = models.BooleanField(default=True)
     lib_is_red = models.IntegerField(default=3)
     lib_uri = models.URLField(verbose_name="URI", null=True)
