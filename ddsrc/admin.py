@@ -1,6 +1,12 @@
 from django.contrib import admin
 
-from ddsrc.models import Road, Architecture, ArchitecturePicture, Event, EventRelation
+from ddsrc.models import (
+    Road,
+    Architecture,
+    ArchitecturePicture,
+    Event,
+    EventRelation,
+)
 
 
 class RoadAdmin(admin.ModelAdmin):
@@ -73,7 +79,7 @@ class ArchitectureAdmin(admin.ModelAdmin):
         'road_name_chs',
         'place_name',
         'lib_update_time',
-	'hidden',
+	    'hidden',
         'update_time',
         'create_time',
     )

@@ -2,7 +2,6 @@ from django.db import models
 from django.template.defaultfilters import linebreaksbr
 from django_mysql.models import JSONField
 
-from ddmovie.models import MoviePeople
 
 class Road(models.Model):
 
@@ -193,3 +192,4 @@ class EventRelation(models.Model):
     relation_type = models.CharField(verbose_name="关系类型", max_length=32, null=True)
     create_time = models.DateTimeField(auto_now_add=True, verbose_name="创建时间")
     update_time = models.DateTimeField(auto_now=True, verbose_name="更新时间")
+
