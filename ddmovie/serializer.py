@@ -15,8 +15,8 @@ class MovieCinemaSerializer(serializers.HyperlinkedModelSerializer):
             'raw',
             'longitude',
             'latitude',
-            'longitude_bmap',
-            'latitude_bmap'
+            'related_people',
+            'related_event',
         ]
 
 

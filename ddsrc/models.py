@@ -2,6 +2,7 @@ from django.db import models
 from django.template.defaultfilters import linebreaksbr
 from django_mysql.models import JSONField
 
+from ddmovie.models import MoviePeople
 
 class Road(models.Model):
 
@@ -120,14 +121,24 @@ class Architecture(models.Model):
     @property
     def des_html(self):
         result = self.des2
-        if not result:
+        if not result or result.strip() == "":
             result = self.des
-        return linebreaksbr(result)
+        return result
 
     def place_name_str(self):
         if self.place_name == '浦东':
             return '浦东新区'
         return '%s区' % self.place_name
+
+    @property
+    def related_people(self):
+        people_name_list = self.people_list.split()
+        return people_name_list
+
+    @property
+    def related_event(self):
+        event_list = EventRelation.objects.filter(relation_type="place").filter(relation_label=self.name_chs)
+        return event_list
 
 
 class ArchitecturePicture(models.Model):

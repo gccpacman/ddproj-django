@@ -1,7 +1,7 @@
 from django.db import models
 from django_mysql.models import JSONField
 from rest_framework import serializers
-
+from ddsrc.models import EventRelation
 
 class MoviePeople(models.Model):
 
@@ -172,3 +172,20 @@ class MovieCinema(models.Model):
     create_time = models.DateTimeField(auto_now_add=True, verbose_name="创建时间")
     update_time = models.DateTimeField(auto_now=True, verbose_name="更新时间")
 
+    @property
+    def related_people(self):
+        people_list = self.raw['personList']
+        relate_people_list = []
+        for people in people_list:
+            puri = people['puri']
+            pobj = MoviePeople.objects.get(uri=puri)
+            relate_people_list.append({
+                'name': pobj.name,
+                'image': pobj.first_image_path
+            })
+        return relate_people_list
+
+    @property
+    def related_event(self):
+        event_list = EventRelation.objects.filter(relation_type="place").filter(relation_label=self.name)
+        return event_list

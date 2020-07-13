@@ -27,6 +27,8 @@ class ArchitectureSerializer(serializers.HyperlinkedModelSerializer):
             'place_uri',
             'batch_no',
             'first_image_path',
+            'related_people',
+            'related_event'
         ]
 
 
