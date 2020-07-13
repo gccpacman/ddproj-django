@@ -1,23 +1,10 @@
-from rest_framework import serializers, generics, filters
+from rest_framework import generics, filters
 from rest_framework.response import Response
 from rest_framework.views import APIView
 from django_filters.rest_framework import DjangoFilterBackend
 
 from ddsrc.models import Event
-
-class EventSerializer(serializers.ModelSerializer):
-
-    class Meta:
-        model = Event
-        fields = [
-            '_id',
-            'event_title',
-            'event_image',
-            'event_begin',
-            'event_end',
-            'uri',
-            'raw',
-        ]
+from ddsrc.serializer import EventSerializer
 
 
 class EventListView(generics.ListAPIView):
