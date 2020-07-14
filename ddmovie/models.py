@@ -242,7 +242,8 @@ class MovieCinema(models.Model):
             pobj = MoviePeople.objects.get(uri=puri)
             relate_people_list.append({
                 'name': pobj.name,
-                'image': pobj.first_image_path
+                'des_html': pobj.des_html,
+                'first_image_path': pobj.first_image_path
             })
         return relate_people_list
 
@@ -255,9 +256,9 @@ class MovieCinema(models.Model):
             event = Event.objects.get(uri=event_uri)
             if event:
                 related_event_list.append({
-                    'event_title': event.event_title,
-                    'description': event.description,
-                    'event_image': event.event_image.url if event.event_image else '',
+                    'name': event.event_title,
+                    'des_html': event.description,
+                    'first_image_path': event.first_image_path,
                     'event_begin': event.event_begin,
                     'event_end': event.event_end,
                 })

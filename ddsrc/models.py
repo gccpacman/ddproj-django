@@ -136,12 +136,31 @@ class Architecture(models.Model):
     @property
     def related_people(self):
         people_name_list = self.people_list.split()
-        return people_name_list
+        relate_people_list = []
+        for people_name in people_name_list:
+            relate_people_list.append({
+                'name': people_name,
+                'des_html': '',
+                'first_image_path': ''
+            })
+        return relate_people_list
 
     @property
     def related_event(self):
-        event_list = EventRelation.objects.filter(relation_type="place").filter(relation_label=self.name_chs)
-        return event_list
+        event_relation_list = EventRelation.objects.filter(relation_type="place").filter(relation_label=self.name_chs)
+        related_event_list = []
+        for event_relation in event_relation_list:
+            event_uri = event_relation.event_uri
+            event = Event.objects.get(uri=event_uri)
+            if event:
+                related_event_list.append({
+                    'name': event.event_title,
+                    'des_html': event.description,
+                    'first_image_path': event.first_image_path,
+                    'event_begin': event.event_begin,
+                    'event_end': event.event_end,
+                })
+        return related_event_list
 
 
 class ArchitecturePicture(models.Model):
