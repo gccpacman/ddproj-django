@@ -1,7 +1,7 @@
 from django.db import models
 from django_mysql.models import JSONField
 from rest_framework import serializers
-from ddsrc.models import EventRelation
+from ddsrc.models import EventRelation, Event
 
 class MoviePeople(models.Model):
 
@@ -187,5 +187,17 @@ class MovieCinema(models.Model):
 
     @property
     def related_event(self):
-        event_list = EventRelation.objects.filter(relation_type="place").filter(relation_label=self.name)
-        return event_list
+        event_relation_list = EventRelation.objects.filter(relation_type="place").filter(relation_label=self.name)
+        related_event_list = []
+        for event_relation in event_relation_list:
+            event_uri = event_relation.event_uri
+            event = Event.objects.get(uri=event_uri)
+            if event:
+                related_event_list.append({
+                    'event_title': event.event_title,
+                    'description': event.description,
+                    'event_image': event.event_image.url if event.event_image else '',
+                    'event_begin': event.event_begin,
+                    'event_end': event.event_end,
+                })
+        return related_event_list
