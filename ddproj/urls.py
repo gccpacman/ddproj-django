@@ -12,6 +12,7 @@ urlpatterns = [
     url(r'^api/', include("ddsrc.urls")),
     url(r'^app/src/', include("ddsrc.app_urls")),
     url(r'^app/movie/', include("ddmovie.urls")),
-    url(r'^profile', profile)
+    url(r'^profile', profile),
+    url(r'^ckeditor/', include('ckeditor_uploader.urls')),
     # url(r'^backend/media/(?P<path>.*)$', serve, {"document_root": MEDIA_ROOT}),
 ]

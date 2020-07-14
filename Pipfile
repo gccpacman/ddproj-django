@@ -18,6 +18,7 @@ pymongo = "==3.7.2"
 django-qiniu-storage = "*"
 django-mysql = "*"
 django-grappelli = "*"
+django-ckeditor = "*"
 
 [requires]
 python_version = "3.7"

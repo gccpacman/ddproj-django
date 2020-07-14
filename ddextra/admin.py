@@ -1,6 +1,6 @@
 from django.contrib import admin
 
-from ddextra.models import TravelPath, TravelPathPoint
+from ddextra.models import TravelPath, TravelPathPoint, RichTextArticle
 
 
 class TravelPathPointInline(admin.TabularInline):
@@ -30,3 +30,14 @@ class TravelPathAdmin(admin.ModelAdmin):
 
 
 admin.site.register(TravelPath, TravelPathAdmin)
+
+
+class RichTextArticleAdmin(admin.ModelAdmin):
+    list_display = (
+        '_id',
+        'title',
+    )
+    list_per_page = 20
+    search_fields = ('title', )
+
+admin.site.register(RichTextArticle, RichTextArticleAdmin)

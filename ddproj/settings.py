@@ -39,6 +39,8 @@ INSTALLED_APPS = [
     'django_filters',
     'rest_framework',
     'django_mysql',
+    'ckeditor',
+    'ckeditor_uploader',
     'ddsrc',
     'ddmovie',
     'ddextra',
@@ -171,6 +173,7 @@ QINIU_SECURE_URL = True
 # storage media file
 DEFAULT_FILE_STORAGE = 'qiniustorage.backends.QiniuMediaStorage'
 MEDIA_ROOT = '/_dev/media/'
+CKEDITOR_UPLOAD_PATH = 'richtext/'
 
 # storage static file
 STATICFILES_STORAGE = 'qiniustorage.backends.QiniuStaticStorage'
