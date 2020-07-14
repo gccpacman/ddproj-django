@@ -23,6 +23,7 @@ class ArchitectureSerializer(serializers.HyperlinkedModelSerializer):
         model = Architecture
         fields = [
             '_id',
+            'name',
             'name_chs',
             'name_cht',
             'name_en',

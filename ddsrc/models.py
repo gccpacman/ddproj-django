@@ -118,6 +118,10 @@ class Architecture(models.Model):
             return str(self.road)
 
     @property
+    def name(self):
+        return self.name_chs
+
+    @property
     def des_html(self):
         result = self.des2
         if not result or result.strip() == "":
