@@ -98,7 +98,7 @@ class Architecture(models.Model):
     first_image_lib_uri = models.URLField(verbose_name="首页照片图书馆URI", null=True)
     first_image_uri = models.URLField(verbose_name="首页照片网址", null=True)
     first_image_path = models.ImageField(
-        upload_to='pic/architecture_first/', null=True)
+        upload_to='pic/architecture_first/', null=True, blank=True)
     batch_no = models.CharField(max_length=16, verbose_name="批次", null=True)
     protect_type = models.CharField(
         max_length=128, verbose_name="保护类型", null=True)
