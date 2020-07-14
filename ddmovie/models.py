@@ -147,7 +147,12 @@ class Movie(models.Model):
             for director_raw in directors_raw:
                 director = MoviePeople.objects.get(uri=director_raw.get('puri'))
                 if director:
-                    director_list.append(Movie.PeopleSerializer(director).data)
+                    director_list.append({
+                        '_id': director._id,
+                        'name': director.name,
+                        'des_html': director.des_html,
+                        'first_image_path': director.first_image_path
+                    })
         return director_list
 
     @property
@@ -160,7 +165,12 @@ class Movie(models.Model):
             for actor_raw in actors_raw:
                 actor = MoviePeople.objects.get(uri=actor_raw.get('puri'))
                 if actor:
-                    actor_list.append(Movie.PeopleSerializer(actor).data)
+                    actor_list.append({
+                        '_id': actor._id,
+                        'name': actor.name,
+                        'des_html': actor.des_html,
+                        'first_image_path': actor.first_image_path
+                    })
         return actor_list
 
 
@@ -241,6 +251,7 @@ class MovieCinema(models.Model):
             puri = people['puri']
             pobj = MoviePeople.objects.get(uri=puri)
             relate_people_list.append({
+                '_id': pobj._id,
                 'name': pobj.name,
                 'des_html': pobj.des_html,
                 'first_image_path': pobj.first_image_path
@@ -256,6 +267,7 @@ class MovieCinema(models.Model):
             event = Event.objects.get(uri=event_uri)
             if event:
                 related_event_list.append({
+                    '_id': event._id,
                     'name': event.event_title,
                     'des_html': event.description,
                     'first_image_path': event.first_image_path,

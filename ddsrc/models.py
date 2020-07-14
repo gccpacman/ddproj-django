@@ -139,6 +139,7 @@ class Architecture(models.Model):
         relate_people_list = []
         for people_name in people_name_list:
             relate_people_list.append({
+                '_id': 0,
                 'name': people_name,
                 'des_html': '',
                 'first_image_path': ''
@@ -154,6 +155,7 @@ class Architecture(models.Model):
             event = Event.objects.get(uri=event_uri)
             if event:
                 related_event_list.append({
+                    '_id': event._id,
                     'name': event.event_title,
                     'des_html': event.description,
                     'first_image_path': event.first_image_path,
