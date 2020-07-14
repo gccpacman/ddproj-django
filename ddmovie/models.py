@@ -38,7 +38,7 @@ class MoviePeople(models.Model):
             personDetail = self.raw.get('personDetail')
             if personDetail and len(personDetail) > 0:
                 briefBiography = personDetail[0].get('briefBiography')
-                if len(briefBiography) > 0:
+                if briefBiography and len(briefBiography) > 0:
                     return linebreaksbr(briefBiography[0])
         return ''
 
