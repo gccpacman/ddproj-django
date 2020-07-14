@@ -37,9 +37,41 @@ class MoviePeople(models.Model):
         if self.raw:
             personDetail = self.raw.get('personDetail')
             if personDetail and len(personDetail) > 0:
-                briefBiography = personDetail.get('briefBiography')
+                briefBiography = personDetail[0].get('briefBiography')
                 if len(briefBiography) > 0:
                     return linebreaksbr(briefBiography[0])
+        return ''
+
+    @property
+    def nativeplace(self):
+        if self.raw:
+            personDetail = self.raw.get('personDetail')
+            if personDetail and len(personDetail) > 0:
+                return personDetail[0].get('nativePlace', '')
+        return ''
+    
+    @property
+    def nativeplace(self):
+        if self.raw:
+            personDetail = self.raw.get('personDetail')
+            if personDetail and len(personDetail) > 0:
+                return personDetail[0].get('nativePlace', '')
+        return ''
+
+    @property
+    def birthday(self):
+        if self.raw:
+            personDetail = self.raw.get('personDetail')
+            if personDetail and len(personDetail) > 0:
+                return personDetail[0].get('birthday', '')
+        return ''
+
+    @property
+    def deathday(self):
+        if self.raw:
+            personDetail = self.raw.get('personDetail')
+            if personDetail and len(personDetail) > 0:
+                return personDetail[0].get('deathday', '')
         return ''
 
 

@@ -12,7 +12,6 @@ class MovieCinemaSerializer(serializers.HyperlinkedModelSerializer):
             'nameEn',
             'uri',
             'architectureUri',
-            'raw',
             'longitude',
             'latitude',
             'des_html',
@@ -31,12 +30,10 @@ class MovieSerializer(serializers.HyperlinkedModelSerializer):
             'name',
             'pub_date',
             'uri',
-            'detail_raw',
             'directors',
             'actors',
             'des_html',
             'first_image_path',
-            'raw',
         ]
 
 
@@ -49,8 +46,10 @@ class MoviePeopleSerializer(serializers.HyperlinkedModelSerializer):
             'name',
             'speciality',
             'nationality',
+            'nativeplace'
             'uri',
             'first_image_path',
             'des_html',
-            'raw',
+            'birthday',
+            'deathday',
         ]
