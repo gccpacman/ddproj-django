@@ -1,15 +1,26 @@
 from rest_framework import serializers
-from ddextra.models import TravelPath
+from ddextra.models import TravelPath, RichTextArticle
 
 
-class MovieCinemaSerializer(serializers.HyperlinkedModelSerializer):
+class TravelPathSerializer(serializers.HyperlinkedModelSerializer):
 
     class Meta:
         model = TravelPath
         fields = [
             '_id',
-            'name'
+            'name',
             'method',
             'duration',
             'feature',
+            'path_points',
+        ]
+
+class RichTextArticleSerializer(serializers.HyperlinkedModelSerializer):
+
+    class Meta:
+        model = RichTextArticle
+        fields = [
+            '_id',
+            'title',
+            'body',
         ]
