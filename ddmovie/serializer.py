@@ -46,7 +46,7 @@ class MoviePeopleSerializer(serializers.HyperlinkedModelSerializer):
             'name',
             'speciality',
             'nationality',
-            'nativeplace'
+            'nativeplace',
             'uri',
             'first_image_path',
             'des_html',
