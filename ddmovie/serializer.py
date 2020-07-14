@@ -15,6 +15,8 @@ class MovieCinemaSerializer(serializers.HyperlinkedModelSerializer):
             'raw',
             'longitude',
             'latitude',
+            'des_html',
+            'first_image_path',
             'related_people',
             'related_event',
         ]
@@ -32,6 +34,7 @@ class MovieSerializer(serializers.HyperlinkedModelSerializer):
             'detail_raw',
             'directors',
             'actors',
+            'des_html',
             'first_image_path',
             'raw',
         ]
@@ -48,5 +51,6 @@ class MoviePeopleSerializer(serializers.HyperlinkedModelSerializer):
             'nationality',
             'uri',
             'first_image_path',
+            'des_html',
             'raw',
         ]

@@ -1,4 +1,5 @@
 from django.db import models
+from django.template.defaultfilters import linebreaksbr
 from django_mysql.models import JSONField
 from rest_framework import serializers
 from ddsrc.models import EventRelation, Event
@@ -30,6 +31,16 @@ class MoviePeople(models.Model):
             if photoOfPerson and len(photoOfPerson) > 0:
                 return photoOfPerson[0].get('imagePath')
         return
+
+    @property
+    def des_html(self):
+        if self.raw:
+            personDetail = self.raw.get('personDetail')
+            if personDetail and len(personDetail) > 0:
+                briefBiography = personDetail.get('briefBiography')
+                if len(briefBiography) > 0:
+                    return linebreaksbr(briefBiography[0])
+        return ''
 
 
 class MoviePeopleRelation(models.Model):
@@ -87,6 +98,12 @@ class Movie(models.Model):
             if len(moviePhotos) > 0 and moviePhotos[0].image:
                 return moviePhotos[0].image.url
             return
+
+    @property
+    def des_html(self):
+        if not self.des:
+            return ''
+        return linebreaksbr(self.des)
 
     @property
     def directors(self):
@@ -171,6 +188,18 @@ class MovieCinema(models.Model):
     raw = JSONField(verbose_name="元数据", null=True)
     create_time = models.DateTimeField(auto_now_add=True, verbose_name="创建时间")
     update_time = models.DateTimeField(auto_now=True, verbose_name="更新时间")
+
+    @property
+    def first_image_path(self):
+        if self.image:
+            return self.image.url
+        return
+
+    @property
+    def des_html(self):
+        if self.des:
+            return linebreaksbr(self.des)
+        return ''
 
     @property
     def related_people(self):
