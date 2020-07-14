@@ -182,6 +182,17 @@ class Event(models.Model):
     create_time = models.DateTimeField(auto_now_add=True, verbose_name="创建时间")
     update_time = models.DateTimeField(auto_now=True, verbose_name="更新时间")
 
+    @property
+    def name(self):
+        return self.event_title
+
+    @property
+    def first_image_path(self):
+        if self.event_image:
+            return self.event_image.url
+        return
+
+
 
 class EventRelation(models.Model):
     class Meta:
