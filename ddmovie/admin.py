@@ -13,6 +13,7 @@ class MovieAdmin(admin.ModelAdmin):
         'movie_type',
         'pub_date',
         'formated_pub_date',
+        'lib_image_path',
         'uri',
         'update_time',
         'create_time',

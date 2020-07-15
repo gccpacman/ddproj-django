@@ -149,6 +149,7 @@ class Movie(models.Model):
     name = models.CharField(max_length=64, verbose_name="电影名", unique=False, db_index=True)
     des = models.TextField(verbose_name="简介", null=True, blank=True)
     image = models.ImageField(verbose_name="图片", upload_to='movie/movies/', null=True, blank=True)
+    lib_image_path = models.URLField(verbose_name="爬取图片", null=True, default=None)
     pub_date = models.CharField(max_length=32, verbose_name="发布时间", default="")
     formated_pub_date = models.IntegerField(verbose_name="格式化的发布时间", default=0)
     movie_type = models.CharField(max_length=128, verbose_name="类型", default="")
@@ -160,7 +161,9 @@ class Movie(models.Model):
     @property
     def first_image_path(self):
         if self.image:
-            return self.image.url
+            return self.image
+        elif self.lib_image_path:
+            return self.lib_image_path
         else:
             moviePhotos = MoviePhoto.objects.filter(movieUri=self.uri)
             if len(moviePhotos) > 0 and moviePhotos[0].image:

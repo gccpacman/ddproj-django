@@ -32,6 +32,7 @@ class MovieSerializer(serializers.HyperlinkedModelSerializer):
             'uri',
             'directors',
             'actors',
+            'lib_image_path',
             'des_html',
             'first_image_path',
             'related_photo',
