@@ -34,6 +34,7 @@ class MovieSerializer(serializers.HyperlinkedModelSerializer):
             'actors',
             'des_html',
             'first_image_path',
+            'related_photo',
         ]
 
 
@@ -52,4 +53,6 @@ class MoviePeopleSerializer(serializers.HyperlinkedModelSerializer):
             'des_html',
             'birthday',
             'deathday',
+            'related_movie',
+            'related_photo',
         ]

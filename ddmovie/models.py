@@ -40,7 +40,7 @@ class MoviePeople(models.Model):
                 briefBiography = personDetail[0].get('briefBiography')
                 if briefBiography and len(briefBiography) > 0:
                     return linebreaksbr(briefBiography[0])
-        return ''
+        return
 
     @property
     def nativeplace(self):
@@ -48,31 +48,67 @@ class MoviePeople(models.Model):
             personDetail = self.raw.get('personDetail')
             if personDetail and len(personDetail) > 0:
                 return personDetail[0].get('nativePlace', '')
-        return ''
+        return
     
     @property
     def nativeplace(self):
         if self.raw:
             personDetail = self.raw.get('personDetail')
             if personDetail and len(personDetail) > 0:
-                return personDetail[0].get('nativePlace', '')
-        return ''
+                return personDetail[0].get('nativePlace', None)
+        return
 
     @property
     def birthday(self):
         if self.raw:
             personDetail = self.raw.get('personDetail')
             if personDetail and len(personDetail) > 0:
-                return personDetail[0].get('birthday', '')
-        return ''
+                return personDetail[0].get('birthday', None)
+        return
 
     @property
     def deathday(self):
         if self.raw:
             personDetail = self.raw.get('personDetail')
             if personDetail and len(personDetail) > 0:
-                return personDetail[0].get('deathday', '')
-        return ''
+                return personDetail[0].get('deathday', None)
+        return
+
+    @property
+    def related_movie(self):
+        if self.raw:
+            movieOfPersons = self.raw.get('movieOfPerson')
+            if movieOfPersons and len(movieOfPersons) > 0:
+                movie_list = []
+                for movieOfPerson in movieOfPersons:
+                    movieUri = movieOfPerson['movieUri']
+                    movie = Movie.objects.get(uri=movieUri)
+                    movie_list.append({
+                        '_id': movie._id,
+                        'uri': movie.uri,
+                        'name': movie.name,
+                        'image': movie.first_image_path,
+                    })
+                return movie_list
+        return
+
+    @property
+    def related_photo(self):
+        if self.raw:
+            photoOfPersons = self.raw.get('photoOfPerson')
+            if photoOfPersons and len(photoOfPersons) > 0:
+                photo_list = []
+                for photoOfPerson in photoOfPersons:
+                    pUri = photoOfPerson['photoUri']
+                    photo = MoviePhoto.objects.get(uri=pUri)
+                    photo_list.append({
+                        '_id': photo._id,
+                        'uri': pUri,
+                        'type': photo.photoType,
+                        'image': photo.image.url,
+                    })
+                return photo_list
+        return
 
 
 class MoviePeopleRelation(models.Model):
@@ -172,6 +208,21 @@ class Movie(models.Model):
                         'first_image_path': actor.first_image_path
                     })
         return actor_list
+
+    @property
+    def related_photo(self):
+        if self.raw:
+            photoOfMovies = MoviePhoto.objects.filter(movieUri=self.uri)
+            photo_list = []
+            for photoOfMovie in photoOfMovies:
+                photo_list.append({
+                    '_id': photoOfMovie._id,
+                    'uri': photoOfMovie.uri,
+                    'type': photoOfMovie.photoType,
+                    'image': photoOfMovie.image.url,
+                })
+                return photo_list
+        return
 
 
 class MoviePhoto(models.Model):
