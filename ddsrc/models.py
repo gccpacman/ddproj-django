@@ -208,6 +208,12 @@ class Event(models.Model):
         return self.event_title
 
     @property
+    def des_html(self):
+        if self.raw:
+            return self.raw['description']
+        return 
+
+    @property
     def first_image_path(self):
         if self.event_image:
             return self.event_image.url

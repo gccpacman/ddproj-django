@@ -14,6 +14,7 @@ class EventSerializer(serializers.ModelSerializer):
             'event_end',
             'uri',
             'name',
+            'des_html',
             'first_image_path',
         ]
 
