@@ -150,7 +150,7 @@ class Movie(models.Model):
     des = models.TextField(verbose_name="简介", null=True, blank=True)
     image = models.ImageField(verbose_name="图片", upload_to='movie/movies/', null=True, blank=True)
     pub_date = models.CharField(max_length=32, verbose_name="发布时间", default="")
-    formated_pub_date = models.CharField(max_length=8, verbose_name="格式化的发布时间", default="")
+    formated_pub_date = models.IntegerField(verbose_name="格式化的发布时间", default=0)
     movie_type = models.CharField(max_length=128, verbose_name="类型", default="")
     raw = JSONField(verbose_name="元数据", null=True)
     detail_raw = JSONField(verbose_name="详细信息元数据", null=True)
@@ -187,7 +187,7 @@ class Movie(models.Model):
                         '_id': director._id,
                         'name': director.name,
                         'des_html': director.des_html,
-                        'first_image_path': director.first_image_path
+                        'image': director.first_image_path
                     })
         return director_list
 
@@ -205,7 +205,7 @@ class Movie(models.Model):
                         '_id': actor._id,
                         'name': actor.name,
                         'des_html': actor.des_html,
-                        'first_image_path': actor.first_image_path
+                        'image': actor.first_image_path
                     })
         return actor_list
 

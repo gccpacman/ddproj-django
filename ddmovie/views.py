@@ -53,24 +53,18 @@ class MoviePeopleDetailsView(generics.RetrieveAPIView):
 
 class MovieTimelineView(APIView):
     def get(self, request):
-        movies_queryset = Movie.objects.order_by("formated_pub_date")
+        movies_queryset = Movie.objects.filter(formated_pub_date__gte=1912).filter(formated_pub_date__lt=1949)
         movie_by_year = {}
         for year in range(1912, 1949):
             movie_by_year[year] = []
         for movie in movies_queryset:
-            try:
-                formated_pub_date = int(movie.formated_pub_date)
-            except ValueError as e:
-                continue
-            if formated_pub_date < 1949 and formated_pub_date >= 1912:
-                movie_by_year[formated_pub_date].append({
-                    "_id": movie._id,
-                    "name": movie.name,
-                    "uri": movie.uri,
-                    "pub_date": movie.pub_date,
-                    "movie_type": movie.movie_type,
-                    "first_image_path": movie.first_image_path,
-                })
+            formated_pub_date = movie.formated_pub_date
+            movie_by_year[formated_pub_date].append({
+                "_id": movie._id,
+                "name": movie.name,
+                "uri": movie.uri,
+                "first_image_path": movie.first_image_path,
+            })
         movie_by_year_list = []
         for (key, value) in movie_by_year.items():
             if len(value) > 0:
@@ -79,6 +73,7 @@ class MovieTimelineView(APIView):
                     "content": value,
                 })
         return Response(movie_by_year_list)
+
 
 class MovieCinemaPositionsView(APIView):
 
