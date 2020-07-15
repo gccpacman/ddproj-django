@@ -3,6 +3,7 @@ from django.db import models
 # from ckeditor.fields import RichTextField
 from ckeditor_uploader.fields import RichTextUploadingField
 
+
 class TravelPath(models.Model):
     class Meta:
         verbose_name = '路线'
@@ -10,6 +11,7 @@ class TravelPath(models.Model):
 
     _id = models.AutoField(primary_key=True)
     name = models.CharField(verbose_name="路线名称", max_length=128, blank=False)
+    image = models.ImageField(upload_to='pic/travelpath/', null=True, blank=True)
     method = models.CharField(verbose_name="交通工具", max_length=128, blank=False)
     duration = models.CharField(verbose_name="游览时长", max_length=128, blank=False)
     feature = models.CharField(verbose_name="路线特色", max_length=128, blank=False)
@@ -45,6 +47,7 @@ class RichTextArticle(models.Model):
 
     _id = models.AutoField(primary_key=True)
     title = models.CharField(verbose_name="文章名称", max_length=128, blank=False)
+    image = models.ImageField(upload_to='pic/richtext/', null=True, blank=True)
     body = RichTextUploadingField(verbose_name="文章内容",)
     create_time = models.DateTimeField(auto_now_add=True, verbose_name="创建时间")
     update_time = models.DateTimeField(auto_now=True, verbose_name="更新时间")
