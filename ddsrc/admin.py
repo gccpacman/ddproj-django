@@ -48,21 +48,10 @@ class ArchitecturePictureInline(admin.TabularInline):
 
 class ArchitectureAdmin(admin.ModelAdmin):
     readonly_fields = (
-        'name_chs',
-        'name_cht',
-        'name_en',
-        'des',
-        'road',
-        'road_name_chs',
-        'road_lib_uri',
-        'address',
-        'house_number',
-        'longitude',
-        'latitude',
         'longitude_bmap',
         'latitude_bmap',
         'is_from_lib',
-        'protect_type',
+        'road_lib_uri',
         'lib_uri',
         'place_name',
         'place_uri',
@@ -75,6 +64,7 @@ class ArchitectureAdmin(admin.ModelAdmin):
         'create_time',
     )
     list_display = (
+        '_id',
         'name_chs',
         'road_name_chs',
         'place_name',

@@ -1,3 +1,4 @@
+from ddsrc.models import Architecture
 from django.db import models
 
 # from ckeditor.fields import RichTextField
@@ -33,6 +34,9 @@ class TravelPathPoint(models.Model):
     travel_path = models.ForeignKey("TravelPath", on_delete=models.CASCADE)
     name = models.CharField(verbose_name="路线点名称", max_length=128, blank=False)
     distance = models.CharField(verbose_name="距离", max_length=128, blank=False)
+    architecture_id = models.IntegerField(verbose_name='建筑id', blank=True, default=0)
+    address = models.CharField(max_length=256, verbose_name="地址", null=True, blank=True)
+    image = models.ImageField(upload_to='pic/travelpathpoint/', null=True, blank=True)
     duration = models.CharField(verbose_name="浏览时间", max_length=128, blank=False)
     highlight = models.CharField(verbose_name="亮点", max_length=128, blank=False)
     is_cinema = models.BooleanField(verbose_name="是否是影院", default=False)

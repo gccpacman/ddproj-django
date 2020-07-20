@@ -72,10 +72,11 @@ class Architecture(models.Model):
         "Road",
         related_name="road_architecture",
         on_delete=models.SET_NULL,
-        null=True)
+        null=True,
+        blank=True)
     road_name_chs = models.CharField(
         max_length=64, verbose_name="马路简体名", null=True, db_index=True)
-    road_lib_uri = models.URLField(verbose_name="马路URI", null=True)
+    road_lib_uri = models.URLField(verbose_name="马路URI", null=True, blank=True)
     name_chs = models.CharField(
         max_length=64,
         verbose_name="简体名",
@@ -101,11 +102,11 @@ class Architecture(models.Model):
         upload_to='pic/architecture_first/', null=True, blank=True)
     batch_no = models.CharField(max_length=16, verbose_name="批次", null=True)
     protect_type = models.CharField(
-        max_length=128, verbose_name="保护类型", null=True)
+        max_length=128, verbose_name="保护类型", null=True, blank=True)
     people_list = models.CharField(max_length=256, verbose_name="相关人物", blank=True, default="")
     is_from_lib = models.BooleanField(default=True)
     lib_is_red = models.IntegerField(default=3)
-    lib_uri = models.URLField(verbose_name="URI", null=True)
+    lib_uri = models.URLField(verbose_name="URI", null=True, blank=True)
     lib_update_time = models.DateTimeField(null=True, verbose_name="数据获取时间")
     create_time = models.DateTimeField(auto_now_add=True, verbose_name="创建时间")
     update_time = models.DateTimeField(auto_now=True, verbose_name="更新时间")

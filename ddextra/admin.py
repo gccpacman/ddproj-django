@@ -6,9 +6,12 @@ from ddextra.models import TravelPath, TravelPathPoint, RichTextArticle
 class TravelPathPointInline(admin.TabularInline):
     fields = (
         'name',
+        'architecture_id',
         'distance',
+        'address',
         'duration',
         'highlight',
+        'image',
         'is_cinema',
     )
     model = TravelPathPoint
