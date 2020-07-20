@@ -75,7 +75,7 @@ class Architecture(models.Model):
         null=True,
         blank=True)
     road_name_chs = models.CharField(
-        max_length=64, verbose_name="马路简体名", null=True, db_index=True)
+        max_length=64, verbose_name="马路简体名", null=True, db_index=True, blank=True)
     road_lib_uri = models.URLField(verbose_name="马路URI", null=True, blank=True)
     name_chs = models.CharField(
         max_length=64,
@@ -88,8 +88,8 @@ class Architecture(models.Model):
     house_number = models.CharField(
         max_length=256, verbose_name="房间号", null=True)
     address = models.CharField(max_length=256, verbose_name="地址", null=True)
-    longitude = models.FloatField(verbose_name="经度", null=True)
-    latitude = models.FloatField(verbose_name="纬度", null=True)
+    longitude = models.FloatField(verbose_name="经度", null=True, blank=True)
+    latitude = models.FloatField(verbose_name="纬度", null=True, blank=True)
     longitude_bmap = models.FloatField(verbose_name="经度(百度地图)", null=True)
     latitude_bmap = models.FloatField(verbose_name="纬度(百度地图)", null=True)
     place_uri = models.URLField(verbose_name="所在区URI", null=True)

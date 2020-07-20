@@ -48,8 +48,11 @@ class ArchitecturePictureInline(admin.TabularInline):
 
 class ArchitectureAdmin(admin.ModelAdmin):
     readonly_fields = (
+        'name_cht',
+        'name_en',
         'longitude_bmap',
         'latitude_bmap',
+        'road_name_chs',
         'is_from_lib',
         'road_lib_uri',
         'lib_uri',
