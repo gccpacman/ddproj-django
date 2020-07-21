@@ -28,7 +28,7 @@ class MovieListView(generics.ListAPIView):
     search_fields = [
         'name',
     ]
-    ordering_fields = ('_id',)
+    ordering_fields = ('_id', 'event_count', )
 
 
 class MovieDetailsView(generics.RetrieveAPIView):
@@ -43,7 +43,7 @@ class MoviePeopleListView(generics.ListAPIView):
     search_fields = [
         'name',
     ]
-    ordering_fields = ('_id',)
+    ordering_fields = ('_id', 'event_count', 'screenwriter_count', 'director_count', 'movie_count', )
 
 
 class MoviePeopleDetailsView(generics.RetrieveAPIView):
