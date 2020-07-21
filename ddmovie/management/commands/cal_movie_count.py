@@ -28,11 +28,10 @@ class Command(BaseCommand):
     def handle(self, *args, **options):
         movies = Movie.objects.all()
         for movie in movies:
-            for movie in movies:
-                if movie.raw:
-                    if movie.raw['directorList']:
-                        self.cal_movie_people_data(movie.raw['directorList'], 'director')
-                    if movie.raw['actorList']:
-                        self.cal_movie_people_data(movie.raw['actorList'], 'actor')
-                    if movie.raw['screenWriterList']:
-                        self.cal_movie_people_data(movie.raw['screenWriterList'], 'screenWriter')
+            if movie.raw:
+                if movie.raw['directorList']:
+                    self.cal_movie_people_data(movie.raw['directorList'], 'director')
+                if movie.raw['actorList']:
+                    self.cal_movie_people_data(movie.raw['actorList'], 'actor')
+                if movie.raw['screenWriterList']:
+                    self.cal_movie_people_data(movie.raw['screenWriterList'], 'screenWriter')
