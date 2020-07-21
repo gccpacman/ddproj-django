@@ -20,7 +20,9 @@ class MoviePeople(models.Model):
     is_actor = models.BooleanField(verbose_name="是否演员", default=False)
     raw = JSONField(verbose_name="元数据", null=True)
     event_count = models.IntegerField(verbose_name='事件个数', default=0)
-    movie_count = models.IntegerField(verbose_name='作品个数', default=0)
+    screenwriter_count = models.IntegerField(verbose_name='编剧作品个数', default=0)
+    director_count = models.IntegerField(verbose_name='导演作品个数', default=0)
+    movie_count = models.IntegerField(verbose_name='演出作品个数', default=0)
     create_time = models.DateTimeField(auto_now_add=True, verbose_name="创建时间")
     update_time = models.DateTimeField(auto_now=True, verbose_name="更新时间")
 

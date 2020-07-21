@@ -33,6 +33,8 @@ class MoviePeopleAdmin(admin.ModelAdmin):
         'raw',
         'event_count',
         'movie_count',
+        'screenwriter_count',
+        'director_count',
         'speciality',
         'nationality',
         'uri',

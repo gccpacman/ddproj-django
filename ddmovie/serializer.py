@@ -53,6 +53,8 @@ class MoviePeopleSerializer(serializers.HyperlinkedModelSerializer):
             'uri',
             'event_count',
             'movie_count',
+            'screenwriter_count',
+            'director_count',
             'first_image_path',
             'des_html',
             'birthday',
