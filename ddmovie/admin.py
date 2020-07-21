@@ -12,6 +12,7 @@ class MovieAdmin(admin.ModelAdmin):
         'detail_raw',
         'movie_type',
         'pub_date',
+        'event_count',
         'formated_pub_date',
         'lib_image_path',
         'uri',
@@ -30,6 +31,8 @@ class MoviePeopleAdmin(admin.ModelAdmin):
     readonly_fields = (
         'name',
         'raw',
+        'event_count',
+        'movie_count',
         'speciality',
         'nationality',
         'uri',

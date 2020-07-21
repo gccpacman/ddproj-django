@@ -9,11 +9,13 @@ class TravelPathSerializer(serializers.HyperlinkedModelSerializer):
         fields = [
             '_id',
             'name',
+            'image',
             'method',
             'duration',
             'feature',
             'path_points',
         ]
+
 
 class RichTextArticleSerializer(serializers.HyperlinkedModelSerializer):
 

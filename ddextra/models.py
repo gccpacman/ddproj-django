@@ -22,7 +22,7 @@ class TravelPath(models.Model):
     @property
     def path_points(self):
         archs = TravelPathPoint.objects.filter(travel_path=self)
-        return archs.values('_id', 'name', 'distance', 'duration', 'highlight', 'is_cinema')
+        return archs.values('_id', 'name', 'distance', 'duration', 'highlight', 'is_cinema', 'architecture_id', 'address', 'image', )
 
 
 class TravelPathPoint(models.Model):
