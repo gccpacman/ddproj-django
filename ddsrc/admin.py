@@ -61,6 +61,7 @@ class ArchitectureAdmin(admin.ModelAdmin):
         'batch_no',
         'first_image_uri',
         'first_image_lib_uri',
+        'event_count',
         'lib_is_red',
         'lib_update_time',
         'update_time',

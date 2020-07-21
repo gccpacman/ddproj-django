@@ -105,6 +105,7 @@ class Architecture(models.Model):
         max_length=128, verbose_name="保护类型", null=True, blank=True)
     people_list = models.CharField(max_length=256, verbose_name="相关人物", blank=True, default="")
     is_from_lib = models.BooleanField(default=True)
+    event_count = models.IntegerField(verbose_name='事件个数', default=0)
     lib_is_red = models.IntegerField(default=3)
     lib_uri = models.URLField(verbose_name="URI", null=True, blank=True)
     lib_update_time = models.DateTimeField(null=True, verbose_name="数据获取时间")

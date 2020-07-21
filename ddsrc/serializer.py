@@ -36,6 +36,7 @@ class ArchitectureSerializer(serializers.HyperlinkedModelSerializer):
             'road_lib_uri',
             'address',
             'house_number',
+            'event_count',
             'longitude',
             'latitude',
             'place_name_str',
