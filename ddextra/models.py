@@ -22,8 +22,20 @@ class TravelPath(models.Model):
     @property
     def path_points(self):
         archs = TravelPathPoint.objects.filter(travel_path=self)
-        return archs.values('_id', 'name', 'distance', 'duration', 'highlight', 'is_cinema', 'architecture_id', 'address', 'image', )
-
+        archList = []
+        for arch in archs:
+            archList.append({
+                '_id': arch._id, 
+                'name': arch.name,
+                'distance': arch.distance,
+                'duration': arch.duration,
+                'highlight': arch.highlight,
+                'is_cinema': arch.is_cinema,
+                'architecture_id': arch.architecture_id,
+                'address': arch.address,
+                'image': arch.image.url if arch.image else ''
+            })
+        return archList
 
 class TravelPathPoint(models.Model):
     class Meta:
@@ -42,6 +54,7 @@ class TravelPathPoint(models.Model):
     is_cinema = models.BooleanField(verbose_name="是否是影院", default=False)
     create_time = models.DateTimeField(auto_now_add=True, verbose_name="创建时间")
     update_time = models.DateTimeField(auto_now=True, verbose_name="更新时间")
+
 
 
 class RichTextArticle(models.Model):
