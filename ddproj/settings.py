@@ -205,6 +205,7 @@ if os.environ.get('DD_BACKEND_ENV') == 'PROD':
     STATIC_ROOT = '/static/'
     DEBUG = False
     CORS_ORIGIN_REGEX_WHITELIST = [
+        r"^\w+://localhost:8080$",
         r"^\w+://\w+\.datadude\.xyz$",
     ]
     DATABASES = {

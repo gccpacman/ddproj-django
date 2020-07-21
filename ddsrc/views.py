@@ -59,9 +59,12 @@ class ArchitecturePositionsView(APIView):
         place_name = request.query_params.get('place_name')
         if place_name:
             arch_query_list = Architecture.objects.filter(
-                place_name=place_name)
+                hidden=False
+            ).filter(
+                place_name=place_name
+            )
         else:
-            arch_query_list = Architecture.objects.all()
+            arch_query_list = Architecture.objects.filter(hidden=False)
         architecture_list = [{
             "id": arch._id,
             "name": arch.name_chs,
