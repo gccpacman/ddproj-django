@@ -12,3 +12,4 @@ backend_media/
 **/nginx_ssl/
 db.sqlite3
 \.qiniu_pythonsdk_hostscache.json
+data/

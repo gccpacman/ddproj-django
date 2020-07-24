@@ -44,6 +44,7 @@ INSTALLED_APPS = [
     'ddsrc',
     'ddmovie',
     'ddextra',
+    'ddpeotry',
     'libcache',
 ]
 
@@ -199,6 +200,28 @@ CACHES = {
 CORS_ORIGIN_WHITELIST = [
     'http://127.0.0.1:8080',
 ]
+
+# 预训练的模型参数
+CONFIG_PATH = './data/bert_config.json'
+CHECKPOINT_PATH = './data/bert_model.ckpt'
+DICT_PATH = './data/vocab.txt'
+
+# 禁用词，包含如下字符的唐诗将被忽略
+DISALLOWED_WORDS = ['（', '）', '(', ')', '__', '《', '》', '【', '】', '[', ']']
+# 句子最大长度
+MAX_LEN = 64
+# 最小词频
+MIN_WORD_FREQUENCY = 8
+# 训练的batch size
+BATCH_SIZE = 32
+# 数据集路径
+DATASET_PATH = './data/poetry.txt'
+# 每个epoch训练完成后，随机生成SHOW_NUM首古诗作为展示
+SHOW_NUM = 5
+# 共训练多少个epoch
+TRAIN_EPOCHS = 20
+# 最佳权重保存路径
+BEST_MODEL_PATH = './data/best_model.weights'
 
 if os.environ.get('DD_BACKEND_ENV') == 'PROD':
     MEDIA_ROOT = '/media/'
