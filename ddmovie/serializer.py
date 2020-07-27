@@ -1,5 +1,5 @@
 from rest_framework import serializers
-from ddmovie.models import Movie, MoviePeople, MoviePhoto, MoviePhotoPeople, MovieCinema
+from ddmovie.models import Movie, MoviePeople, MovieCinema
 
 
 class MovieCinemaSerializer(serializers.HyperlinkedModelSerializer):
@@ -37,6 +37,7 @@ class MovieSerializer(serializers.HyperlinkedModelSerializer):
             'des_html',
             'first_image_path',
             'related_photo',
+            'related_event',
         ]
 
 
@@ -61,4 +62,5 @@ class MoviePeopleSerializer(serializers.HyperlinkedModelSerializer):
             'deathday',
             'related_movie',
             'related_photo',
+            'related_event',
         ]
