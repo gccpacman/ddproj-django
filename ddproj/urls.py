@@ -13,7 +13,7 @@ urlpatterns = [
     url(r'^app/src/', include("ddsrc.app_urls")),
     url(r'^app/movie/', include("ddmovie.urls")),
     url(r'^app/extra/', include("ddextra.urls")),
-    url(r'^app/peotry/', include("ddpeotry.urls")),
+    # url(r'^app/peotry/', include("ddpeotry.urls")),
     url(r'^profile', profile),
     url(r'^ckeditor/', include('ckeditor_uploader.urls')),
     # url(r'^backend/media/(?P<path>.*)$', serve, {"document_root": MEDIA_ROOT}),

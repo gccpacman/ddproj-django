@@ -9,4 +9,4 @@ echo "2. docker build"
 ssh tc1 "cd /root/ddproj-django/.deploy/prod; docker-compose build"
 
 echo "3. restart app"
-# ssh tc1 "cd /root/ddproj-django/.deploy/prod; docker-compose up -d"
+ssh tc1 "cd /root/ddproj-django/.deploy/prod; docker-compose up -d"

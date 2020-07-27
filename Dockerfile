@@ -14,10 +14,12 @@ RUN mkdir /root/.pip/ && \
 RUN set -ex && mkdir /app
 
 WORKDIR /app
+RUN python3 -m pip install --upgrade pip
+
+COPY requirements.txt ./
+RUN pip3 install -r requirements.txt
 
 COPY . /app
-RUN python3 -m pip install --upgrade pip
-RUN pip3 install -r requirements.txt
 
 EXPOSE 8080
 

@@ -114,6 +114,24 @@ class MoviePeople(models.Model):
                 return photo_list
         return
 
+    @property
+    def related_event(self):
+        event_relation_list = EventRelation.objects.filter(relation_type="person").filter(relation_label=self.name)
+        related_event_list = []
+        for event_relation in event_relation_list:
+            event_uri = event_relation.event_uri
+            event = Event.objects.get(uri=event_uri)
+            if event:
+                related_event_list.append({
+                    '_id': event._id,
+                    'name': event.event_title,
+                    'des_html': event.description,
+                    'first_image_path': event.first_image_path,
+                    'event_begin': event.event_begin,
+                    'event_end': event.event_end,
+                })
+        return related_event_list
+
 
 class MoviePeopleRelation(models.Model):
     class Meta:
@@ -231,6 +249,24 @@ class Movie(models.Model):
                 })
                 return photo_list
         return
+
+    @property
+    def related_event(self):
+        event_relation_list = EventRelation.objects.filter(relation_type="movie").filter(relation_label=self.name)
+        related_event_list = []
+        for event_relation in event_relation_list:
+            event_uri = event_relation.event_uri
+            event = Event.objects.get(uri=event_uri)
+            if event:
+                related_event_list.append({
+                    '_id': event._id,
+                    'name': event.event_title,
+                    'des_html': event.description,
+                    'first_image_path': event.first_image_path,
+                    'event_begin': event.event_begin,
+                    'event_end': event.event_end,
+                })
+        return related_event_list
 
 
 class MoviePhoto(models.Model):
