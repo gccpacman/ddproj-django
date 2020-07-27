@@ -122,9 +122,9 @@ class MoviePeopleRelation(models.Model):
         unique_together = (("movie_uri", "people_uri"),)
 
     _id = models.AutoField(primary_key=True)
-    movie_uri = models.CharField(max_length=128, verbose_name="URI", unique=True)
-    people_uri = models.CharField(max_length=128, verbose_name="URI", unique=True)
-    is_director = models.BooleanField(verbose_name="是否导演", default=False)
+    movie_uri = models.CharField(max_length=128, verbose_name="电影URI", unique=True)
+    people_uri = models.CharField(max_length=128, verbose_name="影人URI", unique=True)
+    rule_type = models.CharField(max_length=64, verbose_name="类型", default=False)
     create_time = models.DateTimeField(auto_now_add=True, verbose_name="创建时间")
     update_time = models.DateTimeField(auto_now=True, verbose_name="更新时间")
 

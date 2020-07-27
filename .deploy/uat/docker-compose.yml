@@ -12,6 +12,7 @@ services:
       MYSQL_ROOT_PASSWORD: 'dDxYz1@3#e'
     volumes:
       - ./database:/var/lib/mysql/:rw
+      - ./logs/app:/logs/mysql
     command: ['mysqld', '--character-set-server=utf8mb4', '--collation-server=utf8mb4_unicode_ci']
   app:
     build: ../..
@@ -22,19 +23,20 @@ services:
       - mysql
     volumes:
       - ./logs/app:/app/logs/
+      - ../../data:/app/data/
     ports:
       - "32003:8080"
     links:
       - "mysql"
-  nginx:
-    image: nginx:alpine
-    restart: always
-    ports:
-      - "32002:80"
-    volumes:
-      - ./nginx_conf:/etc/nginx/conf.d
-      - ./logs/nginx:/var/log/nginx/
-    depends_on:
-       - app
-    links:
-      - "app"
+  # nginx:
+  #   image: nginx:alpine
+  #   restart: always
+  #   ports:
+  #     - "32002:80"
+  #   volumes:
+  #     - ./nginx_conf:/etc/nginx/conf.d
+  #     - ./logs/nginx:/var/log/nginx/
+  #   depends_on:
+  #      - app
+  #   links:
+  #     - "app"

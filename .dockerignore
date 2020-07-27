@@ -7,3 +7,4 @@ backend_media/
 database/
 **/nginx_conf/
 **/logs/
+data/

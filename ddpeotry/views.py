@@ -10,7 +10,8 @@ from ddproj import settings
 class RamdomPeotryView(APIView):
 
     def get(self, request):
+        first_word = request.query_params.get('str', '')
         peotryTokenizer = PeotryTokenizer()
         model = get_model(peotryTokenizer.get_keep_words())
         model.load_weights(settings.BEST_MODEL_PATH)
-        return Response(utils.generate_random_poetry(peotryTokenizer.get_tokenizers(), model, s='今天很沮丧'))
+        return Response(utils.generate_random_poetry(peotryTokenizer.get_tokenizers(), model, s=first_word))

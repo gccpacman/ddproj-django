@@ -19,9 +19,7 @@ django-qiniu-storage = "*"
 django-mysql = "*"
 django-grappelli = "*"
 django-ckeditor = "*"
-tensorflow = "==2.0.0"
-bert4keras = "==0.6.2"
-keras = "==2.3.1"
+gunicorn = "*"
 
 [requires]
 python_version = "3.7"

@@ -1,28 +1,27 @@
-FROM python:3.7-alpine
+FROM ubuntu:18.04
+
+RUN sed -i s/archive.ubuntu.com/mirrors.aliyun.com/g /etc/apt/sources.list \
+    && sed -i s/security.ubuntu.com/mirrors.aliyun.com/g /etc/apt/sources.list \
+    && apt-get update
+RUN apt-get install -y libmysqlclient-dev curl python3 python3-pip 
+RUN apt-get install -y build-essential
 
 ENV PYTHONUNBUFFERED=1
 
-
-RUN sed -i "s/dl-cdn.alpinelinux.org/mirrors.aliyun.com/g" /etc/apk/repositories
-RUN apk add --update mysql-dev build-base jpeg-dev zlib-dev libjpeg curl mysql-client
-
 RUN mkdir /root/.pip/ && \
-    printf "[global]\nindex-url = https://pypi.tuna.tsinghua.edu.cn/simple\ntrusted-host = pypi.tuna.tsinghua.edu.cn" > /root/.pip/pip.conf && \
-    pip3 install --no-cache --upgrade pipenv
-
-RUN pip install pipenv --no-cache-dir
+    printf "[global]\nindex-url = https://pypi.tuna.tsinghua.edu.cn/simple\ntrusted-host = pypi.tuna.tsinghua.edu.cn" > /root/.pip/pip.conf
 
 RUN set -ex && mkdir /app
 
 WORKDIR /app
 
-COPY Pipfile Pipfile
-COPY Pipfile.lock Pipfile.lock
-RUN pipenv lock --requirements > requirements.txt
-RUN pip install -r requirements.txt
+COPY . /app
+RUN python3 -m pip install --upgrade pip
+RUN pip3 install -r requirements.txt
 
 EXPOSE 8080
 
-COPY . /app
+RUN mkdir /app/data
+VOLUME [ "/app/data" ]
 
-CMD ["python", "manage.py", "runserver", "0.0.0.0:8080", "--nothreading", "--noreload"]
+CMD ["gunicorn", "ddproj.wsgi", "--bind", "0.0.0.0:8080", "--workers", "4"]
