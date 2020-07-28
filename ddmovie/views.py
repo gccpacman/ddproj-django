@@ -53,20 +53,19 @@ class MoviePeopleDetailsView(generics.RetrieveAPIView):
 
 class MovieTimelineView(APIView):
     def get(self, request):
-        movies_queryset = Movie.objects.filter(formated_pub_date__gte=1912).filter(formated_pub_date__lt=1949).filter(lib_image_path__isnull=False)
+        movies_queryset = Movie.objects.filter(formated_pub_date__gte=1912).filter(formated_pub_date__lt=1949)
         movie_by_year = {}
         for movie in movies_queryset:
             lib_image_path = movie.lib_image_path
-            if lib_image_path:
-                formated_pub_date = movie.formated_pub_date
-                if not movie_by_year.get(formated_pub_date):
-                    movie_by_year[formated_pub_date] = []
-                movie_by_year[formated_pub_date].append({
-                    "_id": movie._id,
-                    "name": movie.name,
-                    "uri": movie.uri,
-                    "first_image_path": lib_image_path,
-                })
+            formated_pub_date = movie.formated_pub_date
+            if not movie_by_year.get(formated_pub_date):
+                movie_by_year[formated_pub_date] = []
+            movie_by_year[formated_pub_date].append({
+                "_id": movie._id,
+                "name": movie.name,
+                "uri": movie.uri,
+                "first_image_path": lib_image_path,
+            })
         return Response(movie_by_year)
 
 
