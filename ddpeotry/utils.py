@@ -4,10 +4,33 @@
 # @Time    : 2019/12/30
 # @Desc    :
 import numpy as np
+from bert4keras.models import build_transformer_model
+import tensorflow as tf
+
 from ddproj import settings
+from ddproj.celery import peotryTokenizer
 
 
-def generate_random_poetry(tokenizer, model, s=''):
+def get_model(keep_words):
+    model = build_transformer_model(settings.CONFIG_PATH, settings.CHECKPOINT_PATH, application='lm', keep_tokens=keep_words)
+    model.summary()
+
+    # loss fun，交叉熵
+    # 输入的数据，从第二个字符开始，可以作为正确的目标结果(输入是没有经过one-hot编码的)
+    y_true = model.input[0][:, 1:]
+    # 目标mask
+    y_mask = model.get_layer('Embedding-Token').output_mask[:, 1:]
+    y_mask = tf.cast(y_mask, tf.float32)
+    # 预测结果，到倒数第二个（包括）时结束
+    y_pred = model.output[:, :-1]
+    cross_entropy = tf.keras.losses.sparse_categorical_crossentropy(y_true, y_pred)
+    cross_entropy = tf.reduce_sum(cross_entropy * y_mask) / tf.reduce_sum(y_mask)
+    model.add_loss(cross_entropy)
+    model.compile(tf.keras.optimizers.Adam(1e-5))
+
+    return model
+
+def generate_random_poetry(s=''):
     """
     随机生成一首诗
     :param tokenizer: 分词器
@@ -15,6 +38,10 @@ def generate_random_poetry(tokenizer, model, s=''):
     :param s: 用于生成古诗的起始字符串，默认为空串
     :return: 一个字符串，表示一首古诗
     """
+    tokenizer = peotryTokenizer.get_tokenizers()
+    model = get_model(peotryTokenizer.get_keep_words())
+    model.load_weights(settings.BEST_MODEL_PATH)
+
     # 将初始字符串转成token
     token_ids, segment_ids = tokenizer.encode(s)
     # 去掉结束标记[SEP]

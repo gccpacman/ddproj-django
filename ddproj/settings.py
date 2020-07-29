@@ -11,7 +11,6 @@ https://docs.djangoproject.com/en/2.2/ref/settings/
 """
 
 import os
-import socket
 
 # Build paths inside the project like this: os.path.join(BASE_DIR, ...)
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
@@ -24,6 +23,11 @@ SECRET_KEY = 'u73)$u^l*_qx)^^^-_m*kl(s+z$w^8riu7d)8uba%-r@2_ygx='
 
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
+
+# celery
+CELERY_TIMEZONE = 'Asia/Shanghai'
+CELERY_BROKER_URL = 'amqp://guest:guest@127.0.0.1:5672'
+CELERY_RESULT_BACKEND = 'amqp://guest:guest@127.0.0.1:5672'
 
 # Application definition
 

@@ -92,8 +92,8 @@ class PeotryTokenizer:
         # 混洗数据
         np.random.shuffle(poetry)
 
-        print(len(poetry))
-        print(len(self.keep_words))
+        print(self.tokenizer)
+        print(self.keep_words)
 
     def get_tokenizers(self):
         return self.tokenizer
