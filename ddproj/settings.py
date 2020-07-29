@@ -253,10 +253,15 @@ if os.environ.get('DD_BACKEND_ENV') == 'PROD':
             'console': {
                 'class': 'logging.StreamHandler'
             },
+            'file': {
+                'level': 'DEBUG',
+                'class': 'logging.FileHandler',
+                'filename': '/app/logs/debug.log',
+            },
         },
         'loggers': {
             '': {  # 'catch all' loggers by referencing it with the empty string
-                'handlers': ['console'],
+                'handlers': ['console', 'file'],
                 'level': 'DEBUG',
             },
         },
