@@ -24,6 +24,7 @@ bert4keras = "==0.6.2"
 tensorflow = "==2.0.0"
 keras = "==2.3.1"
 numpy = "==1.17.2"
+celery = "*"
 
 [requires]
 python_version = "3.7"
