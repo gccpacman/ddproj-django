@@ -21,21 +21,23 @@ class TravelPath(models.Model):
 
     @property
     def path_points(self):
-        archs = TravelPathPoint.objects.filter(travel_path=self)
-        archList = []
-        for arch in archs:
-            archList.append({
-                '_id': arch._id, 
-                'name': arch.name,
-                'distance': arch.distance,
-                'duration': arch.duration,
-                'highlight': arch.highlight,
-                'is_cinema': arch.is_cinema,
-                'architecture_id': arch.architecture_id,
-                'address': arch.address,
-                'image': arch.image.url if arch.image else ''
+        travel_path_points = TravelPathPoint.objects.filter(travel_path=self)
+        pathList = []
+        for travel_path_point in travel_path_points:
+            pathList.append({
+                '_id': travel_path_point._id, 
+                'name': travel_path_point.name,
+                'distance': travel_path_point.distance,
+                'duration': travel_path_point.duration,
+                'highlight': travel_path_point.highlight,
+                'is_cinema': travel_path_point.is_cinema,
+                'architecture_id': travel_path_point.architecture_id,
+                'address': travel_path_point.address,
+                'image': travel_path_point.image.url if travel_path_point.image else '',
+                'location': travel_path_point.location
             })
-        return archList
+        return pathList
+
 
 class TravelPathPoint(models.Model):
     class Meta:
@@ -55,6 +57,19 @@ class TravelPathPoint(models.Model):
     create_time = models.DateTimeField(auto_now_add=True, verbose_name="创建时间")
     update_time = models.DateTimeField(auto_now=True, verbose_name="更新时间")
 
+    @property
+    def location(self):
+        archs = Architecture.objects.filter(_id=self.architecture_id)
+        if len(archs) > 0:
+            return {
+                'latitude': archs[0].latitude,
+                'longitude': archs[0].longitude
+            }
+        else:
+            return {
+                'latitude': 0,
+                'longitude': 0
+            }
 
 
 class RichTextArticle(models.Model):
