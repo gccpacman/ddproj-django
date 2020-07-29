@@ -25,9 +25,9 @@ SECRET_KEY = 'u73)$u^l*_qx)^^^-_m*kl(s+z$w^8riu7d)8uba%-r@2_ygx='
 DEBUG = True
 
 # celery
-CELERY_TIMEZONE = 'Asia/Shanghai'
-CELERY_BROKER_URL = 'amqp://guest:guest@127.0.0.1:5672'
-CELERY_RESULT_BACKEND = 'amqp://guest:guest@127.0.0.1:5672'
+TIMEZONE = 'Asia/Shanghai'
+BROKER_URL = 'amqp://guest:guest@127.0.0.1:5672'
+RESULT_BACKEND = 'amqp://guest:guest@127.0.0.1:5672'
 
 # Application definition
 
@@ -235,6 +235,8 @@ if os.environ.get('DD_BACKEND_ENV') == 'PROD':
         r"^\w+://localhost:8080$",
         r"^\w+://\w+\.datadude\.xyz$",
     ]
+    BROKER_URL = 'amqp://admin:t11sIs76L@172.17.0.2:5672'
+    RESULT_BACKEND = 'amqp://admin:t11sIs76L@172.17.0.2:5672'
     DATABASES = {
         'default': {
             'ENGINE': 'django.db.backends.mysql',
@@ -256,16 +258,11 @@ if os.environ.get('DD_BACKEND_ENV') == 'PROD':
         'handlers': {
             'console': {
                 'class': 'logging.StreamHandler'
-            },
-            'file': {
-                'level': 'DEBUG',
-                'class': 'logging.FileHandler',
-                'filename': '/app/logs/debug.log',
-            },
+            }
         },
         'loggers': {
             '': {  # 'catch all' loggers by referencing it with the empty string
-                'handlers': ['console', 'file'],
+                'handlers': ['console',],
                 'level': 'DEBUG',
             },
         },
