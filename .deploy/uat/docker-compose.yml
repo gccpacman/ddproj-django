@@ -3,8 +3,8 @@ services:
   mysql:
     image: mysql:5.7
     restart: always
-    expose:
-      - "3306"
+    ports:
+      - "33306:3306"
     environment:
       MYSQL_DATABASE: 'ddproj'
       MYSQL_USER: 'ddxyz'
@@ -14,6 +14,18 @@ services:
       - ./database:/var/lib/mysql/:rw
       - ./logs/app:/logs/mysql
     command: ['mysqld', '--character-set-server=utf8mb4', '--collation-server=utf8mb4_unicode_ci']
+  rabbitmq:
+    container_name: rabbitmq
+    image: rabbitmq:3.7-rc
+    restart: always
+    ports:
+      - 35672:5672
+      - 34672:15672
+    volumes:
+      - ./rabbitmq:/var/lib/rabbitmq
+    environment:
+      - RABBITMQ_DEFAULT_USER=guest
+      - RABBITMQ_DEFAULT_PASS=guest
   app:
     build: ../..
     restart: always
@@ -23,11 +35,27 @@ services:
       - mysql
     volumes:
       - ./logs/app:/app/logs/
-      - ../../data:/app/data/
+      - ../../data/dataset:/app/data/
     ports:
       - "32003:8080"
     links:
       - "mysql"
+      - "rabbitmq"
+  celery_worker:
+    build: ../..
+    restart: always
+    environment:
+      - DD_BACKEND_ENV=UAT
+    command: sh -c "celery -A ddproj worker -l info"
+    volumes:
+      - ../../data/util_data:/app/data/
+    depends_on:
+      - app
+      - mysql
+      - rabbitmq
+    links:
+      - "mysql"
+
   # nginx:
   #   image: nginx:alpine
   #   restart: always

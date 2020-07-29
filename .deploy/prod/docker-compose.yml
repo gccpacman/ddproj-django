@@ -14,6 +14,18 @@ services:
       - ./database:/var/lib/mysql/:rw
       - ./logs/app:/logs/mysql
     command: ['mysqld', '--character-set-server=utf8mb4', '--collation-server=utf8mb4_unicode_ci']
+  rabbitmq:
+    container_name: rabbitmq
+    image: rabbitmq:3.7-rc
+    restart: always
+    expose:
+      - 5672
+      - 15672
+    volumes:
+      - ./rabbitmq:/var/lib/rabbitmq
+    environment:
+      - RABBITMQ_DEFAULT_USER=admin
+      - RABBITMQ_DEFAULT_PASS=t11sIs76L
   app:
     build: ../..
     restart: always
@@ -22,9 +34,24 @@ services:
     depends_on:
       - mysql
     volumes:
-      - ./data:/app/data/
+      - /root/peotry_data:/app/data/
       - ./logs/app:/app/logs/
     ports:
       - "8080:8080"
+    links:
+      - "mysql"
+      - "rabbitmq"
+  celery_worker:
+    build: ../..
+    restart: always
+    environment:
+      - DD_BACKEND_ENV=PROD
+    command: sh -c "celery -A ddproj worker -l info"
+    volumes:
+      - /root/util_data:/app/data/
+    depends_on:
+      - app
+      - mysql
+      - rabbitmq
     links:
       - "mysql"

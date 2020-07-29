@@ -25,9 +25,9 @@ SECRET_KEY = 'u73)$u^l*_qx)^^^-_m*kl(s+z$w^8riu7d)8uba%-r@2_ygx='
 DEBUG = True
 
 # celery
-CELERY_TIMEZONE = 'Asia/Shanghai'
-CELERY_BROKER_URL = 'amqp://guest:guest@127.0.0.1:5672'
-CELERY_RESULT_BACKEND = 'amqp://guest:guest@127.0.0.1:5672'
+TIMEZONE = 'Asia/Shanghai'
+BROKER_URL = 'amqp://guest:guest@127.0.0.1:5672'
+RESULT_BACKEND = 'amqp://guest:guest@127.0.0.1:5672'
 
 # Application definition
 
@@ -208,6 +208,9 @@ CORS_ORIGIN_WHITELIST = [
 # 预训练的模型参数
 CONFIG_PATH = './data/bert_config.json'
 CHECKPOINT_PATH = './data/bert_model.ckpt'
+
+BEST_MODEL_PATH = './data/best_model.weights'
+
 DICT_PATH = './data/vocab.txt'
 
 # 禁用词，包含如下字符的唐诗将被忽略
@@ -224,13 +227,14 @@ DATASET_PATH = './data/poetry.txt'
 SHOW_NUM = 5
 # 共训练多少个epoch
 TRAIN_EPOCHS = 20
-# 最佳权重保存路径
-BEST_MODEL_PATH = './data/best_model.weights'
+
 
 if os.environ.get('DD_BACKEND_ENV') == 'PROD':
     MEDIA_ROOT = '/media/'
     STATIC_ROOT = '/static/'
     DEBUG = False
+    BROKER_URL = 'amqp://admin:t11sIs76L@rabbitmq:5672'
+    RESULT_BACKEND = 'amqp://admin:t11sIs76L@rabbitmq:5672'
     CORS_ORIGIN_REGEX_WHITELIST = [
         r"^\w+://localhost:8080$",
         r"^\w+://\w+\.datadude\.xyz$",
@@ -274,6 +278,8 @@ elif os.environ.get('DD_BACKEND_ENV') == 'UAT':
     DEBUG = True
     MEDIA_ROOT = '_uat/media/'
     STATIC_ROOT = '_uat/static/'
+    BROKER_URL = 'amqp://guest:guest@rabbitmq:5672'
+    RESULT_BACKEND = 'amqp://guest:guest@rabbitmq:5672'
     DATABASES = {
         'default': {
             'ENGINE': 'django.db.backends.mysql',

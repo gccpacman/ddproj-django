@@ -9,6 +9,7 @@ collected_static/
 backend_media/
 **/logs/
 **/database/
+**/rabbitmq/
 **/nginx_ssl/
 db.sqlite3
 \.qiniu_pythonsdk_hostscache.json
