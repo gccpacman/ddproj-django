@@ -39,7 +39,6 @@ class TravelPath(models.Model):
                 'longitude': travel_path_point.longitude,
                 'latitude': travel_path_point.latitude,
                 'image': travel_path_point.image.url if travel_path_point.image else '',
-                'location': travel_path_point.location
             })
         return pathList
 
@@ -64,20 +63,6 @@ class TravelPathPoint(models.Model):
     is_cinema = models.BooleanField(verbose_name="是否是影院", default=False)
     create_time = models.DateTimeField(auto_now_add=True, verbose_name="创建时间")
     update_time = models.DateTimeField(auto_now=True, verbose_name="更新时间")
-
-    @property
-    def location(self):
-        archs = Architecture.objects.filter(_id=self.architecture_id)
-        if len(archs) > 0:
-            return {
-                'latitude': archs[0].latitude,
-                'longitude': archs[0].longitude
-            }
-        else:
-            return {
-                'latitude': 0,
-                'longitude': 0
-            }
 
 
 class RichTextArticle(models.Model):

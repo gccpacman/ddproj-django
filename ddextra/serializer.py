@@ -13,6 +13,8 @@ class TravelPathSerializer(serializers.HyperlinkedModelSerializer):
             'method',
             'duration',
             'feature',
+            'longitude',
+            'latitude',
             'path_points',
         ]
 
