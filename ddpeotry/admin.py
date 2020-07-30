@@ -8,10 +8,11 @@ class PeotryAdmin(admin.ModelAdmin):
         '_id',
         'firstWord',
         'result',
+        'status',
         'update_time',
         'create_time',
     )
-    list_display = ('_id', 'firstWord', 'result',)
+    list_display = ('_id', 'firstWord', 'result', 'status',)
     list_per_page = 30
 
 admin.site.register(Peotry, PeotryAdmin)
