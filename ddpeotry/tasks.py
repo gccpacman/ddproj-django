@@ -4,7 +4,6 @@ from celery import shared_task
 
 from ddpeotry.utils import generate_random_poetry
 from ddpeotry.models import Peotry
-from django.db.models import Model
 
 @shared_task
 def add(x, y):
@@ -22,10 +21,11 @@ def get_peotry(first_word):
     try:
         peotry = Peotry.objects.get(
             firstWord=first_word,
-            status=1
+            status=0
         )
         peotry.result = result
+        peotry.status = 1
         peotry.save()
-    except Model.DoesNotExist as e:
+    except Peotry.DoesNotExist:
         pass
     return result

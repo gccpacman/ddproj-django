@@ -4,7 +4,6 @@ from rest_framework.response import Response
 
 from ddpeotry.models import Peotry
 from ddpeotry.tasks import get_peotry
-from django.db.models import Model
 
 class RamdomPeotryView(APIView):
 
@@ -17,7 +16,6 @@ class RamdomPeotryView(APIView):
         try:
             peotry = Peotry.objects.get(
                 firstWord=first_word,
-                status=1,
             )
             if peotry.status == 1:
                 return Response({
@@ -29,7 +27,7 @@ class RamdomPeotryView(APIView):
                     'status': 'inqueue',
                     'taskId': peotry.taskId
                 })
-        except Model.DoesNotExist:
+        except Peotry.DoesNotExist:
             pass
         peotry_task = get_peotry.delay(first_word)
         Peotry.objects.create(
