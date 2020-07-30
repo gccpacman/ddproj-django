@@ -77,7 +77,7 @@ def generate_random_poetry(s=''):
     return tokenizer.decode(token_ids + target_ids)
 
 
-def generate_acrostic(tokenizer, model, head):
+def generate_acrostic(head):
     """
     随机生成一首藏头诗
     :param tokenizer: 分词器
@@ -85,6 +85,9 @@ def generate_acrostic(tokenizer, model, head):
     :param head: 藏头诗的头
     :return: 一个字符串，表示一首古诗
     """
+    tokenizer = peotryTokenizer.get_tokenizers()
+    model = get_model(peotryTokenizer.get_keep_words())
+    model.load_weights(settings.BEST_MODEL_PATH)
     # 使用空串初始化token_ids，加入[CLS]
     token_ids, segment_ids = tokenizer.encode('')
     token_ids = token_ids[:-1]
