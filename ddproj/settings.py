@@ -238,14 +238,16 @@ if os.environ.get('DD_BACKEND_ENV') == 'PROD':
         r"^\w+://localhost:8080$",
         r"^\w+://\w+\.datadude\.xyz$",
     ]
+    BROKER_URL = 'amqp://admin:t11sIs76L@172.17.0.2:5672'
+    RESULT_BACKEND = 'amqp://admin:t11sIs76L@172.17.0.2:5672'
     DATABASES = {
         'default': {
             'ENGINE': 'django.db.backends.mysql',
             'NAME': 'ddproj',
             'USER': 'ddxyz',
             'PASSWORD': 'dDxYz1@3#e',
-            'HOST': 'mysql',
-            'PORT': '3306',
+            'HOST': '172.17.0.2',
+            'PORT': '13306',
             'OPTIONS': {
                 'init_command': "SET sql_mode='STRICT_TRANS_TABLES'",
                 'charset': 'utf8mb4',
