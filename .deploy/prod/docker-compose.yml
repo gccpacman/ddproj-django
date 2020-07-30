@@ -12,7 +12,6 @@ services:
       MYSQL_ROOT_PASSWORD: 'dDxYz1@3#e'
     volumes:
       - ./database:/var/lib/mysql/:rw
-      - ./logs/app:/logs/mysql
     command: ['mysqld', '--character-set-server=utf8mb4', '--collation-server=utf8mb4_unicode_ci']
   rabbitmq:
     container_name: rabbitmq

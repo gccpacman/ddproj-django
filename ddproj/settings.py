@@ -208,10 +208,10 @@ CORS_ORIGIN_WHITELIST = [
 # 预训练的模型参数
 CONFIG_PATH = './data/bert_config.json'
 CHECKPOINT_PATH = './data/bert_model.ckpt'
-
 BEST_MODEL_PATH = './data/best_model.weights'
-
 DICT_PATH = './data/vocab.txt'
+# 数据集路径
+DATASET_PATH = './data/poetry.txt'
 
 # 禁用词，包含如下字符的唐诗将被忽略
 DISALLOWED_WORDS = ['（', '）', '(', ')', '__', '《', '》', '【', '】', '[', ']']
@@ -221,8 +221,7 @@ MAX_LEN = 64
 MIN_WORD_FREQUENCY = 8
 # 训练的batch size
 BATCH_SIZE = 32
-# 数据集路径
-DATASET_PATH = './data/poetry.txt'
+
 # 每个epoch训练完成后，随机生成SHOW_NUM首古诗作为展示
 SHOW_NUM = 5
 # 共训练多少个epoch
@@ -260,16 +259,11 @@ if os.environ.get('DD_BACKEND_ENV') == 'PROD':
         'handlers': {
             'console': {
                 'class': 'logging.StreamHandler'
-            },
-            'file': {
-                'level': 'DEBUG',
-                'class': 'logging.FileHandler',
-                'filename': '/app/logs/debug.log',
-            },
+            }
         },
         'loggers': {
             '': {  # 'catch all' loggers by referencing it with the empty string
-                'handlers': ['console', 'file'],
+                'handlers': ['console'],
                 'level': 'DEBUG',
             },
         },

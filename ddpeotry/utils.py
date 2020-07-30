@@ -8,7 +8,10 @@ from bert4keras.models import build_transformer_model
 import tensorflow as tf
 
 from ddproj import settings
-from ddproj.celery import peotryTokenizer
+
+from ddpeotry.dataset import PeotryTokenizer
+
+peotryTokenizer = PeotryTokenizer()
 
 
 def get_model(keep_words):
