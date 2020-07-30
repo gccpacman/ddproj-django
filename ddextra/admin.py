@@ -12,6 +12,9 @@ class TravelPathPointInline(admin.TabularInline):
         'duration',
         'highlight',
         'image',
+        'longitude',
+        'latitude',
+        'priority',
         'is_cinema',
     )
     model = TravelPathPoint

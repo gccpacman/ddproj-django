@@ -61,10 +61,9 @@ class MovieCinemaAdmin(admin.ModelAdmin):
         'create_time',
         # 'first_image_path'
     )
-    list_display = ('_id', 'name', 'uri',)
+    list_display = ('_id', 'name', 'uri', 'address',)
     list_per_page = 30
     search_fields = ('name', 'uri')
-
 
 admin.site.register(MovieCinema, MovieCinemaAdmin)
 

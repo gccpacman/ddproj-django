@@ -317,6 +317,7 @@ class MovieCinema(models.Model):
     image = models.ImageField(verbose_name="图片", upload_to='movie/cinemas/', null=True, blank=True)
     uri = models.CharField(max_length=128, verbose_name="URI", unique=True)
     architectureUri = models.CharField(max_length=128, verbose_name="建筑URI", unique=False)
+    address = models.CharField(max_length=256, verbose_name="地址", blank=True, default='')
     longitude = models.FloatField(verbose_name="经度", null=True)
     latitude = models.FloatField(verbose_name="纬度", null=True)
     longitude_bmap = models.FloatField(verbose_name="经度(百度地图)", null=True)

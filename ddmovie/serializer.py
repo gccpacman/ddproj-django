@@ -12,6 +12,7 @@ class MovieCinemaSerializer(serializers.HyperlinkedModelSerializer):
             'nameEn',
             'uri',
             'architectureUri',
+            'address',
             'longitude',
             'latitude',
             'des_html',
