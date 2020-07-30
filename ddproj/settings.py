@@ -238,15 +238,53 @@ if os.environ.get('DD_BACKEND_ENV') == 'PROD':
         r"^\w+://localhost:8080$",
         r"^\w+://\w+\.datadude\.xyz$",
     ]
-    BROKER_URL = 'amqp://admin:t11sIs76L@172.17.0.2:5672'
-    RESULT_BACKEND = 'amqp://admin:t11sIs76L@172.17.0.2:5672'
     DATABASES = {
         'default': {
             'ENGINE': 'django.db.backends.mysql',
             'NAME': 'ddproj',
             'USER': 'ddxyz',
             'PASSWORD': 'dDxYz1@3#e',
-            'HOST': '172.17.0.2',
+            'HOST': 'mysql',
+            'PORT': '3306',
+            'OPTIONS': {
+                'init_command': "SET sql_mode='STRICT_TRANS_TABLES'",
+                'charset': 'utf8mb4',
+                'connect_timeout': 5
+            },
+        }
+    }
+    LOGGING = {
+        'version': 1,
+        'disable_existing_loggers': False,
+        'handlers': {
+            'console': {
+                'class': 'logging.StreamHandler'
+            }
+        },
+        'loggers': {
+            '': {  # 'catch all' loggers by referencing it with the empty string
+                'handlers': ['console'],
+                'level': 'DEBUG',
+            },
+        },
+    }
+elif os.environ.get('DD_BACKEND_ENV') == 'PROD_CELERY':
+    MEDIA_ROOT = '/media/'
+    STATIC_ROOT = '/static/'
+    DEBUG = False
+    BROKER_URL = 'amqp://admin:t11sIs76L@192.168.70.1:5672'
+    RESULT_BACKEND = 'amqp://admin:t11sIs76L@192.168.70.1:5672'
+    CORS_ORIGIN_REGEX_WHITELIST = [
+        r"^\w+://localhost:8080$",
+        r"^\w+://\w+\.datadude\.xyz$",
+    ]
+    DATABASES = {
+        'default': {
+            'ENGINE': 'django.db.backends.mysql',
+            'NAME': 'ddproj',
+            'USER': 'ddxyz',
+            'PASSWORD': 'dDxYz1@3#e',
+            'HOST': '192.168.70.1',
             'PORT': '13306',
             'OPTIONS': {
                 'init_command': "SET sql_mode='STRICT_TRANS_TABLES'",
