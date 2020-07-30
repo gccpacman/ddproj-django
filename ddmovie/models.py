@@ -18,6 +18,7 @@ class MoviePeople(models.Model):
     nationality = models.CharField(max_length=128, verbose_name="国籍", default="")
     is_director = models.BooleanField(verbose_name="是否导演", default=False)
     is_actor = models.BooleanField(verbose_name="是否演员", default=False)
+    des = models.TextField(verbose_name="简介", null=True, blank=True)
     raw = JSONField(verbose_name="元数据", null=True)
     event_count = models.IntegerField(verbose_name='事件个数', default=0)
     screenwriter_count = models.IntegerField(verbose_name='编剧作品个数', default=0)
@@ -38,13 +39,14 @@ class MoviePeople(models.Model):
 
     @property
     def des_html(self):
-        if self.raw:
+        if not self.des and self.raw:
             personDetail = self.raw.get('personDetail')
             if personDetail and len(personDetail) > 0:
                 briefBiography = personDetail[0].get('briefBiography')
                 if briefBiography and len(briefBiography) > 0:
                     return linebreaksbr(briefBiography[0])
-        return
+        else:
+            return self.des
 
     @property
     def nativeplace(self):
