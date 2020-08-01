@@ -2,10 +2,10 @@ from django.conf.urls import url
 from rest_framework.urlpatterns import format_suffix_patterns
 
 from ddsrc.views import (RoadListView, RoadDetailsView, ArchitectureListView,
-                         ArchitectureDetailView, RoadFilterView,
-                         ArchitectureFilterView, RoadPolylinesView,
-                         RoadRelatedPlacesView, ArchitecturePositionsView,
-                         PlaceRelatedProvincesCount)
+    ArchitectureDetailView, RoadFilterView, ArchitectureFilterView, RoadPolylinesView,
+    RoadRelatedPlacesView, ArchitecturePositionsView, PlaceRelatedProvincesCount,
+    EventListView, EventDetailsView, ThatYearView)
+
 
 urlpatterns = [
     url(r'^roads/$', RoadListView.as_view(), name="road-list"),
@@ -18,6 +18,9 @@ urlpatterns = [
     url(r'^road/relatedplaces/$', RoadRelatedPlacesView.as_view(), name="road-relatedplaces"),
     url(r'^architecture/positions/$', ArchitecturePositionsView.as_view(), name="architecture-positons"),
     url(r'^place/relatedprovinces/$', PlaceRelatedProvincesCount.as_view(), name="place-releated-provinces"),
+    url(r'^events/$', EventListView.as_view(), name="events"),
+    url(r'^event/(?P<pk>[0-9]+)/$', EventDetailsView.as_view(), name="event"),
+    url(r'^thatyear/', ThatYearView.as_view(), name="thatyear"),
 ]
 
 urlpatterns = format_suffix_patterns(urlpatterns)
