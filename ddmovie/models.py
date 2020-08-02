@@ -34,7 +34,7 @@ class MoviePeople(models.Model):
         elif self.raw and self.raw.get('photoOfPerson'):
             photoOfPerson = self.raw['photoOfPerson']
             if photoOfPerson and len(photoOfPerson) > 0:
-                return photoOfPerson[0].get('imagePath')
+                return photoOfPerson[0].get('imagePath', '').replace('http://', 'https://')
         return
 
     @property
@@ -192,7 +192,7 @@ class Movie(models.Model):
         else:
             moviePhotos = MoviePhoto.objects.filter(movieUri=self.uri)
             if len(moviePhotos) > 0 and moviePhotos[0].image:
-                return moviePhotos[0].image.url
+                return moviePhotos[0].image.url.replace('http://', 'https://')
             return
 
     @property
