@@ -2,8 +2,8 @@ from django.shortcuts import render
 from rest_framework import generics, filters
 from rest_framework.response import Response
 from rest_framework.views import APIView
-from ddmovie.models import Movie, MoviePeople, MoviePhoto, MoviePhotoPeople, MovieCinema
-from ddmovie.serializer import MovieSerializer, MoviePeopleSerializer, MovieCinemaSerializer
+from ddmovie.models import Movie, MoviePeople, MovieCinema
+from ddmovie.serializer import MovieSerializer, MoviePeopleSerializer, MovieCinemaSerializer, MoviePeopleSimpleSerializer
 
 
 class MovieCinemaListView(generics.ListAPIView):
@@ -38,7 +38,7 @@ class MovieDetailsView(generics.RetrieveAPIView):
 
 class MoviePeopleListView(generics.ListAPIView):
     queryset = MoviePeople.objects.all().order_by("_id")
-    serializer_class = MoviePeopleSerializer
+    serializer_class = MoviePeopleSimpleSerializer
     filter_backends = [filters.SearchFilter, filters.OrderingFilter]
     search_fields = [
         'name',
