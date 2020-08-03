@@ -186,7 +186,7 @@ class Movie(models.Model):
     @property
     def first_image_path(self):
         if self.image:
-            return self.image
+            return self.image.url
         elif self.lib_image_path:
             return self.lib_image_path
         else:
