@@ -159,6 +159,7 @@ class ThatYearView(APIView):
         event_list = []
         for event in events:
             event_list.append({
+                "event_id": event._id,
                 "event_title": event.event_title,
                 "event_image_path": event.event_image.url if event.event_image else '',
                 "event_begin": event.event_begin,
