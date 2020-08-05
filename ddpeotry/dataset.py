@@ -3,10 +3,15 @@
 # @Author  : AaronJny
 # @Time    : 2019/12/24
 # @Desc    : 构建数据集
+import tensorflow as tf
 from collections import defaultdict
+from bert4keras.tokenizers import Tokenizer, load_vocab
+from bert4keras.snippets import sequence_padding, DataGenerator
+from bert4keras.models import build_transformer_model
 
 import numpy as np
 from ddproj import settings
+
 
 
 class Singleton(type):
@@ -20,11 +25,6 @@ class PeotryTokenizer(metaclass=Singleton):
 
     keep_words = []
     tokenizer = None
-
-    import tensorflow as tf
-    from bert4keras.tokenizers import Tokenizer, load_vocab
-    from bert4keras.snippets import sequence_padding, DataGenerator
-    from bert4keras.models import build_transformer_model
 
     def __init__(self):
 
