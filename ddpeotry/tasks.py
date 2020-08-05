@@ -13,8 +13,8 @@ def add(x, y):
 def mul(x, y):
     return x * y
 
-@shared_task
-def get_peotry(first_word):
+@shared_task(bind=True)
+def get_peotry(self, first_word):
     # result = generate_random_poetry(
     #     s=first_word
     # )
@@ -25,6 +25,7 @@ def get_peotry(first_word):
     try:
         peotry = Peotry.objects.get(
             firstWord=first_word,
+            taskId=self.request.id,
             status=0
         )
         peotry.result = result
