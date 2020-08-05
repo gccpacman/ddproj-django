@@ -25,6 +25,7 @@ class PeotryTokenizer(metaclass=Singleton):
 
     keep_words = []
     tokenizer = None
+    model= None
 
     def __init__(self):
 
@@ -103,11 +104,18 @@ class PeotryTokenizer(metaclass=Singleton):
         self.tokenizer = Tokenizer(token_id_dict, do_lower_case=True)
         # 混洗数据
         np.random.shuffle(poetry)
+        self.model = self.get_model()
+        self.model.load_weights(settings.BEST_MODEL_PATH)
 
 
-    def get_model(self, keep_words):
+    def get_model(self):
 
-        model = build_transformer_model(settings.CONFIG_PATH, settings.CHECKPOINT_PATH, application='lm', keep_tokens=keep_words)
+        model = build_transformer_model(
+            settings.CONFIG_PATH, 
+            settings.CHECKPOINT_PATH, 
+            application='lm', 
+            keep_tokens=keep_words
+        )
         model.summary()
 
         # loss fun，交叉熵
@@ -134,8 +142,7 @@ class PeotryTokenizer(metaclass=Singleton):
         :return: 一个字符串，表示一首古诗
         """
         tokenizer = self.tokenizer
-        model = self.get_model(keep_words)
-        model.load_weights(settings.BEST_MODEL_PATH)
+        model = self.model
 
         # 将初始字符串转成token
         token_ids, segment_ids = tokenizer.encode(s)
@@ -178,8 +185,7 @@ class PeotryTokenizer(metaclass=Singleton):
         :return: 一个字符串，表示一首古诗
         """
         tokenizer = self.tokenizer
-        model = self.get_model(keep_words)
-        model.load_weights(settings.BEST_MODEL_PATH)
+        model = self.model
         # 使用空串初始化token_ids，加入[CLS]
         token_ids, segment_ids = tokenizer.encode('')
         token_ids = token_ids[:-1]
