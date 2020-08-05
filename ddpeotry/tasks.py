@@ -2,7 +2,7 @@ from __future__ import absolute_import, unicode_literals
 
 from celery import shared_task
 
-from ddpeotry.utils import generate_random_poetry, generate_acrostic
+from ddpeotry.dataset import PeotryTokenizer
 from ddpeotry.models import Peotry
 
 @shared_task
@@ -18,7 +18,8 @@ def get_peotry(first_word):
     # result = generate_random_poetry(
     #     s=first_word
     # )
-    result = generate_acrostic(
+    peotryTokenizer = PeotryTokenizer()
+    result = peotryTokenizer.generate_acrostic(
         head=first_word
     )
     try:

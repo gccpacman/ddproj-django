@@ -7,7 +7,7 @@ class Peotry(models.Model):
         verbose_name_plural = '对诗'
 
     _id = models.AutoField(primary_key=True)
-    firstWord = models.CharField(max_length=64, verbose_name="输入", null=False, unique=True)
+    firstWord = models.CharField(max_length=64, verbose_name="输入", null=False, unique=False)
     result = models.CharField(max_length=256, verbose_name="输出", null=True, blank=True, default='')
     status = models.IntegerField(default=0)
     taskId = models.CharField(max_length=256, verbose_name="taskId", default='')
