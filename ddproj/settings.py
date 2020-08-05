@@ -218,14 +218,14 @@ DISALLOWED_WORDS = ['（', '）', '(', ')', '__', '《', '》', '【', '】', '[
 # 句子最大长度
 MAX_LEN = 64
 # 最小词频
-MIN_WORD_FREQUENCY = 8
+MIN_WORD_FREQUENCY = 10
 # 训练的batch size
 BATCH_SIZE = 32
 
 # 每个epoch训练完成后，随机生成SHOW_NUM首古诗作为展示
 SHOW_NUM = 5
 # 共训练多少个epoch
-TRAIN_EPOCHS = 20
+TRAIN_EPOCHS = 1000
 
 
 if os.environ.get('DD_BACKEND_ENV') == 'PROD':
