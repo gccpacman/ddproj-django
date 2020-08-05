@@ -114,7 +114,7 @@ class PeotryTokenizer(metaclass=Singleton):
             settings.CONFIG_PATH, 
             settings.CHECKPOINT_PATH, 
             application='lm', 
-            keep_tokens=keep_words
+            keep_tokens=self.keep_words
         )
         model.summary()
 
