@@ -23,6 +23,7 @@ class TravelPathPointInline(admin.TabularInline):
 
 class TravelPathAdmin(admin.ModelAdmin):
     list_display = (
+        '_id',
         'name',
         'method',
         'duration',

@@ -59,14 +59,20 @@ class ArchitecturePositionsView(APIView):
 
     def get(self, request):
         place_name = request.query_params.get('place_name')
+        keyword = request.query_params.get('keyword')
+
         if place_name:
             arch_query_list = Architecture.objects.filter(
                 hidden=False
             ).filter(
                 place_name=place_name
             )
+        elif keyword:
+            arch_query_list = Architecture.objects.filter(hidden=False).filter(
+                name_chs__contains=keyword)
         else:
             arch_query_list = Architecture.objects.filter(hidden=False)
+    
         architecture_list = [{
             "id": arch._id,
             "name": arch.name_chs,

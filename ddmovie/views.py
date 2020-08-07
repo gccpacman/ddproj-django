@@ -57,6 +57,8 @@ class MovieTimelineView(APIView):
         movie_by_year = {}
         for movie in movies_queryset:
             formated_pub_date = movie.formated_pub_date
+            if int(formated_pub_date) > 1910 and int(formated_pub_date) <= 1920:
+                formated_pub_date = 1910
             if not movie_by_year.get(formated_pub_date):
                 movie_by_year[formated_pub_date] = []
             movie_by_year[formated_pub_date].append({
@@ -71,7 +73,12 @@ class MovieTimelineView(APIView):
 class MovieCinemaPositionsView(APIView):
 
     def get(self, request):
-        cinema_queryset = MovieCinema.objects.all()
+        keyword = request.query_params.get('keyword')
+        if keyword:
+            cinema_queryset = MovieCinema.objects.filter(
+                name__contains=keyword)
+        else:
+            cinema_queryset = MovieCinema.objects.all()
         architecture_list = [{
             "id": cinema._id,
             "title": cinema.name,
