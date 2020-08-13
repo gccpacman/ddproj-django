@@ -2,7 +2,7 @@ from __future__ import absolute_import, unicode_literals
 
 from celery import shared_task
 
-from ddpeotry.dataset import PeotryTokenizer
+from ddpeotry.dataset import PeotryGenerator
 from ddpeotry.models import Peotry
 
 @shared_task
@@ -15,12 +15,8 @@ def mul(x, y):
 
 @shared_task(bind=True)
 def get_peotry(self, first_word):
-    # result = generate_random_poetry(
-    #     s=first_word
-    # )
-    peotryTokenizer = PeotryTokenizer()
-    result = peotryTokenizer.generate_acrostic(
-        head=first_word
+    result = PeotryGenerator().generate_acrostic(
+        head=first_word,
     )
     try:
         peotry = Peotry.objects.get(

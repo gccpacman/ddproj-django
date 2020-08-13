@@ -5,6 +5,7 @@ from rest_framework.response import Response
 from ddpeotry.models import Peotry
 from ddpeotry.tasks import get_peotry
 
+
 class PeotryView(APIView):
 
     def get(self, request):
