@@ -232,8 +232,8 @@ if os.environ.get('DD_BACKEND_ENV') == 'PROD':
     MEDIA_ROOT = '/media/'
     STATIC_ROOT = '/django_static/'
     DEBUG = False
-    BROKER_URL = 'amqp://admin:t11sIs76L@rabbitmq:5672'
-    RESULT_BACKEND = 'amqp://admin:t11sIs76L@rabbitmq:5672'
+    BROKER_URL = 'amqp://admin:t11sIs76L@172.17.0.2:5672'
+    RESULT_BACKEND = 'amqp://admin:t11sIs76L@172.17.0.2:5672'
     CORS_ORIGIN_REGEX_WHITELIST = [
         r"^\w+://localhost:8080$",
         r"^\w+://\w+\.datadude\.xyz$",
