@@ -1,0 +1,19 @@
+---
+apiVersion: networking.k8s.io/v1beta1
+kind: Ingress
+metadata:
+  name: ddproj-django
+  annotations:
+    kubernetes.io/ingress.class: "traefik"
+spec:
+  tls:
+  - hosts:
+    - api2.datadude.xyz
+    secretName: api2.datadude.xyz
+  rules:
+  - http:
+      paths:
+      - path: /
+        backend:
+          serviceName: ddproj-django
+          servicePort: 8080

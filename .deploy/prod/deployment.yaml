@@ -1,0 +1,27 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: ddproj-django
+  labels:
+    app: ddproj-django
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: ddproj-django
+  template:
+    metadata:
+      labels:
+        app: ddproj-django
+    spec:
+      containers:
+      - name: ddproj-django
+        image: myk3s.tencentcloudcr.com/ddxyz/ddproj-django:latest
+        imagePullPolicy: Always
+        ports:
+        - containerPort: 8080
+        env:
+        - name: DD_BACKEND_ENV
+          value: "PROD"
+      imagePullSecrets:
+        - name: tencent-cr
