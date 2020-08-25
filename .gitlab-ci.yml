@@ -11,15 +11,19 @@ variables:
   APP_NAME: ddproj-django
   DOCKER_IMAGE_NAME: myk3s.tencentcloudcr.com/ddxyz/ddproj-django
 docker_build_job:
-  image: docker:stable
+  image: docker:19.03.12
   stage: build
   variables:
+    DOCKER_HOST: tcp://docker:2376
+    DOCKER_TLS_CERTDIR: "/certs"
     DOCKER_DRIVER: overlay2
   services:
-    - docker:dind
+    - docker:19.03.12-dind
   tags:
     - kubernetes
-  script:
+  before_script:
+    - docker info
     - docker login -u ${DOCKER_REGISTRY_USERNAME} -p ${DOCKER_REGISTRY_PASSWORD} ${DOCKER_REGISTRY_URL}
+  script:
     - docker build -t ${DOCKER_IMAGE_NAME}:${CI_COMMIT_SHA:0:8}-${CI_PIPELINE_ID}-${CI_COMMIT_REF_NAME} .
     - docker push ${DOCKER_IMAGE_NAME}:${CI_COMMIT_SHA:0:8}-${CI_PIPELINE_ID}-${CI_COMMIT_REF_NAME}
