@@ -11,13 +11,13 @@ variables:
   APP_NAME: ddproj-django
   DOCKER_IMAGE_NAME: myk3s.tencentcloudcr.com/ddxyz/ddproj-django
 docker_build_job:
-  image: docker:19.03.06
+  image: docker:19.03.12
   stage: build
   variables:
     DOCKER_HOST: https://docker:2376
     DOCKER_DRIVER: overlay2
   services:
-    - docker:19.03.06-dind
+    - docker:19.03.12-dind
   tags:
     - kubernetes
   before_script:
