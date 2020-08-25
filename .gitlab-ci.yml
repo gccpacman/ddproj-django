@@ -14,7 +14,8 @@ docker_build_job:
   image: docker:19.03.12
   stage: build
   variables:
-    DOCKER_HOST: https://docker:2376
+    DOCKER_HOST: tcp://docker:2376
+    DOCKER_TLS_CERTDIR: ""
     DOCKER_DRIVER: overlay2
   services:
     - docker:19.03.12-dind
