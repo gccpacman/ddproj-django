@@ -7,7 +7,7 @@
 # https://docs.gitlab.com/ee/ci/yaml/README.html#stages
 stages:
   - build
-  # - deploy
+  - deploy
 variables:
   APP_NAME: ddproj-django
   DOCKER_IMAGE_NAME: myk3s.tencentcloudcr.com/ddxyz/ddproj-django
@@ -28,17 +28,17 @@ docker_build_job:
     - docker pull ${DOCKER_IMAGE_NAME}:latest || true
     - docker build --cache-from ${DOCKER_IMAGE_NAME}:latest -t ${DOCKER_IMAGE_NAME}:${CI_COMMIT_SHA:0:8}-${CI_PIPELINE_ID}-${CI_COMMIT_REF_NAME} .
     - docker push ${DOCKER_IMAGE_NAME}:${CI_COMMIT_SHA:0:8}-${CI_PIPELINE_ID}-${CI_COMMIT_REF_NAME}
-# k8s_deploy_job:
-#   image: dtzar/helm-kubectl
-#   stage: deploy
-#   only:
-#     - develop
-#   variables:
-#     HELM_NAMESPACE: uat
-#   tags:
-#     - kubernetes
-#   script:
-#     - mkdir -p /root/.kube
-#     - echo ${KUBE_CONFIG} |base64 -d > /root/.kube/config
-#     - helm repo update
-#     - helm upgrade --install ${APP_NAME}-${HELM_NAMESPACE} --namespace ${HELM_NAMESPACE} --set image.tag=${CI_COMMIT_SHA:0:8}-${CI_PIPELINE_ID}-${CI_COMMIT_REF_NAME} -f .deploy/uat.yaml .deploy/helm/
+k8s_deploy_job:
+  image: dtzar/helm-kubectl
+  stage: deploy
+  only:
+    - develop
+  variables:
+    HELM_NAMESPACE: uat
+  tags:
+    - kubernetes
+  script:
+    - mkdir -p /root/.kube
+    - echo ${KUBE_CONFIG} |base64 -d > /root/.kube/config
+    - helm repo update
+    - helm upgrade --install ${APP_NAME}-${HELM_NAMESPACE} --namespace ${HELM_NAMESPACE} --set image.tag=${CI_COMMIT_SHA:0:8}-${CI_PIPELINE_ID}-${CI_COMMIT_REF_NAME} -f .deploy/uat.yaml .deploy/helm/
