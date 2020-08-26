@@ -16,7 +16,6 @@ docker_build_job:
   services:
     - docker:19.03.12-dind
   variables:
-    variables:
     DOCKER_HOST: tcp://docker:2376
     DOCKER_DRIVER: overlay2
   tags:
