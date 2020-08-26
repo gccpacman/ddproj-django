@@ -22,7 +22,7 @@ docker_build_job:
   tags:
     - docker
   before_script:
-   - docker login -u ${DOCKER_REGISTRY_USERNAME} -p ${DOCKER_REGISTRY_PASSWORD} ${DOCKER_REGISTRY_URL}
+    - docker login -u ${DOCKER_REGISTRY_USERNAME} -p ${DOCKER_REGISTRY_PASSWORD} ${DOCKER_REGISTRY_URL}
   script:
     - docker pull ${DOCKER_IMAGE_NAME}:latest || true
     - docker build --cache-from ${DOCKER_IMAGE_NAME}:latest -t ${DOCKER_IMAGE_NAME}:${CI_COMMIT_SHA:0:8}-${CI_PIPELINE_ID}-${CI_COMMIT_REF_NAME} .
