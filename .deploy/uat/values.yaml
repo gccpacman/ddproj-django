@@ -3,6 +3,8 @@ image:
   repository: myk3s.tencentcloudcr.com/ddxyz/ddproj-django
 nameOverride: ddproj-django
 fullnameOverride: ddproj-django
+service:
+  port: 80
 loadbalancer:
   enabled: false
 ingress:
