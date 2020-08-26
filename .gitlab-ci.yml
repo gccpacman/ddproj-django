@@ -30,7 +30,7 @@ docker_build_job:
     - docker tag ${DOCKER_IMAGE_NAME}:latest ${DOCKER_IMAGE_NAME}:${CI_COMMIT_SHA:0:8}-${CI_PIPELINE_ID}-${CI_COMMIT_REF_NAME}
     - docker push ${DOCKER_IMAGE_NAME}:latest
     - docker push ${DOCKER_IMAGE_NAME}:${CI_COMMIT_SHA:0:8}-${CI_PIPELINE_ID}-${CI_COMMIT_REF_NAME}
-k8s_deploy_job:
+k8s_deploy_uat:
   image: dtzar/helm-kubectl
   stage: deploy
   only:
@@ -43,3 +43,17 @@ k8s_deploy_job:
     - mkdir -p /root/.kube
     - echo ${KUBE_CONFIG} |base64 -d > /root/.kube/config
     - helm upgrade --install ${APP_NAME}-${HELM_NAMESPACE} --set image.tag=${CI_COMMIT_SHA:0:8}-${CI_PIPELINE_ID}-${CI_COMMIT_REF_NAME} -f .deploy/uat/values.yaml .deploy/helm/
+k8s_deploy_prod:
+  image: dtzar/helm-kubectl
+  stage: deploy
+  only:
+    - master
+  when: manual
+  variables:
+    HELM_NAMESPACE: default
+  tags:
+    - kubernetes
+  script:
+    - mkdir -p /root/.kube
+    - echo ${KUBE_CONFIG} |base64 -d > /root/.kube/config
+    - helm upgrade --install ${APP_NAME}-${HELM_NAMESPACE} --set image.tag=${CI_COMMIT_SHA:0:8}-${CI_PIPELINE_ID}-${CI_COMMIT_REF_NAME} -f .deploy/prod/values.yaml .deploy/helm/

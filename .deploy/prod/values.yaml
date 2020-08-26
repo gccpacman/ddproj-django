@@ -1,18 +1,21 @@
-replicaCount: 2
- image:
-   repository: myk3s.tencentcloudcr.com/ddxyz/ddproj-django
-   tag: bda5f6d5-182026027-master
- nameOverride: ddproj-django
- fullnameOverride: ddproj-django
- loadbalancer:
-   enabled: false
- ingress:
-   enabled: true
-   tls:
-   - hosts:
-     - dev-api2.datadude.xyz
-     secretName: dev-api2.datadude.xyz
-   hosts:
-   - host: dev-api2.datadude.xyz
-     paths:
-     - /
+replicaCount: 1
+image:
+  repository: myk3s.tencentcloudcr.com/ddxyz/ddproj-django
+nameOverride: ddproj-django
+fullnameOverride: ddproj-django
+regsecret: tencent-cr
+backend_env: PROD
+service:
+  port: 80
+loadbalancer:
+  enabled: false
+ingress:
+  enabled: true
+  tls:
+    - hosts:
+      - api2.datadude.xyz
+      secretName: api2.datadude.xyz
+  hosts:
+  - host: api2.datadude.xyz
+    paths:
+    - /
