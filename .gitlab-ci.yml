@@ -20,7 +20,7 @@ docker_build_job:
   services:
     - docker:19.03.12-dind
   tags:
-    - kubernetes
+    - docker
   before_script:
     - docker info
     - docker login -u ${DOCKER_REGISTRY_USERNAME} -p ${DOCKER_REGISTRY_PASSWORD} ${DOCKER_REGISTRY_URL}
