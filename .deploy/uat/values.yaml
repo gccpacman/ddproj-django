@@ -1,9 +1,10 @@
-replicaCount: 2
+replicaCount: 1
 image:
   repository: myk3s.tencentcloudcr.com/ddxyz/ddproj-django
 nameOverride: ddproj-django
 fullnameOverride: ddproj-django
 regsecret: tencent-cr
+backend_env: UAT
 service:
   port: 80
 loadbalancer:

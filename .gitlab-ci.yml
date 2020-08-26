@@ -42,4 +42,4 @@ k8s_deploy_job:
   script:
     - mkdir -p /root/.kube
     - echo ${KUBE_CONFIG} |base64 -d > /root/.kube/config
-    - helm upgrade --install ${APP_NAME}-${HELM_NAMESPACE} --namespace ${HELM_NAMESPACE} --set image.tag=${CI_COMMIT_SHA:0:8}-${CI_PIPELINE_ID}-${CI_COMMIT_REF_NAME} -f .deploy/uat/values.yaml .deploy/helm/
+    - helm upgrade --install ${APP_NAME}-${HELM_NAMESPACE} --set image.tag=${CI_COMMIT_SHA:0:8}-${CI_PIPELINE_ID}-${CI_COMMIT_REF_NAME} -f .deploy/uat/values.yaml .deploy/helm/

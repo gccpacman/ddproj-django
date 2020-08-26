@@ -312,16 +312,18 @@ elif os.environ.get('DD_BACKEND_ENV') == 'UAT':
     DEBUG = True
     MEDIA_ROOT = '_uat/media/'
     STATIC_ROOT = '_uat/static/'
-    BROKER_URL = 'amqp://guest:guest@rabbitmq:5672'
-    RESULT_BACKEND = 'amqp://guest:guest@rabbitmq:5672'
+    # BROKER_URL = 'amqp://guest:guest@rabbitmq:5672'
+    # RESULT_BACKEND = 'amqp://guest:guest@rabbitmq:5672'
+    BROKER_URL = 'amqp://admin:t11sIs76L@172.17.0.2:5672'
+    RESULT_BACKEND = 'amqp://admin:t11sIs76L@172.17.0.2:5672'
     DATABASES = {
         'default': {
             'ENGINE': 'django.db.backends.mysql',
             'NAME': 'ddproj',
             'USER': 'ddxyz',
             'PASSWORD': 'dDxYz1@3#e',
-            'HOST': 'mysql',
-            'PORT': '3306',
+            'HOST': '172.17.0.2',
+            'PORT': '13306',
             'OPTIONS': {
                 'init_command': "SET sql_mode='STRICT_TRANS_TABLES'",
                 'charset': 'utf8mb4',

@@ -40,6 +40,8 @@ spec:
               valueFrom:
                 fieldRef:
                   fieldPath: metadata.name
+            - name: DD_BACKEND_ENV
+              value: {{ .Values.backend_env }}
       terminationGracePeriodSeconds: 30
       {{- if .Values.regsecret }}
       imagePullSecrets:
