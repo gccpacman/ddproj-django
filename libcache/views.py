@@ -3,13 +3,15 @@ from django.shortcuts import render
 
 import requests
 
+import os
+from ddproj import settings
 
 def profile(request):
     data = {
-        'name': 'Vitor',
-        'location': 'Finland',
-        'is_active': True,
-        'count': 28
+        'debug': settings.DEBUG,
+        'media_root': settings.MEDIA_ROOT,
+        'static_root': settings.STATIC_ROOT,
+        'env': os.environ.get('DD_BACKEND_ENV')
     }
     return JsonResponse(data)
 
