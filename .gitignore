@@ -14,3 +14,5 @@ backend_media/
 db.sqlite3
 \.qiniu_pythonsdk_hostscache.json
 data
+builds/
+.env

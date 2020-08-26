@@ -1,0 +1,18 @@
+replicaCount: 2
+ image:
+   repository: myk3s.tencentcloudcr.com/ddxyz/ddproj-django
+   tag: bda5f6d5-182026027-master
+ nameOverride: ddproj-django
+ fullnameOverride: ddproj-django
+ loadbalancer:
+   enabled: false
+ ingress:
+   enabled: true
+   tls:
+   - hosts:
+     - dev-api2.datadude.xyz
+     secretName: dev-api2.datadude.xyz
+   hosts:
+   - host: dev-api2.datadude.xyz
+     paths:
+     - /

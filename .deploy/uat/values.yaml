@@ -1,0 +1,13 @@
+replicaCount: 2
+image:
+  repository: myk3s.tencentcloudcr.com/ddxyz/ddproj-django
+nameOverride: ddproj-django
+fullnameOverride: ddproj-django
+loadbalancer:
+  enabled: false
+ingress:
+  enabled: true
+  hosts:
+  - host: dev-api2.datadude.xyz
+    paths:
+    - /
