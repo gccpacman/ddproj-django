@@ -33,8 +33,6 @@ docker_build_job:
 k8s_deploy_uat:
   image: dtzar/helm-kubectl
   stage: deploy
-  only:
-    - develop
   variables:
     HELM_NAMESPACE: uat
   tags:
