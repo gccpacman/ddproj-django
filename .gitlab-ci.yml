@@ -16,8 +16,6 @@ docker_build_job:
   services:
     - docker:19.03.12-dind
   variables:
-    DOCKER_HOST: tcp://docker:2376
-    DOCKER_TLS_CERTDIR: "/cert"
     DOCKER_DRIVER: overlay2
   tags:
     - docker
